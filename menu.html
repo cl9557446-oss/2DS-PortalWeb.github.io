@@ -1,13 +1,439 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
 
-    <h1>Hola que hace</h1>
-    
-</body>
-</html>
+<div id="portal-sv">
+
+<style>
+#portal-sv {
+  --azul:#0047ab;
+  --azul-oscuro:#08264b;
+  --celeste:#dceeff;
+  --blanco:#fff;
+  --gris:#64748b;
+  --fondo:#f5f8fc;
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:#243449;
+  background:#fff;
+  width:100%;
+  overflow:hidden;
+  line-height:1.6;
+}
+#portal-sv * {box-sizing:border-box}
+#portal-sv a {text-decoration:none}
+#portal-sv .header {
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:14px clamp(16px,4vw,55px);
+  background:#fff;border-bottom:1px solid #e7edf4;
+  position:relative;z-index:5;
+}
+#portal-sv .brand {
+  display:flex;align-items:center;gap:12px;
+  color:var(--azul-oscuro);flex-shrink:0;
+}
+#portal-sv .flag {
+  width:62px;height:40px;display:flex;flex-direction:column;
+  overflow:hidden;border:1px solid #e2e8f0;border-radius:3px;
+}
+#portal-sv .flag span {height:33.333%;background:#0047ab}
+#portal-sv .flag span:nth-child(2) {background:#fff}
+#portal-sv .brand strong {font-size:24px;line-height:1.2;display:block}
+#portal-sv .brand small {font-size:11px;display:block}
+#portal-sv .nav {display:flex;gap:clamp(10px,1.8vw,24px);align-items:center}
+#portal-sv .nav a {
+  color:var(--azul-oscuro);font-size:12px;font-weight:650;
+  padding:10px 0;border-bottom:3px solid transparent;transition:.2s;
+}
+#portal-sv .nav a:hover {border-color:#007bce;color:var(--azul)}
+#portal-sv .toggle {
+  display:none;background:var(--azul);color:#fff;border:0;
+  border-radius:8px;padding:8px 12px;font-size:22px;cursor:pointer;
+}
+
+/* PORTADA */
+#portal-sv .hero {
+  min-height:450px;display:flex;align-items:center;
+  padding:55px clamp(22px,7vw,95px);color:#fff;
+  background:
+    linear-gradient(90deg,rgba(2,26,59,.96),rgba(2,26,59,.76) 48%,rgba(2,26,59,.12)),
+    url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1800&q=85")
+    center/cover no-repeat;
+}
+#portal-sv .hero-content {max-width:610px}
+#portal-sv .eyebrow {
+  display:inline-block;border-left:4px solid #68c8ff;
+  padding-left:12px;font-size:12px;font-weight:750;letter-spacing:1.5px;
+}
+#portal-sv .hero h1 {
+  color:#fff;font-size:clamp(38px,5vw,65px);
+  line-height:1.08;letter-spacing:-1.5px;margin:20px 0;
+}
+#portal-sv .hero p {color:#e7effa;max-width:510px;font-size:15px}
+#portal-sv .hero .motto {
+  display:block;color:#9cddff;font-size:21px;font-style:italic;margin:20px 0;
+}
+#portal-sv .btn {
+  display:inline-flex;align-items:center;gap:15px;
+  padding:12px 19px;background:#fff;color:var(--azul-oscuro);
+  font-size:13px;font-weight:750;border-radius:7px;transition:.2s;
+}
+#portal-sv .btn:hover {background:#cceaff;transform:translateY(-2px)}
+
+/* ACCESOS */
+#portal-sv .main {padding:60px clamp(17px,5vw,70px)}
+#portal-sv .section-title {text-align:center;margin-bottom:35px}
+#portal-sv .section-title span {
+  color:var(--azul);font-size:11px;font-weight:800;letter-spacing:2px;
+}
+#portal-sv .section-title h2 {
+  color:var(--azul-oscuro);font-size:clamp(26px,3vw,36px);
+  line-height:1.25;margin:8px 0;
+}
+#portal-sv .section-title p {font-size:14px;color:var(--gris);margin:0}
+#portal-sv .grid {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;max-width:1400px;margin:auto;
+}
+#portal-sv .card {
+  display:flex;flex-direction:column;align-items:flex-start;
+  min-height:225px;padding:25px;border:1px solid #e5ebf4;
+  border-radius:15px;background:#fff;
+  box-shadow:0 3px 12px rgba(15,42,78,.05);transition:.25s;
+}
+#portal-sv .card:hover {
+  transform:translateY(-5px);border-color:#b9d8f3;
+  box-shadow:0 12px 28px rgba(15,42,78,.1);
+}
+#portal-sv .icon {
+  display:grid;place-items:center;width:52px;height:52px;
+  border-radius:15px;background:#e5f2ff;color:#0756ad;
+  font-size:25px;font-weight:700;
+}
+#portal-sv .card h3 {color:var(--azul-oscuro);font-size:19px;margin:13px 0 5px}
+#portal-sv .card p {font-size:13px;color:var(--gris);margin:0 0 15px}
+#portal-sv .card-link {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;width:100%;margin-top:auto;color:var(--azul);
+  font-size:12px;font-weight:750;
+}
+#portal-sv .arrow {
+  display:grid;place-items:center;width:30px;height:30px;
+  border-radius:50%;background:var(--azul);color:#fff;font-size:17px;
+}
+
+/* IDENTIDAD NACIONAL */
+#portal-sv .identity {
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px;
+  padding:50px clamp(20px,5vw,70px);background:var(--fondo);
+  border-top:1px solid #e8eef6;
+}
+#portal-sv .identity .label {
+  color:var(--azul);font-size:11px;font-weight:800;letter-spacing:1.6px;
+}
+#portal-sv .identity h2 {
+  color:var(--azul-oscuro);font-size:clamp(24px,2.7vw,34px);
+  line-height:1.25;margin:10px 0;
+}
+#portal-sv .identity h3 {color:var(--azul-oscuro);font-size:19px;margin:9px 0}
+#portal-sv .identity p {color:var(--gris);font-size:13px}
+#portal-sv .identity-item {border-left:1px solid #d5e0ed;padding-left:23px}
+#portal-sv .identity-item a {font-size:12px;font-weight:750;color:var(--azul)}
+
+/* PIE */
+#portal-sv .footer {
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;
+  padding:38px clamp(20px,5vw,70px) 22px;background:#101722;color:#fff;
+}
+#portal-sv .footer h3 {font-size:25px;color:#fff;margin:0 0 5px}
+#portal-sv .footer h4 {font-size:13px;color:#fff;margin:0 0 10px}
+#portal-sv .footer p,#portal-sv .footer a,#portal-sv .footer span {
+  color:#d6e0ee;font-size:12px;overflow-wrap:anywhere;
+}
+#portal-sv .footer a:hover {color:#9cddff}
+#portal-sv .socials {display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+#portal-sv .socials a {
+  display:grid;place-items:center;width:35px;height:35px;
+  border-radius:50%;background:#fff;color:#10315a;font-weight:800;
+}
+#portal-sv .socials a:hover {background:#9cddff}
+#portal-sv .copyright {
+  grid-column:1/-1;border-top:1px solid #303c4c;padding-top:17px;
+  text-align:center;color:#b7c4d5;font-size:11px;
+}
+#portal-sv .stripes {display:flex;height:8px}
+#portal-sv .stripes span {flex:1}
+#portal-sv .stripes span:nth-child(1),
+#portal-sv .stripes span:nth-child(3) {background:#0047ab}
+#portal-sv .stripes span:nth-child(2) {background:#fff}
+
+/* RESPONSIVE */
+@media(max-width:1050px) {
+  #portal-sv .header {flex-wrap:wrap}
+  #portal-sv .nav {gap:13px}
+  #portal-sv .nav a {font-size:11px}
+  #portal-sv .grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  #portal-sv .identity {grid-template-columns:1fr 1fr}
+  #portal-sv .identity-intro {grid-column:1/-1}
+}
+@media(max-width:720px) {
+  #portal-sv .header {flex-wrap:nowrap;padding:12px 16px}
+  #portal-sv .brand strong {font-size:21px}
+  #portal-sv .brand small {font-size:10px}
+  #portal-sv .flag {width:48px;height:32px}
+  #portal-sv .toggle {display:block;flex-shrink:0}
+  #portal-sv .nav {
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    padding:8px 20px 15px;background:#fff;
+    box-shadow:0 12px 20px #00000015;
+  }
+  #portal-sv .nav.open {display:flex}
+  #portal-sv .nav a {padding:12px 5px;font-size:13px;border-bottom:1px solid #edf0f5}
+  #portal-sv .hero {min-height:440px;padding:38px 22px;background-position:center}
+  #portal-sv .hero h1 {font-size:clamp(36px,10vw,49px)}
+  #portal-sv .hero p {font-size:14px}
+  #portal-sv .main {padding:42px 16px}
+  #portal-sv .grid {grid-template-columns:1fr;gap:14px}
+  #portal-sv .card {min-height:190px;padding:22px}
+  #portal-sv .identity {grid-template-columns:1fr;gap:22px;padding:38px 22px}
+  #portal-sv .identity-intro {grid-column:auto}
+  #portal-sv .identity-item {padding-left:17px}
+  #portal-sv .footer {grid-template-columns:1fr;gap:24px;padding:32px 22px 22px}
+  #portal-sv .copyright {grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce) {
+  #portal-sv *,#portal-sv *::before,#portal-sv *::after {transition:none!important}
+}
+</style>
+
+<header class="header">
+  <a href="#sv-inicio" class="brand">
+    <div class="flag" aria-label="Bandera de El Salvador">
+      <span></span><span></span><span></span>
+    </div>
+    <span>
+      <strong>EL SALVADOR</strong>
+      <small>Un país de cultura y oportunidades</small>
+    </span>
+  </a>
+
+  <nav class="nav" id="sv-nav">
+    <a href="#sv-inicio">Inicio</a>
+    <a href="#sv-explora">Explora el país</a>
+    <a href="#sv-historia">Historia</a>
+    <a href="#sv-cultura">Cultura</a>
+    <a href="#sv-turismo">Turismo</a>
+    <a href="#sv-contacto">Información</a>
+  </nav>
+
+  <button class="toggle" id="sv-toggle" type="button"
+          aria-label="Abrir menú" aria-expanded="false">☰</button>
+</header>
+
+<section class="hero" id="sv-inicio">
+  <div class="hero-content">
+    <span class="eyebrow">REPÚBLICA DE EL SALVADOR · CENTROAMÉRICA</span>
+    <h1>Descubre<br>El Salvador</h1>
+    <p>
+      Conoce la historia, las tradiciones, los paisajes y la diversidad
+      de un país lleno de identidad, creatividad y calidez humana.
+    </p>
+    <span class="motto">Pequeño en territorio, grande en historia.</span>
+    <a class="btn" href="#sv-explora">Explorar el país <span>→</span></a>
+  </div>
+</section>
+
+<main class="main" id="sv-explora">
+  <div class="section-title">
+    <span>CONOCE NUESTRA TIERRA</span>
+    <h2>Explora El Salvador</h2>
+    <p>Encuentra información sobre los principales aspectos del país.</p>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="#sv-historia">
+      <span class="icon">▤</span>
+      <h3>Historia de El Salvador</h3>
+      
+      <span class="card-link">Conocer la historia <b class="arrow">→</b></span>
+    </a>
+
+    <a class="card" href="#sv-cultura">
+      <span class="icon">✿</span>
+      <h3>Cultura de El Salvador</h3>
+     
+      <span class="card-link">Descubrir la cultura <b class="arrow">→</b></span>
+    </a>
+
+    <a class="card" href="#sv-turismo">
+      <span class="icon">⌖</span>
+      <h3>Educación y Deporte en El Salvador</h3>
+     
+      <span class="card-link">Explorar la educación y deporte <b class="arrow">→</b></span>
+    </a>
+
+    <a class="card" href="#sv-departamentos">
+      <span class="icon">⌂</span>
+      <h3>Avances Tecnologicos de El Salvador/h3>
+      
+      <span class="card-link">Conocer los avances <b class="arrow">→</b></span>
+    </a>
+
+   
+  </div>
+</main>
+
+<section class="identity" id="sv-historia">
+  <div class="identity-intro">
+    <span class="label">NUESTRA IDENTIDAD</span>
+    <h2>Una tierra con historia, cultura y diversidad</h2>
+    <p>
+      El Salvador forma parte de Centroamérica y posee una identidad
+      construida por sus pueblos, su historia, sus expresiones culturales
+      y sus paisajes naturales.
+    </p>
+  </div>
+
+  <div class="identity-item" id="sv-cultura">
+    <strong>01 / PATRIMONIO</strong>
+    <h3>Cultura y tradiciones</h3>
+    <p>
+      Las expresiones artísticas, las fiestas populares, la gastronomía
+      y las tradiciones reflejan la diversidad cultural salvadoreña.
+    </p>
+    <a href="#sv-explora">Explorar cultura →</a>
+  </div>
+
+  <div class="identity-item" id="sv-turismo">
+    <strong>02 / NATURALEZA</strong>
+    <h3>Turismo salvadoreño</h3>
+    <p>
+      Volcanes, playas del Pacífico, lagos y pueblos históricos ofrecen
+      distintas formas de conocer el territorio nacional.
+    </p>
+    <a href="#sv-explora">Descubrir destinos →</a>
+  </div>
+</section>
+
+<section class="main" id="sv-departamentos">
+  <div class="section-title">
+    <span>ORGANIZACIÓN TERRITORIAL</span>
+    <h2>Un país, 14 departamentos</h2>
+    <p>
+      El Salvador se organiza territorialmente en 14 departamentos.
+      Puedes ampliar esta sección con información de cada uno.
+    </p>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="#sv-informacion">
+      <span class="icon">01</span>
+      <h3>Zona occidental</h3>
+      <p>Ahuachapán, Santa Ana y Sonsonate.</p>
+      <span class="card-link">Ver información <b class="arrow">→</b></span>
+    </a>
+
+    <a class="card" href="#sv-informacion">
+      <span class="icon">02</span>
+      <h3>Zona central</h3>
+      <p>La Libertad, Chalatenango, Cuscatlán, San Salvador y La Paz.</p>
+      <span class="card-link">Ver información <b class="arrow">→</b></span>
+    </a>
+
+    <a class="card" href="#sv-informacion">
+      <span class="icon">03</span>
+      <h3>Zona oriental y paracentral</h3>
+      <p>Cabañas, San Vicente, Usulután, San Miguel, Morazán y La Unión.</p>
+      <span class="card-link">Ver información <b class="arrow">→</b></span>
+    </a>
+  </div>
+</section>
+
+<section class="identity" id="sv-simbolos">
+  <div class="identity-intro">
+    <span class="label">ORGULLO SALVADOREÑO</span>
+    <h2>Símbolos que representan nuestra nación</h2>
+    <p>
+      Los símbolos patrios representan la historia, la soberanía y
+      la identidad nacional de El Salvador.
+    </p>
+  </div>
+
+  <div class="identity-item">
+    <strong>01 / BANDERA</strong>
+    <h3>La bandera nacional</h3>
+    <p>Sus franjas azules y blanca forman parte de la identidad visual de la nación.</p>
+  </div>
+
+  <div class="identity-item">
+    <strong>02 / EMBLEMAS</strong>
+    <h3>Escudo e himno nacional</h3>
+    <p>Emblemas oficiales que representan la historia y los valores nacionales.</p>
+  </div>
+</section>
+
+<footer class="footer" id="sv-contacto">
+  <div>
+    <h3>EL SALVADOR</h3>
+    <span>República de El Salvador</span>
+    <p>Centroamérica</p>
+  </div>
+
+  <div id="sv-informacion">
+    <h4>Información oficial</h4>
+    <p>Consulta fuentes oficiales para información actualizada.</p>
+    <p><a href="https://www.presidencia.gob.sv/"
+          target="_blank" rel="noopener">Presidencia de la República →</a></p>
+    <p><a href="https://www.elsalvador.travel/"
+          target="_blank" rel="noopener">Turismo de El Salvador →</a></p>
+  </div>
+
+  <div>
+    <h4>Explora más</h4>
+    <p>Historia, cultura, geografía y turismo nacional.</p>
+    <div class="socials">
+      <a href="https://www.elsalvador.travel/"
+         target="_blank" rel="noopener" aria-label="Turismo">SV</a>
+      <a href="https://www.presidencia.gob.sv/"
+         target="_blank" rel="noopener" aria-label="Gobierno">ES</a>
+    </div>
+  </div>
+
+  <div class="copyright">
+    Portal informativo sobre El Salvador · Contenido educativo y cultural
+  </div>
+</footer>
+
+<div class="stripes"><span></span><span></span><span></span></div>
+
+<script>
+(function () {
+  const root = document.getElementById("portal-sv");
+  if (!root) return;
+
+  const button = root.querySelector("#sv-toggle");
+  const nav = root.querySelector("#sv-nav");
+
+  if (button && nav) {
+    button.addEventListener("click", function () {
+      const opened = nav.classList.toggle("open");
+      button.textContent = opened ? "✕" : "☰";
+      button.setAttribute("aria-expanded", String(opened));
+      button.setAttribute(
+        "aria-label", opened ? "Cerrar menú" : "Abrir menú"
+      );
+    });
+
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("open");
+        button.textContent = "☰";
+        button.setAttribute("aria-expanded", "false");
+        button.setAttribute("aria-label", "Abrir menú");
+      });
+    });
+  }
+})();
+</script>
+
+</div>
+
+
+ 
