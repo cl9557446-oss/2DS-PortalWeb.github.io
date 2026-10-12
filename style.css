@@ -1,0 +1,184 @@
+header {
+    background-color: #00000091; /* El color azul de tu imagen */
+    padding: 5px;            /* Espacio interno para que el logo no quede pegado a los bordes */
+    text-align: center;       /* Centra el logotipo en la pantalla */
+}
+
+
+/*en html lugares turisticos*/
+h1 {
+    text-align: center;
+    /* Opcional: puedes agregar margen para separarlo del contenido superior */
+    margin-top: 20px; 
+}
+
+/*LETRAS*/
+/* ========================================================
+   1. TIPO DE LETRA GENERAL (Para toda la página)
+   ======================================================= */
+body, h2, p, a, .mb-0 {
+    /* Esta es la tipografía limpia sin serifa idéntica al diseño que quieres */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* ========================================================
+   2. EL TÍTULO (San Salvador)
+   ======================================================= */
+.text-white-section h2 {
+    /* El color azul oscuro que se ve en tu título */
+    color: #001692 !important; 
+    /* Letra gruesa (negrita) */
+    font-weight: 700 !important;
+    /* Tamaño grande */
+    font-size: 2.2rem !important;
+}
+
+/* ========================================================
+   3. LOS PÁRRAFOS (El texto descriptivo)
+   ======================================================= */
+.text-white-section p, 
+.text-white-section .mb-0 {
+    /* Color gris oscuro/negro suave para que sea legible sobre blanco */
+    color: #212529 !important; 
+    /* Tamaño de lectura cómodo */
+    font-size: 1.05rem !important;
+    /* Espaciado entre líneas para que no se vea amontonado */
+    line-height: 1.6 !important;
+}
+
+/* ========================================================
+   4. ENLACES INFERIORES 
+   ======================================================= */
+.btn-destination-link {
+    /* El color azul claro brillante exacto de las preguntas */
+    color: #2da1e7 !important;
+    /* Grosor medio */
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+}
+
+/*IMAGENES*/
+/* ========================================================
+   ESTILO PARA LOGRAR LA FOTO PANORÁMICA DE LA REFERENCIA
+   ======================================================== */
+.img-destination {
+    width: 100% !important;        /* Ocupa todo el ancho disponible de la columna */
+    height: 340px !important;      /* Modifica este número si la quieres más alta o más delgada */
+    object-fit: cover !important;  /* Recorta y acomoda la foto perfectamente para que NO se estire ni se deforme */
+    object-position: center;       /* Enfoca el centro de la fotografía automáticamente */
+    border-radius: 4px !important; /* Bordes ligeramente suavizados iguales a los de tu imagen */
+    margin-bottom: 1rem !important;/* Separación óptima con las preguntas de abajo */
+}
+
+
+/* --- ESTILO ESPECÍFICO PARA "VER MÁS" --- */
+.enlace-ver-mas {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;                  /* Espaciado exacto entre el ícono y el texto */
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía limpia */
+    font-size: 14px;
+    font-weight: 500;
+    color: #001375;            /* Color azul exacto de la imagen corporativa */
+    margin-top: 15px;          /* Separación respecto al texto de arriba */
+    transition: color 0.2s ease;
+}
+
+/* Cambio de color sutil al pasar el cursor */
+.enlace-ver-mas:hover {
+    color: #0056b3;
+}
+
+/* --- TÍTULO CON EFECTO 3D REALISTA --- */
+.titulo-seccion {
+    font-family: 'Arial Black', 'Impact', sans-serif; /* Se recomiendan fuentes gruesas para que luzca el 3D */
+    font-size: 3rem;           /* Tamaño grande para apreciar el relieve */
+    font-weight: 900;          /* Relleno al máximo grosor */
+    color: #3976af;            /* Color del frente de la letra (Azul brillante) */
+    text-transform: uppercase; /* Mayúsculas para dar mayor impacto visual */
+    letter-spacing: 2px;       /* Separación para que no se encimen los efectos 3D */
+    
+    /* Efecto de extrusión 3D mediante capas de sombra */
+    text-shadow: 
+        1px 1px 0px #002244,
+        2px 2px 0px #002244,
+        3px 3px 0px #002244,
+        4px 4px 0px #002244,
+        5px 5px 0px #002244,
+        6px 6px 5px rgba(0, 0, 0, 0.4); /* La última capa es una sombra suave proyectada en el fondo */
+        
+    transition: all 0.3s ease;
+}
+
+/* Efecto interactivo opcional: al pasar el mouse da la impresión de hundirse un poco */
+.titulo-seccion:hover {
+    transform: translate(2px, 2px);
+    text-shadow: 
+        1px 1px 0px #002244,
+        2px 2px 0px #002244,
+        3px 3px 0px #002244,
+        4px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- CONFIGURACIÓN DE LA CABECERA AZUL --- */
+.cabecera-azul-fija {
+    background-color: #498fc1; /* Color azul idéntico al de tu fondo actual */
+    padding: 50px 0;           /* Espaciado para que el logo respire al inicio */
+    position: sticky;          /* Se queda retenido en la parte superior al hacer scroll */
+    top: 0;
+    z-index: 100;             /* Pasa por encima de la foto de la portada al bajar */
+    
+    /* Animación para que la franja azul se vuelva más compacta al bajar */
+    animation: compactarCabecera linear both;
+    animation-timeline: scroll();
+    animation-range: 0px 100px;
+}
+
+/* Contenedor del logo: Al inicio está perfectamente CENTRADO */
+.container-logo-sticky {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+    
+    /* Animación para mover el logo magnéticamente a la izquierda */
+    animation: moverLogoIzquierda linear both;
+    animation-timeline: scroll();
+    animation-range: 600px 800px;
+}
+
+/* La imagen del Logotipo "EL SALVADOR" */
+.logo-imagen-animada {
+    max-height: 180px; /* Tamaño original en tu cabecera */
+    width: auto;
+    display: block;
+    
+    /* Animación para encoger el logo sutilmente al bajar */
+    animation: reducirLogoImagen linear both;
+    animation-timeline: scroll();
+    animation-range: 100px 400px;
+}
+
+/* --- DETALLES DE LAS ANIMACIONES NATIVAS --- */
+
+/* Al bajar la página, la franja azul se hace más delgada */
+@keyframes compactarCabecera {
+    to {
+        padding: 15px 0;
+    }
+}
+
+/* El logo cambia su alineación hacia el extremo izquierdo */
+@keyframes moverLogoIzquierda {
+    to {
+        justify-content: flex-start;
+    }
+}
+
+/* El logo se adapta para no ocupar tanto espacio vertical */
+@keyframes reducirLogoImagen {
+    to {
+        max-height: 60px;
+    }
+}
+
