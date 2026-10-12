@@ -1,3 +1,4 @@
+
 #portal-sv {
   --azul:#0047ab;
   --azul-oscuro:#08264b;
@@ -43,6 +44,7 @@
   border-radius:8px;padding:8px 12px;font-size:22px;cursor:pointer;
 }
 
+/* PORTADA */
 #portal-sv .hero {
   min-height:450px;display:flex;align-items:center;
   padding:55px clamp(22px,7vw,95px);color:#fff;
@@ -71,6 +73,7 @@
 }
 #portal-sv .btn:hover {background:#cceaff;transform:translateY(-2px)}
 
+/* ACCESOS */
 #portal-sv .main {padding:60px clamp(17px,5vw,70px)}
 #portal-sv .section-title {text-align:center;margin-bottom:35px}
 #portal-sv .section-title span {
@@ -157,6 +160,7 @@
 #portal-sv .stripes span:nth-child(3) {background:#0047ab}
 #portal-sv .stripes span:nth-child(2) {background:#fff}
 
+/* RESPONSIVE */
 @media(max-width:1050px) {
   #portal-sv .header {flex-wrap:wrap}
   #portal-sv .nav {gap:13px}
