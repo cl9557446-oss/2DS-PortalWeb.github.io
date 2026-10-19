@@ -6,1172 +6,1320 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>El Salvador | Educación y Deporte</title>
 
+
 <style>
-:root{
-    --azul:#071b2c;
-    --azul2:#0d2b42;
-    --celeste:#B9EAF2;
-    --celeste-claro:#EAF9FC;
-    --turquesa:#62B8C7;
-    --verde:#c7f36b;
-    --texto:#29434A;
-    --blanco:#fff;
-    --borde:#D5EFF3;
+/* ==================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+================================================== */
+:root {
+  --azul: #071b2c;
+  --azul2: #0d2b42;
+  --azul-oscuro: #071b2c;
+  --celeste: #B9EAF2;
+  --celeste-claro: #EAF9FC;
+  --turquesa: #62B8C7;
+  --verde: #c7f36b;
+  --texto: #29434A;
+  --blanco: #fff;
+  --borde: #D5EFF3;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    color:var(--texto);
-    line-height:1.6;
-    background:var(--celeste-claro);
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--texto);
+  line-height: 1.6;
+  background: var(--celeste-claro);
 }
 
-/* NAVEGACIÓN */
-.navbar{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:var(--azul);
-    color:white;
-    padding:18px 6%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:15px;
-    box-shadow:0 3px 15px #0003;
+a {
+  text-decoration: none;
 }
 
-.logo{
-    font-size:23px;
-    font-weight:bold;
-    letter-spacing:1px;
+/* ==================================================
+   2. MENÚ INSTITUCIONAL
+   Encabezado fijo, marca y transición al desplazarse
+================================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px clamp(16px, 4vw, 55px);
+  background: rgba(255, 255, 255, .97);
+  border-bottom: 1px solid rgba(0, 71, 171, .10);
+  box-shadow: 0 3px 14px rgba(8, 38, 75, .04);
+  transition: background .35s ease, box-shadow .35s ease,
+              border-color .35s ease, padding .35s ease;
 }
 
-.logo span{
-    color:var(--verde);
+.header.scrolled {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  background: rgba(8, 38, 75, .88);
+  border-bottom-color: rgba(255, 255, 255, .15);
+  box-shadow: 0 8px 28px rgba(8, 38, 75, .16);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
 }
 
-.navbar nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:18px;
-    font-weight:bold;
-    transition:.3s;
+/* Marca, bandera y nombre */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex-shrink: 0;
+  color: var(--azul-oscuro);
+  transition: color .35s ease;
 }
 
-.navbar nav a:hover{
-    color:var(--verde);
+.brand strong {
+  display: block;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -.4px;
 }
 
-/* PORTADAS */
-.hero{
-    min-height:430px;
-    padding:90px 8%;
-    display:flex;
-    align-items:center;
-    background:linear-gradient(120deg,#B9EAF2,#D9F4F8,#fff);
+.brand small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .3px;
+  opacity: .8;
 }
 
-.hero-contenido{
-    max-width:850px;
+.header.scrolled .brand {
+  color: #fff;
 }
 
-.etiqueta{
-    display:inline-block;
-    background:white;
-    color:#24545C;
-    padding:7px 15px;
-    border-radius:20px;
-    font-size:14px;
-    font-weight:bold;
-    margin-bottom:18px;
+/* Bandera decorativa de la marca */
+.flag {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 46px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px #0002;
 }
 
-.hero h1{
-    font-size:clamp(40px,6vw,70px);
-    line-height:1.1;
-    color:#24545C;
-    margin-bottom:20px;
+.flag span {
+  flex: 1;
+  background: #fff;
 }
 
-.hero h1 span{
-    color:#278FA1;
+.flag span:first-child,
+.flag span:last-child {
+  background: #0755a5;
 }
 
-.hero p{
-    font-size:18px;
-    max-width:700px;
-    margin-bottom:25px;
+/* Enlaces del menú de escritorio */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(8px, 1.5vw, 22px);
 }
 
-.boton{
-    display:inline-block;
-    background:#24545C;
-    color:white;
-    text-decoration:none;
-    padding:13px 25px;
-    border-radius:8px;
-    font-weight:bold;
+.nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  color: var(--azul-oscuro);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color .25s ease;
 }
 
-.boton:hover{
-    background:#167F91;
+/* Línea animada debajo de cada enlace */
+.nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  border-radius: 5px;
+  background: #168bd2;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .28s ease;
 }
 
-/* SECCIONES */
-section{
-    padding:70px 8%;
+.nav a:hover,
+.nav a:focus-visible {
+  color: #0878bd;
 }
 
-.titulo-seccion{
-    text-align:center;
-    font-size:35px;
-    color:#24545C;
-    margin-bottom:12px;
+.nav a:hover::after,
+.nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
-.descripcion-seccion{
-    text-align:center;
-    max-width:750px;
-    margin:0 auto 35px;
+/* Colores del menú cuando el encabezado cambia */
+.header.scrolled .nav a {
+  color: #fff;
 }
 
-/* EDUCACIÓN */
-.ruta{
-    background:white;
+.header.scrolled .nav a:hover,
+.header.scrolled .nav a:focus-visible {
+  color: #9cddff;
 }
 
-.pasos{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-top:35px;
+.header.scrolled .nav a::after {
+  background: #9cddff;
 }
 
-.paso{
-    background:var(--celeste-claro);
-    border:1px solid var(--borde);
-    padding:25px 18px;
-    border-radius:14px;
-    text-align:center;
-    transition:.3s;
+/* Botón hamburguesa: oculto en escritorio */
+.toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border: 1px solid rgba(0, 71, 171, .15);
+  border-radius: 12px;
+  background: #edf6ff;
+  color: var(--azul);
+  font-size: 23px;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
 }
 
-.paso:hover{
-    transform:translateY(-5px);
-    box-shadow:0 8px 20px #24545C18;
+.toggle:hover {
+  background: var(--azul);
+  color: #fff;
 }
 
-.paso .numero{
-    width:45px;
-    height:45px;
-    margin:0 auto 14px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:var(--celeste);
-    color:#24545C;
-    border-radius:50%;
-    font-size:20px;
-    font-weight:bold;
+.header.scrolled .toggle {
+  border-color: #ffffff33;
+  background: #ffffff1f;
+  color: #fff;
 }
 
-.paso h3{
-    color:#24545C;
-    margin-bottom:8px;
+/* ==================================================
+   3. PORTADA PRINCIPAL
+================================================== */
+.hero {
+  min-height: 430px;
+  padding: 90px 8%;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(120deg, #B9EAF2, #D9F4F8, #fff);
 }
 
-.niveles{
-    background:var(--celeste-claro);
+.hero-contenido {
+  max-width: 850px;
 }
 
-.tarjetas{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
+.etiqueta {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 7px 15px;
+  border-radius: 20px;
+  background: #fff;
+  color: #24545C;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.tarjeta{
-    background:white;
-    border-radius:14px;
-    overflow:hidden;
-    border:1px solid var(--borde);
-    box-shadow:0 5px 18px #24545C12;
-    transition:.3s;
+.hero h1 {
+  margin-bottom: 20px;
+  color: #24545C;
+  font-size: clamp(40px, 6vw, 70px);
+  line-height: 1.1;
 }
 
-.tarjeta:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 25px #24545C20;
+.hero h1 span {
+  color: #278FA1;
 }
 
-.tarjeta img{
-    width:100%;
-    height:240px;
-    object-fit:cover;
-    display:block;
+.hero p {
+  max-width: 700px;
+  margin-bottom: 25px;
+  font-size: 18px;
 }
 
-.contenido{
-    padding:24px;
+/* Botones principales */
+.boton {
+  display: inline-block;
+  padding: 13px 25px;
+  border-radius: 8px;
+  background: #24545C;
+  color: #fff;
+  font-weight: bold;
+  transition: background .25s ease, transform .25s ease;
 }
 
-.numero-tarjeta{
-    display:inline-block;
-    background:var(--celeste);
-    color:#24545C;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:10px;
+.boton:hover {
+  background: #167F91;
+  transform: translateY(-2px);
 }
 
-.contenido h3{
-    color:#24545C;
-    font-size:23px;
-    margin-bottom:10px;
+/* ==================================================
+   4. SECCIONES Y TÍTULOS GENERALES
+================================================== */
+section {
+  padding: 70px 8%;
 }
 
-.importancia{
-    background:var(--celeste);
+.titulo-seccion {
+  margin-bottom: 12px;
+  color: #24545C;
+  font-size: 35px;
+  text-align: center;
 }
 
-.importancia-contenido{
-    max-width:850px;
-    margin:auto;
-    text-align:center;
+.descripcion-seccion {
+  max-width: 750px;
+  margin: 0 auto 35px;
+  text-align: center;
 }
 
-.importancia h2{
-    font-size:32px;
-    color:#24545C;
-    margin-bottom:18px;
+/* ==================================================
+   5. RUTA EDUCATIVA Y PASOS
+================================================== */
+.ruta {
+  background: #fff;
 }
 
-.frase{
-    background:#24545C;
-    color:white;
-    text-align:center;
-    padding:45px 8%;
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 35px;
 }
 
-.frase h2{
-    color:var(--celeste);
-    font-size:28px;
-    margin-bottom:10px;
+.paso {
+  padding: 25px 18px;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  background: var(--celeste-claro);
+  text-align: center;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
-/* DEPORTES */
-.deportes{
-    background:#f4f6f3;
+.paso:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px #24545C18;
 }
 
-.deportes .titulo-seccion{
-    color:#071b2c;
+.paso .numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--celeste);
+  color: #24545C;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.deportes .descripcion-seccion{
-    color:#526171;
+.paso h3 {
+  margin-bottom: 8px;
+  color: #24545C;
 }
 
-.sport-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:25px;
+/* ==================================================
+   6. NIVELES EDUCATIVOS Y TARJETAS
+================================================== */
+.niveles {
+  background: var(--celeste-claro);
 }
 
-.sport-card{
-    overflow:hidden;
-    background:white;
-    border-radius:14px;
-    box-shadow:0 8px 30px #071b2c12;
-    border:1px solid #e6ebe7;
-    transition:.2s;
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
 }
 
-.sport-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 16px 36px #071b2c20;
+.tarjeta {
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 18px #24545C12;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
-.sport-image{
-    position:relative;
-    height:245px;
-    background:#dbe3df;
-    overflow:hidden;
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px #24545C20;
 }
 
-.sport-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
+.tarjeta img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
 }
 
-.number{
-    position:absolute;
-    left:16px;
-    bottom:14px;
-    display:grid;
-    place-items:center;
-    width:48px;
-    height:48px;
-    border-radius:8px;
-    background:var(--verde);
-    color:var(--azul);
-    font-weight:900;
+.contenido {
+  padding: 24px;
 }
 
-.sport-content{
-    padding:25px 27px 28px;
+.numero-tarjeta {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--celeste);
+  color: #24545C;
+  font-size: 13px;
+  font-weight: bold;
 }
 
-.eyebrow{
-    color:#64802d;
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:2px;
-    margin-bottom:5px;
+.contenido h3 {
+  margin-bottom: 10px;
+  color: #24545C;
+  font-size: 23px;
 }
 
-.sport-content h3{
-    margin-bottom:15px;
-    font-size:26px;
-    line-height:1.2;
-    color:#152536;
+/* ==================================================
+   7. IMPORTANCIA Y FRASE DESTACADA
+================================================== */
+.importancia {
+  background: var(--celeste);
 }
 
-.sport-content p{
-    color:#526171;
-    font-size:15px;
+.importancia-contenido {
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
 }
 
-.closing{
-    margin-top:50px;
-    padding:40px;
-    border-radius:14px;
-    background:var(--azul2);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:25px;
+.importancia h2 {
+  margin-bottom: 18px;
+  color: #24545C;
+  font-size: 32px;
 }
 
-.closing h2{
-    font-size:32px;
-    margin-bottom:10px;
+.frase {
+  padding: 45px 8%;
+  background: #24545C;
+  color: #fff;
+  text-align: center;
 }
 
-.closing p{
-    color:#d4e0e7;
+.frase h2 {
+  margin-bottom: 10px;
+  color: var(--celeste);
+  font-size: 28px;
 }
 
-.closing-mark{
-    font-size:50px;
-    color:var(--verde);
-    font-weight:900;
+/* ==================================================
+   8. DEPORTES Y ACTIVIDADES
+================================================== */
+.deportes {
+  background: #f4f6f3;
 }
 
-/* FOOTER */
-footer{
-    padding:25px;
-    text-align:center;
-    background:#04121e;
-    color:#aebdc8;
-    font-size:14px;
+.deportes .titulo-seccion {
+  color: #071b2c;
 }
 
-footer span{
-    color:var(--verde);
-    font-weight:bold;
+.deportes .descripcion-seccion {
+  color: #526171;
 }
 
-/* RESPONSIVE */
-@media(max-width:800px){
-
-    .pasos{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .tarjetas,
-    .sport-grid{
-        grid-template-columns:1fr;
-    }
-
-    .navbar{
-        justify-content:center;
-        text-align:center;
-    }
-
-    .navbar nav a{
-        display:inline-block;
-        margin:5px;
-    }
+.sport-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
 }
 
-@media(max-width:500px){
+.sport-card {
+  overflow: hidden;
+  border: 1px solid #e6ebe7;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 30px #071b2c12;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
 
-    .pasos{
-        grid-template-columns:1fr;
-    }
+.sport-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px #071b2c20;
+}
 
-    section{
-        padding:50px 6%;
-    }
+/* Imagen y número de cada deporte */
+.sport-image {
+  position: relative;
+  height: 245px;
+  overflow: hidden;
+  background: #dbe3df;
+}
 
-    .hero{
-        padding:60px 7%;
-    }
+.sport-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .hero h1{
-        font-size:38px;
-    }
+.number {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--verde);
+  color: var(--azul);
+  font-weight: 900;
+}
 
-    .titulo-seccion{
-        font-size:28px;
-    }
+/* Texto de las tarjetas deportivas */
+.sport-content {
+  padding: 25px 27px 28px;
+}
 
-    .closing{
-        padding:25px;
-        display:block;
-    }
+.eyebrow {
+  margin-bottom: 5px;
+  color: #64802d;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
 
-    .closing-mark{
-        margin-top:20px;
-        font-size:35px;
-    }
+.sport-content h3 {
+  margin-bottom: 15px;
+  color: #152536;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.sport-content p {
+  color: #526171;
+  font-size: 15px;
+}
+
+/* Llamado final de la sección de deportes */
+.closing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-top: 50px;
+  padding: 40px;
+  border-radius: 14px;
+  background: var(--azul2);
+  color: #fff;
+}
+
+.closing h2 {
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.closing p {
+  color: #d4e0e7;
+}
+
+.closing-mark {
+  color: var(--verde);
+  font-size: 50px;
+  font-weight: 900;
+}
+
+/* ==================================================
+   9. PIE DE PÁGINA
+================================================== */
+footer {
+  padding: 25px;
+  background: #04121e;
+  color: #aebdc8;
+  font-size: 14px;
+  text-align: center;
+}
+
+footer span {
+  color: var(--verde);
+  font-weight: bold;
+}
+
+/* ==================================================
+   10. MENÚ Y CONTENIDO RESPONSIVE
+   Ajustes para tabletas y pantallas pequeñas
+================================================== */
+@media (max-width: 1050px) {
+  .header {
+    gap: 14px;
+  }
+
+  .nav {
+    gap: 12px;
+  }
+
+  .nav a {
+    font-size: 11px;
+  }
+
+  .brand strong {
+    font-size: 20px;
+  }
+}
+
+/* Menú desplegable para móviles */
+@media (max-width: 800px) {
+  .header,
+  .header.scrolled {
+    position: sticky;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 11px 16px;
+  }
+
+  .brand {
+    gap: 9px;
+  }
+
+  .brand strong {
+    font-size: 19px;
+  }
+
+  .brand small {
+    font-size: 9px;
+  }
+
+  .flag {
+    width: 43px;
+    height: 29px;
+  }
+
+  .toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 16px;
+    border-top: 1px solid #e5edf7;
+    border-bottom: 2px solid #168bd2;
+    border-radius: 0 0 16px 16px;
+    background: rgba(255, 255, 255, .98);
+    box-shadow: 0 16px 32px rgba(8, 38, 75, .14);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+
+  /* Esta clase la activa el JavaScript del menú */
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a,
+  .header.scrolled .nav a {
+    display: block;
+    padding: 13px 5px;
+    border-bottom: 1px solid #eaf0f7;
+    color: var(--azul-oscuro);
+    font-size: 13px;
+    white-space: normal;
+  }
+
+  .nav a::after {
+    display: none;
+  }
+
+  .nav a:hover,
+  .header.scrolled .nav a:hover {
+    background: #f1f8ff;
+    color: #0878bd;
+  }
+
+  .header.scrolled .nav {
+    background: rgba(255, 255, 255, .98);
+  }
+
+  /* Adaptación de las tarjetas */
+  .pasos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tarjetas,
+  .sport-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajustes para teléfonos pequeños */
+@media (max-width: 500px) {
+  .pasos {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 50px 6%;
+  }
+
+  .hero {
+    min-height: 360px;
+    padding: 60px 7%;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .titulo-seccion {
+    font-size: 28px;
+  }
+
+  .closing {
+    display: block;
+    padding: 25px;
+  }
+
+  .closing-mark {
+    margin-top: 20px;
+    font-size: 35px;
+  }
+
+  .sport-image {
+    height: 210px;
+  }
+}
+
+/* ==================================================
+   11. ACCESIBILIDAD
+   Reduce las animaciones si el usuario lo solicita
+================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 </style>
-</head>
 
+
+</head>
 <body>
 
-<!-- NAVEGACIÓN -->
-<header class="navbar">
 
-    <div class="logo">
-        EL SALVADOR <span>SV.</span>
+<!-- ==================================================
+     1. ENCABEZADO Y MENÚ INSTITUCIONAL
+================================================== -->
+<header class="header" id="sv-inicio">
+
+  <!-- Marca y bandera -->
+  <a href="#sv-inicio" class="brand" aria-label="Inicio de El Salvador">
+    <div class="flag" role="img" aria-label="Bandera de El Salvador">
+      <span></span><span></span><span></span>
     </div>
 
+    <span class="brand-text">
+      <strong>EL SALVADOR</strong>
+      <small>Un país de cultura y oportunidades</small>
+    </span>
+  </a>
+
+  <!-- Botón del menú móvil -->
+  <button class="toggle" id="sv-toggle" type="button"
+    aria-label="Abrir menú" aria-controls="sv-nav" aria-expanded="false">
+    ☰
+  </button>
+
+  <!-- Navegación principal: enlaces a secciones reales -->
+  <nav class="nav" id="sv-nav" aria-label="Menú principal">
+    <a href="#sv-inicio">Inicio</a>
+    <a href="#educacion">Educación</a>
+    <a href="#niveles">Niveles educativos</a>
+    <a href="#importancia">Importancia</a>
+    <a href="#deportes">Deportes</a>
+    <a href="#sv-contacto">Información</a>
+  </nav>
 </header>
 
 <main>
 
-<!-- PORTADA -->
-<section class="hero" id="inicio">
-
+  <!-- ==================================================
+       2. PORTADA PRINCIPAL
+  ================================================== -->
+  <section class="hero" id="sv-explora">
     <div class="hero-contenido">
+      <span class="etiqueta">Educación · Deporte · Futuro</span>
 
-        <span class="etiqueta">
-            Educación · Deporte · Futuro
-        </span>
+      <h1>
+        El Salvador:
+        <span>Educación y Deporte.</span>
+      </h1>
 
-        <h1>
-            El Salvador:
-            <span>Educación y Deporte.</span>
-        </h1>
+      <p>
+        La educación y el deporte ocupan un lugar importante en la
+        sociedad salvadoreña. Ambos contribuyen al desarrollo personal,
+        la convivencia, la disciplina, la salud y el progreso del país.
+      </p>
 
-        <p>
-            La educación y el deporte ocupan un lugar importante
-            en la sociedad salvadoreña. Ambos contribuyen al
-            desarrollo personal, la convivencia, la disciplina,
-            la salud y el progreso del país.
-        </p>
-
-        <a href="#educacion" class="boton">
-            Explorar
-        </a>
-
+      <a href="#educacion" class="boton">Explorar</a>
     </div>
+  </section>
 
-</section>
-
-
-<!-- EDUCACIÓN -->
-<section class="ruta" id="educacion">
-
-    <h2 class="titulo-seccion">
-        La educación en El Salvador
-    </h2>
+  <!-- ==================================================
+       3. EDUCACIÓN Y ETAPAS DE APRENDIZAJE
+  ================================================== -->
+  <section class="ruta" id="educacion">
+    <h2 class="titulo-seccion">La educación en El Salvador</h2>
 
     <p class="descripcion-seccion">
-        La educación es fundamental para el desarrollo de nuestro
-        país. A través de sus diferentes niveles, los estudiantes
-        adquieren conocimientos, habilidades y valores para construir
-        un mejor futuro.
+      La educación es fundamental para el desarrollo de nuestro país.
+      A través de sus diferentes niveles, los estudiantes adquieren
+      conocimientos, habilidades y valores para construir un mejor futuro.
     </p>
 
-    <h2 class="titulo-seccion">
-        Un camino hacia el conocimiento
-    </h2>
+    <h2 class="titulo-seccion">Un camino hacia el conocimiento</h2>
 
     <p class="descripcion-seccion">
-        El sistema educativo permite avanzar desde los primeros años
-        de aprendizaje hasta la formación profesional universitaria.
+      El sistema educativo permite avanzar desde los primeros años
+      de aprendizaje hasta la formación profesional universitaria.
     </p>
 
+    <!-- Pasos del recorrido educativo -->
     <div class="pasos">
+      <article class="paso">
+        <div class="numero">1</div>
+        <h3>Parvularia</h3>
+        <p>Primeros aprendizajes, juegos y desarrollo infantil.</p>
+      </article>
 
-        <article class="paso">
-            <div class="numero">1</div>
-            <h3>Parvularia</h3>
-            <p>
-                Primeros aprendizajes, juegos y desarrollo infantil.
-            </p>
-        </article>
+      <article class="paso">
+        <div class="numero">2</div>
+        <h3>Educación básica</h3>
+        <p>Lectura, escritura, matemáticas y conocimientos generales.</p>
+      </article>
 
-        <article class="paso">
-            <div class="numero">2</div>
-            <h3>Educación básica</h3>
-            <p>
-                Lectura, escritura, matemáticas y conocimientos generales.
-            </p>
-        </article>
+      <article class="paso">
+        <div class="numero">3</div>
+        <h3>Bachillerato</h3>
+        <p>Preparación académica para continuar los estudios.</p>
+      </article>
 
-        <article class="paso">
-            <div class="numero">3</div>
-            <h3>Bachillerato</h3>
-            <p>
-                Preparación académica para continuar los estudios.
-            </p>
-        </article>
-
-        <article class="paso">
-            <div class="numero">4</div>
-            <h3>Universidad</h3>
-            <p>
-                Formación superior para una profesión o especialidad.
-            </p>
-        </article>
-
+      <article class="paso">
+        <div class="numero">4</div>
+        <h3>Universidad</h3>
+        <p>Formación superior para una profesión o especialidad.</p>
+      </article>
     </div>
+  </section>
 
-</section>
-
-
-<!-- NIVELES EDUCATIVOS -->
-<section class="niveles" id="niveles">
-
-    <h2 class="titulo-seccion">
-        Los niveles de educación
-    </h2>
+  <!-- ==================================================
+       4. TARJETAS DE LOS NIVELES EDUCATIVOS
+  ================================================== -->
+  <section class="niveles" id="niveles">
+    <h2 class="titulo-seccion">Los niveles de educación</h2>
 
     <p class="descripcion-seccion">
-        Cada etapa educativa contribuye al aprendizaje y al desarrollo
-        personal de los estudiantes.
+      Cada etapa educativa contribuye al aprendizaje y al desarrollo
+      personal de los estudiantes.
     </p>
 
     <div class="tarjetas">
 
-        <article class="tarjeta">
+      <article class="tarjeta">
+        <img
+          src="https://img.magnific.com/foto-gratis/maestra-nino-pequeno-jugando-juego-rompecabezas-matematicas-sentado-mesa-jardin-infantes_839833-6458.jpg?semt=ais_hybrid&w=740&q=80"
+          alt="Niños desarrollando actividades de educación parvularia"
+          loading="lazy">
 
-            <img
-                src="https://img.magnific.com/foto-gratis/maestra-nino-pequeno-jugando-juego-rompecabezas-matematicas-sentado-mesa-jardin-infantes_839833-6458.jpg?semt=ais_hybrid&w=740&q=80"
-                alt="Educación parvularia">
+        <div class="contenido">
+          <span class="numero-tarjeta">Nivel 01</span>
+          <h3>Educación parvularia</h3>
+          <p>
+            Es una etapa importante en la que los niños desarrollan
+            el lenguaje, la creatividad, la convivencia y las habilidades
+            necesarias para comenzar su vida escolar.
+          </p>
+        </div>
+      </article>
 
-            <div class="contenido">
+      <article class="tarjeta">
+        <img
+          src="https://4.bp.blogspot.com/-YOmJ8ZGz7P4/UsclH54ABwI/AAAAAAAAXWc/Zc5z7vwg8T8/s1600/IMG_6934b.jpg"
+          alt="Estudiantes durante una actividad escolar"
+          loading="lazy">
 
-                <span class="numero-tarjeta">
-                    Nivel 01
-                </span>
+        <div class="contenido">
+          <span class="numero-tarjeta">Nivel 02</span>
+          <h3>Educación básica</h3>
+          <p>
+            Fortalece conocimientos esenciales como la lectura,
+            la escritura, las matemáticas, las ciencias y los valores
+            necesarios para vivir en sociedad.
+          </p>
+        </div>
+      </article>
 
-                <h3>
-                    Educación parvularia
-                </h3>
+      <article class="tarjeta">
+        <img
+          src="https://tse2.mm.bing.net/th/id/OIP.o5CccPJPCSMNWiTc8HZIMgHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+          alt="Estudiantes de educación media o bachillerato"
+          loading="lazy">
 
-                <p>
-                    Es una etapa importante en la que los niños
-                    desarrollan el lenguaje, la creatividad, la
-                    convivencia y las habilidades necesarias para
-                    comenzar su vida escolar.
-                </p>
+        <div class="contenido">
+          <span class="numero-tarjeta">Nivel 03</span>
+          <h3>Educación media o bachillerato</h3>
+          <p>
+            Ayuda a los jóvenes a profundizar sus conocimientos,
+            desarrollar nuevas habilidades y prepararse para continuar
+            sus estudios o incorporarse al mundo laboral.
+          </p>
+        </div>
+      </article>
 
-            </div>
+      <article class="tarjeta">
+        <img
+          src="https://lapalabra.utec.edu.sv/wp-content/uploads/2025/05/estudiantes.jpg"
+          alt="Estudiantes de educación superior"
+          loading="lazy">
 
-        </article>
-
-
-        <article class="tarjeta">
-
-            <img
-                src="https://4.bp.blogspot.com/-YOmJ8ZGz7P4/UsclH54ABwI/AAAAAAAAXWc/Zc5z7vwg8T8/s1600/IMG_6934b.jpg"
-                alt="Educación básica">
-
-            <div class="contenido">
-
-                <span class="numero-tarjeta">
-                    Nivel 02
-                </span>
-
-                <h3>
-                    Educación básica
-                </h3>
-
-                <p>
-                    Fortalece conocimientos esenciales como la lectura,
-                    la escritura, las matemáticas, las ciencias y los
-                    valores necesarios para vivir en sociedad.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="tarjeta">
-
-            <img
-                src="https://tse2.mm.bing.net/th/id/OIP.o5CccPJPCSMNWiTc8HZIMgHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-                alt="Bachillerato">
-
-            <div class="contenido">
-
-                <span class="numero-tarjeta">
-                    Nivel 03
-                </span>
-
-                <h3>
-                    Educación media o bachillerato
-                </h3>
-
-                <p>
-                    Ayuda a los jóvenes a profundizar sus conocimientos,
-                    desarrollar nuevas habilidades y prepararse para
-                    continuar sus estudios o incorporarse al mundo laboral.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article class="tarjeta">
-
-            <img
-                src="https://lapalabra.utec.edu.sv/wp-content/uploads/2025/05/estudiantes.jpg"
-                alt="Educación superior">
-
-            <div class="contenido">
-
-                <span class="numero-tarjeta">
-                    Nivel 04
-                </span>
-
-                <h3>
-                    Educación superior o universitaria
-                </h3>
-
-                <p>
-                    Ofrece formación especializada en diferentes áreas
-                    profesionales. Permite adquirir conocimientos para
-                    ejercer una carrera y contribuir al desarrollo del país.
-                </p>
-
-            </div>
-
-        </article>
+        <div class="contenido">
+          <span class="numero-tarjeta">Nivel 04</span>
+          <h3>Educación superior o universitaria</h3>
+          <p>
+            Ofrece formación especializada en diferentes áreas
+            profesionales. Permite adquirir conocimientos para ejercer
+            una carrera y contribuir al desarrollo del país.
+          </p>
+        </div>
+      </article>
 
     </div>
+  </section>
 
-</section>
-
-
-<!-- IMPORTANCIA -->
-<section class="importancia" id="importancia">
-
+  <!-- ==================================================
+       5. IMPORTANCIA DE LA EDUCACIÓN
+  ================================================== -->
+  <section class="importancia" id="importancia">
     <div class="importancia-contenido">
+      <h2>¿Por qué es importante la educación?</h2>
 
-        <h2>
-            ¿Por qué es importante la educación?
-        </h2>
+      <p>
+        La educación ayuda a las personas a desarrollar sus capacidades,
+        ampliar sus oportunidades y participar activamente en la sociedad.
+      </p>
 
-        <p>
-            La educación ayuda a las personas a desarrollar sus
-            capacidades, ampliar sus oportunidades y participar
-            activamente en la sociedad.
-        </p>
-
-        <p>
-            En El Salvador, fortalecer la educación desde la infancia
-            hasta la universidad es importante para formar ciudadanos
-            responsables y contribuir al progreso del país.
-        </p>
-
+      <p>
+        En El Salvador, fortalecer la educación desde la infancia
+        hasta la universidad es importante para formar ciudadanos
+        responsables y contribuir al progreso del país.
+      </p>
     </div>
+  </section>
 
-</section>
-
-
-<!-- MENSAJE -->
-<section class="frase">
-
-    <h2>
-        Aprender hoy para construir el mañana
-    </h2>
-
+  <!-- ==================================================
+       6. MENSAJE DESTACADO
+  ================================================== -->
+  <section class="frase">
+    <h2>Aprender hoy para construir el mañana</h2>
     <p>
-        Cada etapa educativa representa una oportunidad para crecer,
-        descubrir nuevas habilidades y alcanzar metas.
+      Cada etapa educativa representa una oportunidad para crecer,
+      descubrir nuevas habilidades y alcanzar metas.
     </p>
+  </section>
 
-</section>
-
-
-<!-- DEPORTES -->
-<section class="deportes" id="deportes">
-
-    <h2 class="titulo-seccion">
-        Deporte en El Salvador
-    </h2>
+  <!-- ==================================================
+       7. DEPORTES EN EL SALVADOR
+  ================================================== -->
+  <section class="deportes" id="deportes">
+    <h2 class="titulo-seccion">Deporte en El Salvador</h2>
 
     <p class="descripcion-seccion">
-        El deporte ocupa un lugar importante en la sociedad salvadoreña.
-        Promueve la convivencia, la disciplina, la salud y la representación
-        del país en competencias internacionales.
+      El deporte ocupa un lugar importante en la sociedad salvadoreña.
+      Promueve la convivencia, la disciplina, la salud y la representación
+      del país en competencias internacionales.
     </p>
 
-
+    <!-- Tarjetas deportivas -->
     <div class="sport-grid">
 
-
-        <!-- FÚTBOL -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80"
-                    alt="Fútbol">
-
-                <span class="number">01</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Fútbol</h3>
-
-                <p>
-                    El fútbol es uno de los deportes con mayor tradición
-                    y seguimiento en El Salvador. Se practica en escuelas,
-                    comunidades, clubes y equipos profesionales. La
-                    Selección Nacional, conocida como La Selecta, forma
-                    parte de la identidad deportiva del país. Jorge
-                    "El Mágico" González es una de sus figuras históricas
-                    más reconocidas.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- SURF -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://diarioelsalvador.com/wp-content/uploads/2022/10/Bryan-Pe%CC%81rez-Surf-Archivo-INDES_03-scaled.jpg"
-                    alt="Surf">
-
-                <span class="number">02</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Surf</h3>
-
-                <p>
-                    El surf ha ganado importancia gracias a las playas
-                    salvadoreñas, especialmente en La Libertad. Esta
-                    disciplina atrae visitantes y contribuye al turismo.
-                    También ha permitido que atletas nacionales representen
-                    al país en competencias internacionales.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ATLETISMO -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=1000&q=80"
-                    alt="Atletismo">
-
-                <span class="number">03</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Atletismo</h3>
-
-                <p>
-                    El atletismo comprende carreras, saltos, lanzamientos
-                    y marcha. Es una disciplina presente en competencias
-                    escolares, nacionales e internacionales. La atleta
-                    Cristina López destacó al conseguir oro en los Juegos
-                    Panamericanos de 2007.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- BALONCESTO -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=80"
-                    alt="Baloncesto">
-
-                <span class="number">04</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Baloncesto</h3>
-
-                <p>
-                    El baloncesto se practica en centros educativos,
-                    comunidades y clubes. Ayuda a desarrollar la
-                    coordinación, la velocidad, la resistencia y el
-                    trabajo en equipo. También cuenta con categorías
-                    femeninas y juveniles.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- CICLISMO -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://cdn-pro.elsalvador.com/wp-content/uploads/2026/01/otros-deportes-tour-el-salvador-2026-2.jpg"
-                    alt="Ciclismo">
-
-                <span class="number">05</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Ciclismo</h3>
-
-                <p>
-                    El ciclismo se practica de forma recreativa y
-                    competitiva en modalidades como ruta, pista y
-                    montaña. La salvadoreña Evelyn García participó
-                    en tres Juegos Olímpicos. Esta disciplina fomenta
-                    la resistencia física y la constancia.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- BOXEO -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1000&q=80"
-                    alt="Boxeo">
-
-                <span class="number">06</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Boxeo</h3>
-
-                <p>
-                    El boxeo requiere preparación física, coordinación,
-                    disciplina y concentración. Carlos "El Famoso"
-                    Hernández destacó al conseguir el campeonato mundial
-                    superpluma en 2003, representando una figura importante
-                    para el deporte salvadoreño.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- TENIS -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1000&q=80"
-                    alt="Tenis">
-
-                <span class="number">07</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Tenis</h3>
-
-                <p>
-                    El tenis forma parte de la historia deportiva
-                    de El Salvador. Marcelo Arévalo es uno de sus
-                    representantes más destacados en el ámbito
-                    internacional. Este deporte desarrolla la
-                    concentración, la coordinación y la rapidez.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- NATACIÓN -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80"
-                    alt="Natación">
-
-                <span class="number">08</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Natación</h3>
-
-                <p>
-                    La natación se practica en distintas categorías
-                    y competencias. Contribuye al desarrollo de la
-                    resistencia y la coordinación. Aprender a nadar
-                    también es importante para la seguridad en
-                    ambientes acuáticos.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- TIRO CON ARCO -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1000&q=80"
-                    alt="Tiro con arco">
-
-                <span class="number">09</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Tiro con arco</h3>
-
-                <p>
-                    El tiro con arco exige precisión, concentración,
-                    control corporal y preparación constante. Roberto
-                    Hernández consiguió una medalla de oro en los
-                    Juegos Panamericanos de Lima 2019, destacando
-                    en esta disciplina.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- KARATE -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1000&q=80"
-                    alt="Karate">
-
-                <span class="number">10</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Karate y artes marciales</h3>
-
-                <p>
-                    Las artes marciales combinan preparación física,
-                    concentración, respeto y autocontrol. La atleta
-                    salvadoreña Gabriella Izaguirre consiguió una
-                    medalla de oro en los Juegos Centroamericanos
-                    y del Caribe de 2023.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PATINAJE -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://diarioelsalvador.media/2025/12/IMG_4501-1024x975.jpeg"
-                    alt="Patinaje">
-
-                <span class="number">11</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Patinaje</h3>
-
-                <p>
-                    El patinaje requiere equilibrio, velocidad,
-                    coordinación y entrenamiento constante. Ivonne
-                    Nóchez es una de las atletas salvadoreñas que
-                    ha conseguido reconocimiento internacional
-                    en esta disciplina.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- FÚTBOL PLAYA -->
-        <article class="sport-card">
-
-            <div class="sport-image">
-
-                <img
-                    src="https://www.presidencia.gob.sv/wp-content/uploads/2022/04/0e02fe5d-de08-4fb5-8224-d0376e9aec1d.jpg"
-                    alt="Fútbol playa">
-
-                <span class="number">12</span>
-
-            </div>
-
-            <div class="sport-content">
-
-                <p class="eyebrow">DEPORTE SALVADOREÑO</p>
-
-                <h3>Fútbol playa</h3>
-
-                <p>
-                    El fútbol playa tiene especial importancia en
-                    El Salvador por su relación con las zonas costeras.
-                    La selección nacional ha representado al país
-                    en competencias internacionales. Esta modalidad
-                    combina fútbol, arena y habilidad.
-                </p>
-
-            </div>
-
-        </article>
+      <!-- 7.1 Fútbol -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80"
+            alt="Partido de fútbol"
+            loading="lazy">
+          <span class="number">01</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Fútbol</h3>
+          <p>
+            El fútbol es uno de los deportes con mayor tradición
+            y seguimiento en El Salvador. Se practica en escuelas,
+            comunidades, clubes y equipos profesionales. La Selección
+            Nacional, conocida como La Selecta, forma parte de la
+            identidad deportiva del país. Jorge «El Mágico» González
+            es una de sus figuras históricas más reconocidas.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.2 Surf -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://diarioelsalvador.com/wp-content/uploads/2022/10/Bryan-Pe%CC%81rez-Surf-Archivo-INDES_03-scaled.jpg"
+            alt="Surfista en una ola"
+            loading="lazy">
+          <span class="number">02</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Surf</h3>
+          <p>
+            El surf ha ganado importancia gracias a las playas
+            salvadoreñas, especialmente en La Libertad. Esta disciplina
+            atrae visitantes y contribuye al turismo. También permite
+            que atletas nacionales representen al país en competencias
+            internacionales.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.3 Atletismo -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=1000&q=80"
+            alt="Atletas corriendo"
+            loading="lazy">
+          <span class="number">03</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Atletismo</h3>
+          <p>
+            El atletismo comprende carreras, saltos, lanzamientos y
+            marcha. Es una disciplina presente en competencias escolares,
+            nacionales e internacionales. Cristina López destacó al
+            conseguir oro en los Juegos Panamericanos de 2007.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.4 Baloncesto -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=80"
+            alt="Cancha y balón de baloncesto"
+            loading="lazy">
+          <span class="number">04</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Baloncesto</h3>
+          <p>
+            El baloncesto se practica en centros educativos,
+            comunidades y clubes. Ayuda a desarrollar la coordinación,
+            la velocidad, la resistencia y el trabajo en equipo.
+            También cuenta con categorías femeninas y juveniles.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.5 Ciclismo -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://cdn-pro.elsalvador.com/wp-content/uploads/2026/01/otros-deportes-tour-el-salvador-2026-2.jpg"
+            alt="Competencia de ciclismo"
+            loading="lazy">
+          <span class="number">05</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Ciclismo</h3>
+          <p>
+            El ciclismo se practica de forma recreativa y competitiva
+            en modalidades como ruta, pista y montaña. Evelyn García
+            representó a El Salvador en tres Juegos Olímpicos.
+            Esta disciplina fomenta la resistencia física y la constancia.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.6 Boxeo -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1000&q=80"
+            alt="Entrenamiento de boxeo"
+            loading="lazy">
+          <span class="number">06</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Boxeo</h3>
+          <p>
+            El boxeo requiere preparación física, coordinación,
+            disciplina y concentración. Carlos «El Famoso» Hernández
+            destacó al conseguir el campeonato mundial superpluma
+            en 2003, convirtiéndose en una figura importante del
+            deporte salvadoreño.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.7 Tenis -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1000&q=80"
+            alt="Cancha de tenis"
+            loading="lazy">
+          <span class="number">07</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Tenis</h3>
+          <p>
+            El tenis forma parte de la historia deportiva de El Salvador.
+            Marcelo Arévalo es uno de sus representantes más destacados
+            en el ámbito internacional. Este deporte desarrolla la
+            concentración, la coordinación y la rapidez.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.8 Natación -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80"
+            alt="Nadadores en una piscina"
+            loading="lazy">
+          <span class="number">08</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Natación</h3>
+          <p>
+            La natación se practica en distintas categorías y
+            competencias. Contribuye al desarrollo de la resistencia
+            y la coordinación. Aprender a nadar también es importante
+            para la seguridad en ambientes acuáticos.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.9 Tiro con arco -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1000&q=80"
+            alt="Actividad deportiva al aire libre"
+            loading="lazy">
+          <span class="number">09</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Tiro con arco</h3>
+          <p>
+            El tiro con arco exige precisión, concentración,
+            control corporal y preparación constante. Roberto Hernández
+            consiguió una medalla de oro en los Juegos Panamericanos
+            de Lima 2019, destacando en esta disciplina.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.10 Karate -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1000&q=80"
+            alt="Práctica de artes marciales"
+            loading="lazy">
+          <span class="number">10</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Karate y artes marciales</h3>
+          <p>
+            Las artes marciales combinan preparación física,
+            concentración, respeto y autocontrol. Gabriella Izaguirre
+            es una de las atletas salvadoreñas destacadas en karate
+            y ha obtenido importantes resultados internacionales.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.11 Patinaje -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://diarioelsalvador.media/2025/12/IMG_4501-1024x975.jpeg"
+            alt="Competencia de patinaje"
+            loading="lazy">
+          <span class="number">11</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Patinaje</h3>
+          <p>
+            El patinaje requiere equilibrio, velocidad, coordinación
+            y entrenamiento constante. Ivonne Nóchez es una de las
+            atletas salvadoreñas que ha conseguido reconocimiento
+            internacional en esta disciplina.
+          </p>
+        </div>
+      </article>
+
+      <!-- 7.12 Fútbol playa -->
+      <article class="sport-card">
+        <div class="sport-image">
+          <img
+            src="https://www.presidencia.gob.sv/wp-content/uploads/2022/04/0e02fe5d-de08-4fb5-8224-d0376e9aec1d.jpg"
+            alt="Partido de fútbol playa"
+            loading="lazy">
+          <span class="number">12</span>
+        </div>
+
+        <div class="sport-content">
+          <p class="eyebrow">DEPORTE SALVADOREÑO</p>
+          <h3>Fútbol playa</h3>
+          <p>
+            El fútbol playa tiene especial importancia en El Salvador
+            por su relación con las zonas costeras. La selección nacional
+            ha representado al país en competencias internacionales.
+            Esta modalidad combina fútbol, arena y habilidad.
+          </p>
+        </div>
+      </article>
 
     </div>
 
+    <!-- Cierre de la sección deportiva -->
+    <div class="closing" id="sv-contacto">
+      <div>
+        <h2>El deporte nos une.</h2>
+        <p>
+          Desde las canchas hasta las playas, cada disciplina
+          representa esfuerzo, convivencia y orgullo para
+          las comunidades de El Salvador.
+        </p>
+      </div>
 
-    <!-- CIERRE DEPORTES -->
-    <section class="closing">
-
-        <div>
-
-            <h2>
-                El deporte nos une.
-            </h2>
-
-            <p>
-                Desde las canchas hasta las playas, cada disciplina
-                representa esfuerzo, convivencia y orgullo para
-                las comunidades de El Salvador.
-            </p>
-
-        </div>
-
-        <div class="closing-mark">
-            SV↗
-        </div>
-
-    </section>
-
-</section>
+      <div class="closing-mark" aria-hidden="true">SV↗</div>
+    </div>
+  </section>
 
 </main>
 
-
-<!-- FOOTER -->
+<!-- ==================================================
+     8. PIE DE PÁGINA
+================================================== -->
 <footer>
-
-    <p>
-        <span>Derechos Reservados Grupo 1 © 2026</span>
-        
-    </p>
-
+  <p><span>Derechos reservados Grupo 1 © 2026</span></p>
 </footer>
+
+<!-- ==================================================
+     9. JAVASCRIPT DEL MENÚ MÓVIL Y ENCABEZADO
+================================================== -->
+<script>
+(function () {
+  "use strict";
+
+  const header = document.querySelector(".header");
+  const button = document.getElementById("sv-toggle");
+  const nav = document.getElementById("sv-nav");
+
+  if (!header || !button || !nav) return;
+
+  /* Cambia el aspecto del encabezado al desplazarse */
+  function updateHeader() {
+    header.classList.toggle("scrolled", window.scrollY > 30);
+  }
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  updateHeader();
+
+  /* Abre y cierra el menú móvil */
+  function setMenu(open) {
+    nav.classList.toggle("open", open);
+    button.setAttribute("aria-expanded", String(open));
+    button.setAttribute(
+      "aria-label",
+      open ? "Cerrar menú" : "Abrir menú"
+    );
+    button.textContent = open ? "✕" : "☰";
+  }
+
+  button.addEventListener("click", function () {
+    setMenu(!nav.classList.contains("open"));
+  });
+
+  /* Cierra el menú al elegir un enlace */
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      setMenu(false);
+    });
+  });
+
+  /* Cierra el menú con la tecla Escape */
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") setMenu(false);
+  });
+
+  /* Restablece el menú al volver a escritorio */
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 800) setMenu(false);
+  });
+})();
+</script>
+
 
 </body>
 </html>

@@ -1,26 +1,44 @@
 
-
 <!DOCTYPE html>
 <html lang="es-SV">
+
 <head>
+  <!-- ==================================================
+       1. CONFIGURACIÓN GENERAL DEL DOCUMENTO
+  =================================================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>El Salvador | Portal informativo nacional</title>
-  <meta name="description" content="Descubre El Salvador: historia, cultura, turismo, departamentos, símbolos patrios e información general del país.">
+
+  <meta
+    name="description"
+    content="Descubre El Salvador: historia, cultura, turismo, departamentos, símbolos patrios e información general del país."
+  >
 
   <meta name="theme-color" content="#0047ab">
+  <meta name="robots" content="index, follow">
 
-  <!-- VINCULAR ARCHIVO CSS -->
+  <!-- ==================================================
+       2. VINCULACIÓN DEL ARCHIVO CSS
+       menu.css contiene los estilos del portal.
+  =================================================== -->
   <link rel="stylesheet" href="menu.css">
 </head>
 
 <body>
+
 <div id="portal-sv">
 
-  <!-- CABECERA Y NAVEGACIÓN -->
+  <!-- ==================================================
+       3. ENCABEZADO, BANDERA Y MENÚ DE NAVEGACIÓN
+       El JavaScript controla el menú móvil y la transparencia.
+  =================================================== -->
   <header class="header">
+
+    <!-- Marca del portal: bandera y nombre -->
     <a href="#sv-inicio" class="brand" aria-label="Inicio de El Salvador">
+
       <div class="flag" role="img" aria-label="Bandera de El Salvador">
         <span></span>
         <span></span>
@@ -31,18 +49,20 @@
         <strong>EL SALVADOR</strong>
         <small>Un país de cultura y oportunidades</small>
       </span>
+
     </a>
 
+    <!-- Botón para abrir y cerrar el menú en móviles -->
     <button
       class="toggle"
       id="sv-toggle"
       type="button"
       aria-label="Abrir menú"
       aria-controls="sv-nav"
-      aria-expanded="false">
-      ☰
-    </button>
+      aria-expanded="false"
+    >☰</button>
 
+    <!-- Enlaces principales del portal -->
     <nav class="nav" id="sv-nav" aria-label="Menú principal">
       <a href="#sv-inicio">Inicio</a>
       <a href="#sv-explora">Explora el país</a>
@@ -52,11 +72,18 @@
       <a href="#sv-departamentos">Departamentos</a>
       <a href="#sv-contacto">Información</a>
     </nav>
+
   </header>
 
-  <!-- PORTADA -->
+
+  <!-- ==================================================
+       4. PORTADA PRINCIPAL
+       Presentación del país y botón para explorar el portal.
+  =================================================== -->
   <section class="hero" id="sv-inicio">
+
     <div class="hero-content">
+
       <span class="eyebrow">
         REPÚBLICA DE EL SALVADOR · CENTROAMÉRICA
       </span>
@@ -74,13 +101,22 @@
       </span>
 
       <a class="btn" href="#sv-explora">
-        Explorar el país <span aria-hidden="true">→</span>
+        Explorar el país
+        <span aria-hidden="true">→</span>
       </a>
+
     </div>
+
   </section>
 
-  <!-- ACCESOS PRINCIPALES -->
+
+  <!-- ==================================================
+       5. CONTENIDO PRINCIPAL Y ACCESOS
+       Cada tarjeta lleva a una sección del portal.
+  =================================================== -->
   <main class="main" id="sv-explora">
+
+    <!-- Título de la sección -->
     <div class="section-title">
       <span>CONOCE NUESTRA TIERRA</span>
       <h2>Explora El Salvador</h2>
@@ -90,8 +126,10 @@
       </p>
     </div>
 
+    <!-- Cuadrícula de categorías -->
     <div class="grid">
 
+      <!-- Tarjeta: Historia -->
       <a class="card" href="#sv-historia">
         <span class="icon" aria-hidden="true">▤</span>
         <h3>Historia nacional</h3>
@@ -100,10 +138,12 @@
           que marcaron la historia salvadoreña.
         </p>
         <span class="card-link">
-          Conocer la historia <b class="arrow" aria-hidden="true">→</b>
+          Conocer la historia
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </a>
 
+      <!-- Tarjeta: Cultura -->
       <a class="card" href="#sv-cultura">
         <span class="icon" aria-hidden="true">✿</span>
         <h3>Cultura y tradiciones</h3>
@@ -112,10 +152,12 @@
           las artesanías y la gastronomía nacional.
         </p>
         <span class="card-link">
-          Descubrir la cultura <b class="arrow" aria-hidden="true">→</b>
+          Descubrir la cultura
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </a>
 
+      <!-- Tarjeta: Turismo -->
       <a class="card" href="#sv-turismo">
         <span class="icon" aria-hidden="true">⌖</span>
         <h3>Turismo y naturaleza</h3>
@@ -124,10 +166,12 @@
           sitios arqueológicos y pueblos históricos.
         </p>
         <span class="card-link">
-          Explorar destinos <b class="arrow" aria-hidden="true">→</b>
+          Explorar destinos
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </a>
 
+      <!-- Tarjeta: Departamentos -->
       <a class="card" href="#sv-departamentos">
         <span class="icon" aria-hidden="true">⌂</span>
         <h3>Departamentos</h3>
@@ -136,10 +180,12 @@
           las características de cada región.
         </p>
         <span class="card-link">
-          Conocer regiones <b class="arrow" aria-hidden="true">→</b>
+          Conocer regiones
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </a>
 
+      <!-- Tarjeta: Símbolos patrios -->
       <a class="card" href="#sv-simbolos">
         <span class="icon" aria-hidden="true">⚑</span>
         <h3>Símbolos patrios</h3>
@@ -148,10 +194,12 @@
           el himno y los símbolos nacionales.
         </p>
         <span class="card-link">
-          Ver símbolos <b class="arrow" aria-hidden="true">→</b>
+          Ver símbolos
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </a>
 
+      <!-- Tarjeta: Información general -->
       <a class="card" href="#sv-informacion">
         <span class="icon" aria-hidden="true">▣</span>
         <h3>Datos del país</h3>
@@ -160,15 +208,23 @@
           y general de la República de El Salvador.
         </p>
         <span class="card-link">
-          Consultar datos <b class="arrow" aria-hidden="true">→</b>
+          Consultar datos
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </a>
 
     </div>
+
   </main>
 
-  <!-- HISTORIA, CULTURA Y TURISMO -->
+
+  <!-- ==================================================
+       6. PRESENTACIÓN DE LA IDENTIDAD NACIONAL
+       Introducción general sobre el patrimonio del país.
+  =================================================== -->
   <section class="identity" id="sv-historia">
+
+    <!-- Introducción -->
     <div class="identity-intro">
       <span class="label">NUESTRA IDENTIDAD</span>
 
@@ -181,6 +237,7 @@
       </p>
     </div>
 
+    <!-- Bloque de cultura -->
     <article class="identity-item" id="sv-cultura">
       <strong>01 / PATRIMONIO</strong>
       <h3>Cultura y tradiciones</h3>
@@ -194,6 +251,7 @@
       <a href="#sv-explora">Explorar cultura →</a>
     </article>
 
+    <!-- Bloque de turismo -->
     <article class="identity-item" id="sv-turismo">
       <strong>02 / NATURALEZA</strong>
       <h3>Turismo salvadoreño</h3>
@@ -206,10 +264,16 @@
 
       <a href="#sv-explora">Descubrir destinos →</a>
     </article>
+
   </section>
 
-  <!-- DEPARTAMENTOS -->
+
+  <!-- ==================================================
+       7. ORGANIZACIÓN TERRITORIAL
+       Presentación de las regiones y sus departamentos.
+  =================================================== -->
   <section class="main" id="sv-departamentos">
+
     <div class="section-title">
       <span>ORGANIZACIÓN TERRITORIAL</span>
       <h2>Los 14 departamentos</h2>
@@ -220,17 +284,18 @@
 
     <div class="grid">
 
+      <!-- Región occidental -->
       <article class="card">
         <span class="icon" aria-hidden="true">01</span>
         <h3>Zona occidental</h3>
-        <p>
-          Ahuachapán, Santa Ana y Sonsonate.
-        </p>
+        <p>Ahuachapán, Santa Ana y Sonsonate.</p>
         <span class="card-link">
-          Región occidental <b class="arrow" aria-hidden="true">→</b>
+          Región occidental
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </article>
 
+      <!-- Región central y paracentral -->
       <article class="card">
         <span class="icon" aria-hidden="true">02</span>
         <h3>Zona central y paracentral</h3>
@@ -239,44 +304,55 @@
           La Paz, Cabañas y San Vicente.
         </p>
         <span class="card-link">
-          Región central <b class="arrow" aria-hidden="true">→</b>
+          Región central
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </article>
 
+      <!-- Región oriental -->
       <article class="card">
         <span class="icon" aria-hidden="true">03</span>
         <h3>Zona oriental</h3>
-        <p>
-          Usulután, San Miguel, Morazán y La Unión.
-        </p>
+        <p>Usulután, San Miguel, Morazán y La Unión.</p>
         <span class="card-link">
-          Región oriental <b class="arrow" aria-hidden="true">→</b>
+          Región oriental
+          <b class="arrow" aria-hidden="true">→</b>
         </span>
       </article>
 
     </div>
+
   </section>
 
-  <!-- SÍMBOLOS PATRIOS -->
+
+  <!-- ==================================================
+       8. SÍMBOLOS PATRIOS
+       Contenido introductorio sobre los emblemas nacionales.
+  =================================================== -->
   <section class="identity" id="sv-simbolos">
+
     <div class="identity-intro">
       <span class="label">ORGULLO SALVADOREÑO</span>
+
       <h2>Símbolos que representan nuestra nación</h2>
+
       <p>
         Los símbolos patrios representan la identidad,
         la historia y los valores nacionales de El Salvador.
       </p>
     </div>
 
+    <!-- Bandera nacional -->
     <article class="identity-item">
       <strong>01 / BANDERA</strong>
       <h3>La bandera nacional</h3>
       <p>
-        Sus franjas azules y blanca representan parte
+        Sus franjas azules y blanca forman parte
         de la identidad nacional salvadoreña.
       </p>
     </article>
 
+    <!-- Escudo e himno -->
     <article class="identity-item">
       <strong>02 / EMBLEMAS</strong>
       <h3>Escudo e himno nacional</h3>
@@ -285,10 +361,17 @@
         la soberanía y la identidad de la nación.
       </p>
     </article>
+
   </section>
 
-  <!-- INFORMACIÓN Y FUENTES -->
+
+  <!-- ==================================================
+       9. PIE DE PÁGINA E INFORMACIÓN
+       Incluye la descripción del portal y enlaces externos.
+  =================================================== -->
   <footer class="footer" id="sv-contacto">
+
+    <!-- Identidad del portal -->
     <div>
       <h3>EL SALVADOR</h3>
       <span>República de El Salvador</span>
@@ -296,28 +379,37 @@
       <p>Un país de cultura, historia y naturaleza.</p>
     </div>
 
+    <!-- Fuentes externas -->
     <div id="sv-informacion">
       <h4>Fuentes de información</h4>
+
       <p>
         Consulta sitios institucionales para ampliar
         la información sobre el país.
       </p>
 
       <p>
-        <a href="https://www.presidencia.gob.sv/"
-           target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.presidencia.gob.sv/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Presidencia de la República →
         </a>
       </p>
 
       <p>
-        <a href="https://www.elsalvador.travel/"
-           target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.elsalvador.travel/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Turismo de El Salvador →
         </a>
       </p>
     </div>
 
+    <!-- Navegación secundaria -->
     <div>
       <h4>Explora el portal</h4>
       <p>
@@ -326,12 +418,18 @@
       <a href="#sv-inicio">Volver al inicio ↑</a>
     </div>
 
+    <!-- Derechos y descripción -->
     <div class="copyright">
       Portal informativo sobre El Salvador · Contenido educativo y cultural
     </div>
+
   </footer>
 
-  <!-- FRANJA INFERIOR -->
+
+  <!-- ==================================================
+       10. FRANJA DECORATIVA CON COLORES NACIONALES
+       Elemento visual al final de la página.
+  =================================================== -->
   <div class="stripes" aria-hidden="true">
     <span></span>
     <span></span>
@@ -341,14 +439,36 @@
 </div>
 
 <!-- FUNCIONAMIENTO DEL MENÚ MÓVIL -->
+
 <script>
 (function () {
+  "use strict";
+
   const root = document.getElementById("portal-sv");
   if (!root) return;
 
+  const header = root.querySelector(".header");
   const button = root.querySelector("#sv-toggle");
   const nav = root.querySelector("#sv-nav");
 
+  /* =========================================
+     1. TRANSPARENCIA DEL ENCABEZADO AL BAJAR
+  ========================================= */
+  function updateHeader() {
+    if (!header) return;
+
+    header.classList.toggle("scrolled", window.scrollY > 30);
+  }
+
+  window.addEventListener("scroll", updateHeader, {
+    passive: true
+  });
+
+  updateHeader();
+
+  /* =========================================
+     2. CONTROL DEL MENÚ MÓVIL
+  ========================================= */
   if (!button || !nav) return;
 
   function closeMenu() {
@@ -358,29 +478,45 @@
     button.setAttribute("aria-label", "Abrir menú");
   }
 
-  button.addEventListener("click", function () {
-    const opened = nav.classList.toggle("open");
+  function openMenu() {
+    nav.classList.add("open");
+    button.textContent = "✕";
+    button.setAttribute("aria-expanded", "true");
+    button.setAttribute("aria-label", "Cerrar menú");
+  }
 
-    button.textContent = opened ? "✕" : "☰";
-    button.setAttribute("aria-expanded", String(opened));
-    button.setAttribute(
-      "aria-label",
-      opened ? "Cerrar menú" : "Abrir menú"
-    );
+  button.addEventListener("click", function () {
+    const isOpen = nav.classList.contains("open");
+
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
+  /* Cerrar al seleccionar una sección */
   nav.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", closeMenu);
   });
 
+  /* Cerrar con Escape */
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+
+  /* Cerrar si se vuelve a la vista de escritorio */
   window.addEventListener("resize", function () {
     if (window.innerWidth > 720) {
       closeMenu();
     }
   });
+
 })();
 </script>
 
+
 </body>
 </html>
-

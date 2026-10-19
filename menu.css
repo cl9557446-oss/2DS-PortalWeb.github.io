@@ -1,200 +1,807 @@
 
+/* ==================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+================================================== */
 #portal-sv {
-  --azul:#0047ab;
-  --azul-oscuro:#08264b;
-  --celeste:#dceeff;
-  --blanco:#fff;
-  --gris:#64748b;
-  --fondo:#f5f8fc;
-  font-family:"Segoe UI",Arial,sans-serif;
-  color:#243449;
-  background:#fff;
-  width:100%;
-  overflow:hidden;
-  line-height:1.6;
+  --azul: #0047ab;
+  --azul-oscuro: #08264b;
+  --celeste: #dceeff;
+  --blanco: #fff;
+  --gris: #64748b;
+  --fondo: #f5f8fc;
+  --borde: #e5ebf4;
+  --radio: 15px;
+  --transicion: .25s ease;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #243449;
+  background: var(--blanco);
+  width: 100%;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  isolation: isolate;
 }
-#portal-sv * {box-sizing:border-box}
-#portal-sv a {text-decoration:none}
+#portal-sv *,
+#portal-sv *::before,
+#portal-sv *::after {
+  box-sizing: border-box;
+}
+#portal-sv img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+#portal-sv a {
+  color: inherit;
+  text-decoration: none;
+}
+#portal-sv button {
+  font: inherit;
+}
+#portal-sv a:focus-visible,
+#portal-sv button:focus-visible {
+  outline: 3px solid #68c8ff;
+  outline-offset: 4px;
+}
+
+/* ==================================================
+   2. ENCABEZADO Y MARCA
+================================================== */
 #portal-sv .header {
-  display:flex;align-items:center;justify-content:space-between;
-  gap:20px;padding:14px clamp(16px,4vw,55px);
-  background:#fff;border-bottom:1px solid #e7edf4;
-  position:relative;z-index:5;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px clamp(16px, 4vw, 55px);
+  background: var(--blanco);
+  border-bottom: 1px solid #e7edf4;
 }
 #portal-sv .brand {
-  display:flex;align-items:center;gap:12px;
-  color:var(--azul-oscuro);flex-shrink:0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  color: var(--azul-oscuro);
 }
 #portal-sv .flag {
-  width:62px;height:40px;display:flex;flex-direction:column;
-  overflow:hidden;border:1px solid #e2e8f0;border-radius:3px;
+  display: flex;
+  flex-direction: column;
+  width: 62px;
+  height: 40px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px;
 }
-#portal-sv .flag span {height:33.333%;background:#0047ab}
-#portal-sv .flag span:nth-child(2) {background:#fff}
-#portal-sv .brand strong {font-size:24px;line-height:1.2;display:block}
-#portal-sv .brand small {font-size:11px;display:block}
-#portal-sv .nav {display:flex;gap:clamp(10px,1.8vw,24px);align-items:center}
-#portal-sv .nav a {
-  color:var(--azul-oscuro);font-size:12px;font-weight:650;
-  padding:10px 0;border-bottom:3px solid transparent;transition:.2s;
+#portal-sv .flag span {
+  display: block;
+  flex: 1;
+  background: #0047ab;
 }
-#portal-sv .nav a:hover {border-color:#007bce;color:var(--azul)}
-#portal-sv .toggle {
-  display:none;background:var(--azul);color:#fff;border:0;
-  border-radius:8px;padding:8px 12px;font-size:22px;cursor:pointer;
+#portal-sv .flag span:nth-child(2) {
+  background: #fff;
+}
+#portal-sv .brand strong {
+  display: block;
+  font-size: 24px;
+  line-height: 1.2;
+}
+#portal-sv .brand small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
-/* PORTADA */
-#portal-sv .hero {
-  min-height:450px;display:flex;align-items:center;
-  padding:55px clamp(22px,7vw,95px);color:#fff;
-  background:
-    linear-gradient(90deg,rgba(2,26,59,.96),rgba(2,26,59,.76) 48%,rgba(2,26,59,.12)),
-    url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1800&q=85")
-    center/cover no-repeat;
+
+/* ==================================================
+   3. MENÚ INSTITUCIONAL — EL SALVADOR
+================================================== */
+
+/* Encabezado fijo y transición */
+#portal-sv .header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px clamp(16px, 4vw, 55px);
+  background: rgba(255, 255, 255, .97);
+  border-bottom: 1px solid rgba(0, 71, 171, .10);
+  box-shadow: 0 3px 14px rgba(8, 38, 75, .04);
+  transition:
+    background .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease,
+    padding .35s ease,
+    backdrop-filter .35s ease;
 }
-#portal-sv .hero-content {max-width:610px}
+
+/* Estado transparente al desplazarse */
+#portal-sv .header.scrolled {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  background: rgba(8, 38, 75, .78);
+  border-bottom-color: rgba(255, 255, 255, .15);
+  box-shadow: 0 8px 28px rgba(8, 38, 75, .16);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+}
+
+/* Marca y nombre del portal */
+#portal-sv .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex-shrink: 0;
+  color: var(--azul-oscuro);
+  transition: color .35s ease;
+}
+
+#portal-sv .header.scrolled .brand {
+  color: #fff;
+}
+
+#portal-sv .brand strong {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -.4px;
+}
+
+#portal-sv .brand small {
+  font-size: 10px;
+  letter-spacing: .3px;
+  opacity: .8;
+}
+
+/* Navegación de escritorio */
+#portal-sv .nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(8px, 1.5vw, 22px);
+}
+
+#portal-sv .nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  color: var(--azul-oscuro);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 0;
+  transition: color .25s ease;
+}
+
+/* Línea inferior animada */
+#portal-sv .nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  border-radius: 5px;
+  background: #168bd2;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .28s ease;
+}
+
+#portal-sv .nav a:hover,
+#portal-sv .nav a:focus-visible {
+  color: #0878bd;
+}
+
+#portal-sv .nav a:hover::after,
+#portal-sv .nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Colores del menú sobre el encabezado transparente */
+#portal-sv .header.scrolled .nav a {
+  color: #fff;
+}
+
+#portal-sv .header.scrolled .nav a:hover,
+#portal-sv .header.scrolled .nav a:focus-visible {
+  color: #9cddff;
+}
+
+#portal-sv .header.scrolled .nav a::after {
+  background: #9cddff;
+}
+
+/* Botón del menú móvil */
+#portal-sv .toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border: 1px solid rgba(0, 71, 171, .15);
+  border-radius: 12px;
+  background: #edf6ff;
+  color: var(--azul);
+  font-size: 23px;
+  cursor: pointer;
+  transition:
+    background .25s ease,
+    color .25s ease,
+    transform .25s ease;
+}
+
+#portal-sv .toggle:hover {
+  background: var(--azul);
+  color: #fff;
+}
+
+#portal-sv .header.scrolled .toggle {
+  border-color: rgba(255, 255, 255, .2);
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+
+#portal-sv .header.scrolled .toggle:hover {
+  background: rgba(255, 255, 255, .24);
+}
+
+/* ==================================================
+   3.1 MENÚ RESPONSIVE
+================================================== */
+@media (max-width: 1050px) {
+  #portal-sv .header {
+    gap: 14px;
+  }
+
+  #portal-sv .nav {
+    gap: 12px;
+  }
+
+  #portal-sv .nav a {
+    font-size: 11px;
+  }
+
+  #portal-sv .brand strong {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  #portal-sv .header,
+  #portal-sv .header.scrolled {
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 11px 16px;
+  }
+
+  #portal-sv .brand {
+    gap: 9px;
+  }
+
+  #portal-sv .brand strong {
+    font-size: 19px;
+  }
+
+  #portal-sv .brand small {
+    font-size: 9px;
+  }
+
+  #portal-sv .flag {
+    width: 43px;
+    height: 29px;
+  }
+
+  #portal-sv .toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  #portal-sv .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 16px;
+    border-top: 1px solid #e5edf7;
+    border-bottom: 2px solid #168bd2;
+    border-radius: 0 0 16px 16px;
+    background: rgba(255, 255, 255, .98);
+    box-shadow: 0 16px 32px rgba(8, 38, 75, .14);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+
+  #portal-sv .nav.open {
+    display: flex;
+  }
+
+  #portal-sv .nav a,
+  #portal-sv .header.scrolled .nav a {
+    display: block;
+    padding: 13px 5px;
+    border-bottom: 1px solid #eaf0f7;
+    color: var(--azul-oscuro);
+    font-size: 13px;
+    white-space: normal;
+  }
+
+  #portal-sv .nav a::after {
+    display: none;
+  }
+
+  #portal-sv .nav a:hover,
+  #portal-sv .header.scrolled .nav a:hover {
+    color: #0878bd;
+    background: #f1f8ff;
+  }
+
+  #portal-sv .header.scrolled .nav {
+    background: rgba(255, 255, 255, .98);
+  }
+}
+
+/* ==================================================
+   3.2 ACCESIBILIDAD
+================================================== */
+@media (prefers-reduced-motion: reduce) {
+  #portal-sv .header,
+  #portal-sv .nav a,
+  #portal-sv .nav a::after,
+  #portal-sv .toggle {
+    transition: none;
+  }
+}
+
+
+/* ==================================================
+   4. PORTADA PRINCIPAL
+================================================== */
+#portal-sv .hero {
+  display: flex;
+  align-items: center;
+  min-height: 450px;
+  padding: 55px clamp(22px, 7vw, 95px);
+  color: #fff;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 26, 59, .96),
+      rgba(2, 26, 59, .76) 48%,
+      rgba(2, 26, 59, .12)
+    ),
+    url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1800&q=85")
+    center / cover no-repeat;
+}
+#portal-sv .hero-content {
+  width: 100%;
+  max-width: 610px;
+}
 #portal-sv .eyebrow {
-  display:inline-block;border-left:4px solid #68c8ff;
-  padding-left:12px;font-size:12px;font-weight:750;letter-spacing:1.5px;
+  display: inline-block;
+  padding-left: 12px;
+  border-left: 4px solid #68c8ff;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 1.5px;
 }
 #portal-sv .hero h1 {
-  color:#fff;font-size:clamp(38px,5vw,65px);
-  line-height:1.08;letter-spacing:-1.5px;margin:20px 0;
+  margin: 20px 0;
+  color: #fff;
+  font-size: clamp(38px, 5vw, 65px);
+  line-height: 1.08;
+  letter-spacing: -1.5px;
 }
-#portal-sv .hero p {color:#e7effa;max-width:510px;font-size:15px}
+#portal-sv .hero p {
+  max-width: 510px;
+  color: #e7effa;
+  font-size: 15px;
+}
 #portal-sv .hero .motto {
-  display:block;color:#9cddff;font-size:21px;font-style:italic;margin:20px 0;
+  display: block;
+  margin: 20px 0;
+  color: #9cddff;
+  font-size: 21px;
+  font-style: italic;
 }
-#portal-sv .btn {
-  display:inline-flex;align-items:center;gap:15px;
-  padding:12px 19px;background:#fff;color:var(--azul-oscuro);
-  font-size:13px;font-weight:750;border-radius:7px;transition:.2s;
-}
-#portal-sv .btn:hover {background:#cceaff;transform:translateY(-2px)}
 
-/* ACCESOS */
-#portal-sv .main {padding:60px clamp(17px,5vw,70px)}
-#portal-sv .section-title {text-align:center;margin-bottom:35px}
+/* ==================================================
+   5. BOTÓN PRINCIPAL
+================================================== */
+#portal-sv .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 12px 19px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: #fff;
+  color: var(--azul-oscuro);
+  font-size: 13px;
+  font-weight: 750;
+  transition: background var(--transicion), transform var(--transicion);
+}
+#portal-sv .btn:hover {
+  background: #cceaff;
+  transform: translateY(-2px);
+}
+
+/* ==================================================
+   6. CONTENIDO Y TÍTULOS
+================================================== */
+#portal-sv .main {
+  padding: 60px clamp(17px, 5vw, 70px);
+}
+#portal-sv .section-title {
+  margin: 0 auto 35px;
+  text-align: center;
+}
 #portal-sv .section-title span {
-  color:var(--azul);font-size:11px;font-weight:800;letter-spacing:2px;
+  color: var(--azul);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 #portal-sv .section-title h2 {
-  color:var(--azul-oscuro);font-size:clamp(26px,3vw,36px);
-  line-height:1.25;margin:8px 0;
+  margin: 8px 0;
+  color: var(--azul-oscuro);
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.25;
 }
-#portal-sv .section-title p {font-size:14px;color:var(--gris);margin:0}
+#portal-sv .section-title p {
+  margin: 0;
+  color: var(--gris);
+  font-size: 14px;
+}
+
+/* ==================================================
+   7. CUADRÍCULA DE TARJETAS
+================================================== */
 #portal-sv .grid {
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px;max-width:1400px;margin:auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 #portal-sv .card {
-  display:flex;flex-direction:column;align-items:flex-start;
-  min-height:225px;padding:25px;border:1px solid #e5ebf4;
-  border-radius:15px;background:#fff;
-  box-shadow:0 3px 12px rgba(15,42,78,.05);transition:.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 225px;
+  padding: 25px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(15, 42, 78, .05);
+  transition: transform var(--transicion), border-color var(--transicion), box-shadow var(--transicion);
 }
 #portal-sv .card:hover {
-  transform:translateY(-5px);border-color:#b9d8f3;
-  box-shadow:0 12px 28px rgba(15,42,78,.1);
+  transform: translateY(-4px);
+  border-color: #b9d8f3;
+  box-shadow: 0 12px 28px rgba(15, 42, 78, .1);
 }
 #portal-sv .icon {
-  display:grid;place-items:center;width:52px;height:52px;
-  border-radius:15px;background:#e5f2ff;color:#0756ad;
-  font-size:25px;font-weight:700;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #e5f2ff;
+  color: #0756ad;
+  font-size: 25px;
+  font-weight: 700;
 }
-#portal-sv .card h3 {color:var(--azul-oscuro);font-size:19px;margin:13px 0 5px}
-#portal-sv .card p {font-size:13px;color:var(--gris);margin:0 0 15px}
+#portal-sv .card h3 {
+  margin: 13px 0 5px;
+  color: var(--azul-oscuro);
+  font-size: 19px;
+  line-height: 1.35;
+}
+#portal-sv .card p {
+  margin: 0 0 15px;
+  color: var(--gris);
+  font-size: 13px;
+}
 #portal-sv .card-link {
-  display:flex;justify-content:space-between;align-items:center;
-  gap:10px;width:100%;margin-top:auto;color:var(--azul);
-  font-size:12px;font-weight:750;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+  color: var(--azul);
+  font-size: 12px;
+  font-weight: 750;
 }
 #portal-sv .arrow {
-  display:grid;place-items:center;width:30px;height:30px;
-  border-radius:50%;background:var(--azul);color:#fff;font-size:17px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--azul);
+  color: #fff;
+  font-size: 17px;
+  transition: transform var(--transicion);
+}
+#portal-sv .card-link:hover .arrow {
+  transform: translateX(3px);
 }
 
-/* IDENTIDAD NACIONAL */
+/* ==================================================
+   8. IDENTIDAD NACIONAL
+================================================== */
 #portal-sv .identity {
-  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px;
-  padding:50px clamp(20px,5vw,70px);background:var(--fondo);
-  border-top:1px solid #e8eef6;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 30px;
+  padding: 50px clamp(20px, 5vw, 70px);
+  border-top: 1px solid #e8eef6;
+  background: var(--fondo);
 }
 #portal-sv .identity .label {
-  color:var(--azul);font-size:11px;font-weight:800;letter-spacing:1.6px;
+  color: var(--azul);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
 }
 #portal-sv .identity h2 {
-  color:var(--azul-oscuro);font-size:clamp(24px,2.7vw,34px);
-  line-height:1.25;margin:10px 0;
+  margin: 10px 0;
+  color: var(--azul-oscuro);
+  font-size: clamp(24px, 2.7vw, 34px);
+  line-height: 1.25;
 }
-#portal-sv .identity h3 {color:var(--azul-oscuro);font-size:19px;margin:9px 0}
-#portal-sv .identity p {color:var(--gris);font-size:13px}
-#portal-sv .identity-item {border-left:1px solid #d5e0ed;padding-left:23px}
-#portal-sv .identity-item a {font-size:12px;font-weight:750;color:var(--azul)}
+#portal-sv .identity h3 {
+  margin: 9px 0;
+  color: var(--azul-oscuro);
+  font-size: 19px;
+}
+#portal-sv .identity p {
+  color: var(--gris);
+  font-size: 13px;
+}
+#portal-sv .identity-item {
+  padding-left: 23px;
+  border-left: 1px solid #d5e0ed;
+}
+#portal-sv .identity-item a {
+  color: var(--azul);
+  font-size: 12px;
+  font-weight: 750;
+}
+#portal-sv .identity-item a:hover {
+  text-decoration: underline;
+}
 
-/* PIE */
+/* ==================================================
+   9. PIE DE PÁGINA
+================================================== */
 #portal-sv .footer {
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;
-  padding:38px clamp(20px,5vw,70px) 22px;background:#101722;color:#fff;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  padding: 38px clamp(20px, 5vw, 70px) 22px;
+  background: #101722;
+  color: #fff;
 }
-#portal-sv .footer h3 {font-size:25px;color:#fff;margin:0 0 5px}
-#portal-sv .footer h4 {font-size:13px;color:#fff;margin:0 0 10px}
-#portal-sv .footer p,#portal-sv .footer a,#portal-sv .footer span {
-  color:#d6e0ee;font-size:12px;overflow-wrap:anywhere;
+#portal-sv .footer h3 {
+  margin: 0 0 5px;
+  color: #fff;
+  font-size: 25px;
 }
-#portal-sv .footer a:hover {color:#9cddff}
-#portal-sv .socials {display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+#portal-sv .footer h4 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 13px;
+}
+#portal-sv .footer p,
+#portal-sv .footer a,
+#portal-sv .footer span {
+  color: #d6e0ee;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+#portal-sv .footer a:hover {
+  color: #9cddff;
+}
+#portal-sv .socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 12px;
+}
 #portal-sv .socials a {
-  display:grid;place-items:center;width:35px;height:35px;
-  border-radius:50%;background:#fff;color:#10315a;font-weight:800;
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #fff;
+  color: #10315a;
+  font-weight: 800;
+  transition: background var(--transicion), transform var(--transicion);
 }
-#portal-sv .socials a:hover {background:#9cddff}
+#portal-sv .socials a:hover {
+  transform: translateY(-2px);
+  background: #9cddff;
+}
 #portal-sv .copyright {
-  grid-column:1/-1;border-top:1px solid #303c4c;padding-top:17px;
-  text-align:center;color:#b7c4d5;font-size:11px;
+  grid-column: 1 / -1;
+  padding-top: 17px;
+  border-top: 1px solid #303c4c;
+  color: #b7c4d5;
+  font-size: 11px;
+  text-align: center;
 }
-#portal-sv .stripes {display:flex;height:8px}
-#portal-sv .stripes span {flex:1}
-#portal-sv .stripes span:nth-child(1),
-#portal-sv .stripes span:nth-child(3) {background:#0047ab}
-#portal-sv .stripes span:nth-child(2) {background:#fff}
 
-/* RESPONSIVE */
-@media(max-width:1050px) {
-  #portal-sv .header {flex-wrap:wrap}
-  #portal-sv .nav {gap:13px}
-  #portal-sv .nav a {font-size:11px}
-  #portal-sv .grid {grid-template-columns:repeat(2,minmax(0,1fr))}
-  #portal-sv .identity {grid-template-columns:1fr 1fr}
-  #portal-sv .identity-intro {grid-column:1/-1}
+/* ==================================================
+   10. FRANJA CON LOS COLORES DE LA BANDERA
+================================================== */
+#portal-sv .stripes {
+  display: flex;
+  width: 100%;
+  height: 8px;
 }
-@media(max-width:720px) {
-  #portal-sv .header {flex-wrap:nowrap;padding:12px 16px}
-  #portal-sv .brand strong {font-size:21px}
-  #portal-sv .brand small {font-size:10px}
-  #portal-sv .flag {width:48px;height:32px}
-  #portal-sv .toggle {display:block;flex-shrink:0}
-  #portal-sv .nav {
-    display:none;position:absolute;top:100%;left:0;right:0;
-    flex-direction:column;align-items:stretch;gap:0;
-    padding:8px 20px 15px;background:#fff;
-    box-shadow:0 12px 20px #00000015;
+#portal-sv .stripes span {
+  flex: 1;
+}
+#portal-sv .stripes span:nth-child(1),
+#portal-sv .stripes span:nth-child(3) {
+  background: #0047ab;
+}
+#portal-sv .stripes span:nth-child(2) {
+  background: #fff;
+}
+
+/* ==================================================
+   11. TABLET Y PANTALLAS MEDIANAS
+================================================== */
+@media (max-width: 1050px) {
+  #portal-sv .header {
+    flex-wrap: wrap;
   }
-  #portal-sv .nav.open {display:flex}
-  #portal-sv .nav a {padding:12px 5px;font-size:13px;border-bottom:1px solid #edf0f5}
-  #portal-sv .hero {min-height:440px;padding:38px 22px;background-position:center}
-  #portal-sv .hero h1 {font-size:clamp(36px,10vw,49px)}
-  #portal-sv .hero p {font-size:14px}
-  #portal-sv .main {padding:42px 16px}
-  #portal-sv .grid {grid-template-columns:1fr;gap:14px}
-  #portal-sv .card {min-height:190px;padding:22px}
-  #portal-sv .identity {grid-template-columns:1fr;gap:22px;padding:38px 22px}
-  #portal-sv .identity-intro {grid-column:auto}
-  #portal-sv .identity-item {padding-left:17px}
-  #portal-sv .footer {grid-template-columns:1fr;gap:24px;padding:32px 22px 22px}
-  #portal-sv .copyright {grid-column:auto}
+  #portal-sv .nav {
+    gap: 13px;
+  }
+  #portal-sv .nav a {
+    font-size: 11px;
+  }
+  #portal-sv .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #portal-sv .identity {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #portal-sv .identity-intro {
+    grid-column: 1 / -1;
+  }
 }
-@media(prefers-reduced-motion:reduce) {
-  #portal-sv *,#portal-sv *::before,#portal-sv *::after {transition:none!important}
+
+/* ==================================================
+   12. MÓVILES
+================================================== */
+@media (max-width: 720px) {
+  #portal-sv .header {
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  #portal-sv .brand {
+    min-width: 0;
+    gap: 9px;
+  }
+  #portal-sv .brand strong {
+    font-size: 21px;
+  }
+  #portal-sv .brand small {
+    font-size: 10px;
+  }
+  #portal-sv .flag {
+    width: 48px;
+    height: 32px;
+  }
+  #portal-sv .toggle {
+    display: block;
+    flex-shrink: 0;
+  }
+  #portal-sv .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 15px;
+    border-top: 1px solid #edf0f5;
+    background: #fff;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, .08);
+  }
+  #portal-sv .nav.open {
+    display: flex;
+  }
+  #portal-sv .nav a {
+    padding: 12px 5px;
+    border-bottom: 1px solid #edf0f5;
+    font-size: 13px;
+  }
+  #portal-sv .hero {
+    min-height: 440px;
+    padding: 38px 22px;
+    background-position: center;
+  }
+  #portal-sv .hero h1 {
+    font-size: clamp(36px, 10vw, 49px);
+    letter-spacing: -1px;
+  }
+  #portal-sv .hero p {
+    font-size: 14px;
+  }
+  #portal-sv .hero .motto {
+    font-size: 18px;
+  }
+  #portal-sv .main {
+    padding: 42px 16px;
+  }
+  #portal-sv .section-title {
+    margin-bottom: 25px;
+  }
+  #portal-sv .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  #portal-sv .card {
+    min-height: 190px;
+    padding: 22px;
+  }
+  #portal-sv .identity {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding: 38px 22px;
+  }
+  #portal-sv .identity-intro {
+    grid-column: auto;
+  }
+  #portal-sv .identity-item {
+    padding-left: 17px;
+  }
+  #portal-sv .footer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 32px 22px 22px;
+  }
+  #portal-sv .copyright {
+    grid-column: auto;
+  }
+}
+
+/* ==================================================
+   13. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
+================================================== */
+@media (prefers-reduced-motion: reduce) {
+  #portal-sv *,
+  #portal-sv *::before,
+  #portal-sv *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }

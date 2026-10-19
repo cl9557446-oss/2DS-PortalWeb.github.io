@@ -4,43 +4,555 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+
+
 <style>
-:root{--anil:#1d2a6b;--osc:#121a45;--ceniza:#eceef3;--papel:#fafbfd;--tinta:#1c2030;--maiz:#e9b824;--barro:#6b3f2e}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font:1.08rem/1.65 "Source Sans 3",system-ui,sans-serif;color:var(--tinta);background:var(--papel)}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0}
-:focus-visible{outline:3px solid var(--maiz);outline-offset:3px}
-.portada{background:var(--osc);color:#fff;padding:clamp(3rem,10vw,7rem) 1.5rem 0}
-.portada .in{max-width:62rem;margin:0 auto;padding-bottom:4rem}
-.portada h1{font-size:clamp(2.5rem,8vw,5.5rem);font-weight:800;letter-spacing:-.02em;max-width:15ch}
-.portada p{max-width:34rem;margin:1.4rem 0 0;font-size:1.2rem;color:#c9cfee}
-.volcanes{display:block;width:100%;height:auto}
-.volcanes path{fill:var(--anil)}
-.volcanes path:last-child{fill:var(--papel)}
+/* ==================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+================================================== */
+:root {
+  --anil: #1d2a6b;
+  --osc: #121a45;
+  --ceniza: #eceef3;
+  --papel: #fafbfd;
+  --tinta: #1c2030;
+  --maiz: #e9b824;
+  --barro: #6b3f2e;
+}
 
-.wrap{max-width:55rem;margin:0 auto;padding:0 1.5rem;display:block;}
-main{padding:2rem 0 5rem;width:100%;max-width:100%;display:block;}
+* {
+  box-sizing: border-box;
+}
 
-section{padding-top:2.5rem;margin-bottom:3.5rem;border-top:3px solid var(--anil)}
-h2{font-size:clamp(1.8rem,4vw,2.5rem);color:var(--anil);font-weight:800}
-h3{font-size:1.3rem;margin:2rem 0 .5rem;color:var(--barro);font-weight:600}
-p{margin:.7rem 0}
-.fecha{display:inline-block;background:var(--maiz);color:var(--osc);font-weight:600;font-size:.9rem;padding:.1rem .6rem;border-radius:2rem;margin-right:.4rem}
-.linea{list-style:none;margin:1.5rem 0 0;padding:0 0 0 1.4rem;border-left:3px solid var(--anil)}
-.linea li{position:relative;padding:.35rem 0}
-.linea li:before{content:"";position:absolute;left:-1.95rem;top:.85rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--maiz);border:2px solid var(--anil)}
-.linea a{text-decoration:none}
-.linea b{color:var(--anil)}
-.simbolos{list-style:none;padding:0;margin:1rem 0}
-.simbolos li{padding:.8rem 0 .8rem 1.1rem;border-left:3px solid var(--ceniza)}
-.simbolos li:hover{border-left-color:var(--maiz)}
-.simbolos strong{color:var(--anil)}
-footer{background:var(--osc);color:#c9cfee;text-align:center;padding:2rem 1rem;font-size:.95rem}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  margin: 0;
+  font: 1.08rem/1.65 "Source Sans 3", system-ui, sans-serif;
+  color: var(--tinta);
+  background: var(--papel);
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--maiz);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Fraunces, Georgia, serif;
+  line-height: 1.15;
+  margin: 0;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+/* ==================================================
+   2. MENÚ PRINCIPAL
+   Compatible con <header class="header">
+================================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px clamp(16px, 4vw, 55px);
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid rgba(29, 42, 107, 0.12);
+  box-shadow: 0 3px 14px rgba(18, 26, 69, 0.06);
+  font-family: "Source Sans 3", system-ui, sans-serif;
+}
+
+/* Marca del portal */
+.header .brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  flex-shrink: 0;
+  color: var(--osc);
+  text-decoration: none;
+}
+
+.header .brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.header .brand strong {
+  font-size: clamp(16px, 1.6vw, 21px);
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.header .brand small {
+  margin-top: 3px;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #596174;
+}
+
+/* Bandera de El Salvador */
+.header .flag {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 46px;
+  height: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(29, 42, 107, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.header .flag span {
+  display: block;
+  flex: 1;
+  width: 100%;
+}
+
+.header .flag span:nth-child(1),
+.header .flag span:nth-child(3) {
+  background: #0047ab;
+}
+
+.header .flag span:nth-child(2) {
+  background: #fff;
+}
+
+/* Enlaces de escritorio */
+.header .nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(10px, 1.5vw, 22px);
+  min-width: 0;
+}
+
+.header .nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  color: var(--osc);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+/* Línea animada debajo de los enlaces */
+.header .nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 2px;
+  border-radius: 5px;
+  background: var(--maiz);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.header .nav a:hover,
+.header .nav a:focus-visible {
+  color: var(--anil);
+}
+
+.header .nav a:hover::after,
+.header .nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Botón móvil: oculto en escritorio */
+.header .toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border: 1px solid rgba(29, 42, 107, 0.18);
+  border-radius: 11px;
+  background: #f1f3fa;
+  color: var(--osc);
+  font-family: system-ui, sans-serif;
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header .toggle:hover {
+  background: var(--anil);
+  color: #fff;
+}
+
+/* ==================================================
+   3. PORTADA DE HISTORIA
+================================================== */
+.portada {
+  background: var(--osc);
+  color: #fff;
+  padding: clamp(3rem, 10vw, 7rem) 1.5rem 0;
+}
+
+.portada .in {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.portada h1 {
+  max-width: 15ch;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.portada p {
+  max-width: 34rem;
+  margin: 1.4rem 0 0;
+  font-size: 1.2rem;
+  color: #c9cfee;
+}
+
+.volcanes {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.volcanes path {
+  fill: var(--anil);
+}
+
+.volcanes path:last-child {
+  fill: var(--papel);
+}
+
+/* ==================================================
+   4. CONTENIDO PRINCIPAL
+================================================== */
+.wrap {
+  display: block;
+  width: 100%;
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+main {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem 0 5rem;
+}
+
+section {
+  padding-top: 2.5rem;
+  margin-bottom: 3.5rem;
+  border-top: 3px solid var(--anil);
+  scroll-margin-top: 90px;
+}
+
+h2 {
+  color: var(--anil);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+}
+
+h3 {
+  margin: 2rem 0 0.5rem;
+  color: var(--barro);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0.7rem 0;
+}
+
+/* Fechas destacadas */
+.fecha {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 2rem;
+  background: var(--maiz);
+  color: var(--osc);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Línea de tiempo */
+.linea {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0 0 0 1.4rem;
+  border-left: 3px solid var(--anil);
+}
+
+.linea li {
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.linea li::before {
+  content: "";
+  position: absolute;
+  top: 0.85rem;
+  left: -1.95rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid var(--anil);
+  border-radius: 50%;
+  background: var(--maiz);
+}
+
+.linea a {
+  text-decoration: none;
+}
+
+.linea a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--maiz);
+  text-underline-offset: 3px;
+}
+
+.linea b {
+  color: var(--anil);
+}
+
+/* Símbolos nacionales */
+.simbolos {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.simbolos li {
+  padding: 0.8rem 0 0.8rem 1.1rem;
+  border-left: 3px solid var(--ceniza);
+  transition: border-color 0.2s ease;
+}
+
+.simbolos li:hover {
+  border-left-color: var(--maiz);
+}
+
+.simbolos strong {
+  color: var(--anil);
+}
+
+/* ==================================================
+   5. PIE DE PÁGINA
+================================================== */
+footer {
+  padding: 2rem 1rem;
+  background: var(--osc);
+  color: #c9cfee;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ==================================================
+   6. MENÚ RESPONSIVE PARA TABLET Y MÓVIL
+================================================== */
+@media (max-width: 1000px) {
+  .header {
+    gap: 12px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .header .nav {
+    gap: 12px;
+  }
+
+  .header .nav a {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 800px) {
+  .header {
+    position: sticky;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+
+  .header .brand {
+    flex: 1;
+    gap: 9px;
+  }
+
+  .header .brand strong {
+    font-size: 18px;
+  }
+
+  .header .brand small {
+    font-size: 10px;
+  }
+
+  .header .flag {
+    width: 42px;
+    height: 28px;
+  }
+
+  .header .toggle {
+    display: inline-flex;
+  }
+
+  /* Menú desplegable */
+  .header .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 1001;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    padding: 8px 20px 14px;
+    border-top: 1px solid #e5e9f2;
+    border-bottom: 3px solid var(--maiz);
+    border-radius: 0 0 14px 14px;
+    background: #fff;
+    box-shadow: 0 14px 28px rgba(18, 26, 69, 0.14);
+  }
+
+  /* Esta clase la activa el JavaScript */
+  .header .nav.open {
+    display: flex;
+  }
+
+  .header .nav a {
+    display: block;
+    width: 100%;
+    padding: 12px 4px;
+    border-bottom: 1px solid #eceef3;
+    color: var(--osc);
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  .header .nav a:last-child {
+    border-bottom: 0;
+  }
+
+  .header .nav a::after {
+    display: none;
+  }
+
+  .header .nav a:hover {
+    color: var(--anil);
+    background: #f5f6fb;
+  }
+
+  .portada {
+    padding-top: 4rem;
+  }
+}
+
+/* ==================================================
+   7. ACCESIBILIDAD
+================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
 </style>
+
+
 </head>
 <body>
+
+<!-- ==================================================
+       3. ENCABEZADO, BANDERA Y MENÚ DE NAVEGACIÓN
+       El JavaScript controla el menú móvil y la transparencia.
+  =================================================== -->
+  <header class="header">
+
+    <!-- Marca del portal: bandera y nombre -->
+    <a href="#sv-inicio" class="brand" aria-label="Inicio de El Salvador">
+
+      <div class="flag" role="img" aria-label="Bandera de El Salvador">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <span class="brand-text">
+        <strong>EL SALVADOR</strong>
+        <small>Un país de cultura y oportunidades</small>
+      </span>
+
+    </a>
+
+    <!-- Botón para abrir y cerrar el menú en móviles -->
+    <button
+      class="toggle"
+      id="sv-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-controls="sv-nav"
+      aria-expanded="false"
+    >☰</button>
+
+    <!-- Enlaces principales del portal -->
+    <nav class="nav" id="sv-nav" aria-label="Menú principal">
+      <a href="#sv-inicio">Inicio</a>
+      <a href="#sv-explora">Explora el país</a>
+      <a href="#sv-historia">Historia</a>
+      <a href="#sv-cultura">Cultura</a>
+      <a href="#sv-turismo">Turismo</a>
+      <a href="#sv-departamentos">Departamentos</a>
+      <a href="#sv-contacto">Información</a>
+    </nav>
+
+  </header>
+
 <header class="portada">
   <div class="in">
     <h1>Historia de El Salvador</h1>
@@ -53,11 +565,7 @@ footer{background:var(--osc);color:#c9cfee;text-align:center;padding:2rem 1rem;f
 </header>
 
 <div class="wrap">
-<<<<<<< HEAD
-
-=======
->>>>>>> 633dd5e3b652d4e69e4b0af3503d63e5851b1b80
-  <main>
+<main>
     <section id="introduccion">
       <h2>Introducción</h2>
       <p>El Salvador, conocido popularmente como el «Pulgarcito de América», es una nación con una profunda riqueza histórica, cultural y humana. A pesar de ser el territorio con menor extensión geográfica en América Central, su ubicación estratégica frente al Océano Pacífico, su imponente paisaje volcánico y la calidez y capacidad de resiliencia de su gente han moldeado una identidad única. Desde las complejas civilizaciones prehispánicas hasta su constante transformación moderna, la historia de El Salvador es un relato vibrante de trabajo, superación y diversidad.</p>
@@ -143,6 +651,92 @@ footer{background:var(--osc);color:#c9cfee;text-align:center;padding:2rem 1rem;f
 </div>
 
 <footer>Historia de El Salvador: desde sus raíces hasta la actualidad</footer>
+
+<!-- FUNCIONAMIENTO DEL MENÚ MÓVIL -->
+
+
+<script>
+(function () {
+  "use strict";
+
+  function initMenu() {
+    // Buscar directamente el menú, sin depender de #portal-sv
+    const header = document.querySelector(".header");
+    if (!header || header.dataset.menuReady === "true") return;
+
+    const button = header.querySelector("#sv-toggle");
+    const nav = header.querySelector("#sv-nav");
+
+    if (!button || !nav) {
+      console.warn("No se encontró el botón o la navegación del menú.");
+      return;
+    }
+
+    header.dataset.menuReady = "true";
+
+    // Actualizar el aspecto del encabezado al desplazarse
+    function updateHeader() {
+      header.classList.toggle("scrolled", window.scrollY > 30);
+    }
+
+    window.addEventListener("scroll", updateHeader, {
+      passive: true
+    });
+
+    updateHeader();
+
+    // Abrir o cerrar el menú
+    function setMenu(open) {
+      nav.classList.toggle("open", open);
+
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute(
+        "aria-label",
+        open ? "Cerrar menú" : "Abrir menú"
+      );
+
+      button.textContent = open ? "✕" : "☰";
+    }
+
+    button.addEventListener("click", function () {
+      const isOpen = nav.classList.contains("open");
+      setMenu(!isOpen);
+    });
+
+    // Cerrar al pulsar un enlace
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setMenu(false);
+      });
+    });
+
+    // Cerrar con Escape
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        setMenu(false);
+      }
+    });
+
+    // Cerrar al regresar al diseño de escritorio
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 800) {
+        setMenu(false);
+      }
+    });
+
+    console.log("Menú de El Salvador inicializado correctamente.");
+  }
+
+  // Funciona aunque el script se ejecute antes de terminar de cargar el HTML
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMenu);
+  } else {
+    initMenu();
+  }
+})();
+</script>
+
+
 
 </body>
 </html>
