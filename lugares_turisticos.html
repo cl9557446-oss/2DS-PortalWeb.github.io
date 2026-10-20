@@ -5,25 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LUGARES DEL SALVADOR</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
-    /* ===== Tipografía general ===== */
-    body, h2, p, a {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    /* ===== Reset básico (reemplaza el "reboot" de Bootstrap) ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
     }
 
-    /* ===== Cabecera azul (solo al inicio, se va con el scroll) ===== */
+    img { max-width: 100%; height: auto; }
+
+    /* ===== Contenedor centrado (reemplaza .container) ===== */
+    .contenedor {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    /* ===== Cabecera azul ===== */
     .cabecera-azul-fija {
       background-color: #498fc1;
       padding: 50px 0;
+      text-align: center;
     }
 
     .container-logo-sticky {
       display: flex;
       justify-content: center;
-      width: 100%;
     }
 
     .logo-imagen-animada {
@@ -41,10 +55,17 @@
     }
 
     /* ===== Título 3D de la sección ===== */
+    .contenedor-titulo {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
     .titulo-seccion {
+      margin: 0;
       font-family: 'Arial Black', 'Impact', sans-serif;
       font-size: 3rem;
       font-weight: 900;
+      line-height: 1.2;
       color: #3976af;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -67,35 +88,61 @@
         4px 4px 4px rgba(0, 0, 0, 0.5);
     }
 
-    /* ===== Imágenes de los destinos ===== */
-    .img-destination {
-      width: 100% !important;
-      height: 340px !important;
-      object-fit: cover !important;
+    /* ===== Cada destino (reemplaza row / col-md-6) ===== */
+    .destino {
+      padding: 3rem 0;
+    }
+
+    .destino-grid {
+      display: grid;
+      grid-template-columns: 1fr;      /* móvil: una columna */
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (min-width: 768px) {
+      .destino-grid {
+        grid-template-columns: 1fr 1fr; /* escritorio: dos columnas */
+      }
+    }
+
+    .img-destino {
+      display: block;
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
       object-position: center;
-      border-radius: 4px !important;
-      margin-bottom: 1rem !important;
+      border-radius: 4px;
     }
 
     /* ===== Textos de los destinos ===== */
-    .text-white-section h2 {
-      color: #001692 !important;
-      font-weight: 700 !important;
-      font-size: 2.2rem !important;
+    .destino-texto h2 {
+      margin: 0 0 1rem;
+      color: #001692;
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 1.2;
     }
 
-    .text-white-section p {
-      color: #212529 !important;
-      font-size: 1.05rem !important;
-      line-height: 1.6 !important;
+    .destino-texto p {
+      margin: 0 0 1rem;
+      color: #212529;
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
-    /* ===== Enlace "Ver más" ===== */
+    /* ===== "Ver más" con <details> (reemplaza collapse de Bootstrap) ===== */
+    .ver-mas summary {
+      list-style: none;               /* quita la flechita por defecto */
+      cursor: pointer;
+    }
+
+    .ver-mas summary::-webkit-details-marker { display: none; }
+
     .enlace-ver-mas {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      text-decoration: none;
       font-size: 14px;
       font-weight: 500;
       color: #001375;
@@ -104,14 +151,48 @@
     }
 
     .enlace-ver-mas:hover { color: #0056b3; }
+
+    .enlace-ver-mas:focus-visible {
+      outline: 2px solid #0056b3;
+      outline-offset: 3px;
+    }
+
+    .icono-info {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      font-size: 11px;
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    /* Cambia el texto automáticamente según esté abierto o cerrado */
+    .texto-boton::before { content: "Ver más"; }
+    .ver-mas[open] .texto-boton::before { content: "Ver menos"; }
+
+    .texto-extra {
+      padding-top: 0.5rem;
+      margin-bottom: 0;
+    }
+
+    /* ===== Móvil ===== */
+    @media (max-width: 575px) {
+      .titulo-seccion { font-size: 2rem; }
+      .destino-texto h2 { font-size: 1.8rem; }
+      .img-destino { height: 240px; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Encabezado principal -->
-  <header id="inicio" class="text-center cabecera-azul-fija">
-    <div class="container container-logo-sticky">
-      <a class="brand-logo-enlace" href="#inicio">
+  <header id="inicio" class="cabecera-azul-fija">
+    <div class="contenedor container-logo-sticky">
+      <a href="#inicio">
         <img src="img/TITULO.png" alt="El Salvador" class="logo-imagen-animada">
       </a>
     </div>
@@ -120,313 +201,173 @@
   <main>
     <img src="img/PORTADA.jpg" alt="Banner Turístico" class="banner-portada">
 
-    <div class="text-center my-4">
-      <h6 class="titulo-seccion">Lugares Turísticos</h6>
+    <div class="contenedor-titulo">
+      <h1 class="titulo-seccion">Lugares Turísticos</h1>
     </div>
 
     <!-- 1. Lago de Coatepeque -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/lago.jpg" alt="Lago de Coatepeque" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">Lago de Coatepeque</h2>
-            <p>Lago de Coatepeque es uno de los destinos turísticos más espectaculares de El Salvador,
-              ideal para los amantes de la naturaleza y la aventura gracias a su impresionante paisaje
-              dividido en dos experiencias únicas. Por un lado, la Ruta de los Miradores en la carretera
-              alta te regala postales perfectas de la caldera volcánica mientras disfrutas de café local,
-              frutas frescas y terrazas de restaurantes suspendidos sobre el paisaje. Por el otro, al bajar
-              a la Zona de la Ribera, el ambiente se vuelve totalmente tropical y dinámico, permitiéndote nadar
-              en sus aguas, relajarte en muelles privados con un pase de día en hoteles premium, o subir la
-              adrenalina alquilando motos acuáticas, kayaks y lanchas para explorar la mística Isla Teopán y
-              los islotes de Los Anteojos.</p>
-            <div class="collapse" id="extra-1">
-              <p class="pt-2">El Lago de Coatepeque es una colosal caldera volcánica de 25.3 kilómetros cuadrados
-                y 115 metros de profundidad, formada hace más de 57,000 años en El Congo, Santa Ana. Su nombre en
-                náhuat significa "Cerro de Culebras" y es famoso por sus místicas aguas que cambian impredeciblemente
-                a un color turquesa brillante debido a microalgas y minerales subterráneos.</p>
-            </div>
-            <a href="#extra-1" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-1">
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/lago.jpg" alt="Lago de Coatepeque" class="img-destino">
+        <div class="destino-texto">
+          <h2>Lago de Coatepeque</h2>
+          <p>Lago de Coatepeque es uno de los destinos turísticos más espectaculares de El Salvador, ideal para los amantes de la naturaleza y la aventura gracias a su impresionante paisaje dividido en dos experiencias únicas. Por un lado, la Ruta de los Miradores en la carretera alta te regala postales perfectas de la caldera volcánica mientras disfrutas de café local, frutas frescas y terrazas de restaurantes suspendidos sobre el paisaje. Por el otro, al bajar a la Zona de la Ribera, el ambiente se vuelve totalmente tropical y dinámico, permitiéndote nadar en sus aguas, relajarte en muelles privados con un pase de día en hoteles premium, o subir la adrenalina alquilando motos acuáticas, kayaks y lanchas para explorar la mística Isla Teopán y los islotes de Los Anteojos.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">El Lago de Coatepeque es una colosal caldera volcánica de 25.3 kilómetros cuadrados y 115 metros de profundidad, formada hace más de 57,000 años en El Congo, Santa Ana. Su nombre en náhuat significa "Cerro de Culebras" y es famoso por sus místicas aguas que cambian impredeciblemente a un color turquesa brillante debido a microalgas y minerales subterráneos.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- 2. Laguna de Alegría -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/laguna.jpg" alt="Laguna de Alegría" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">Laguna de Alegría</h2>
-            <p>Es un fascinante cuerpo de agua de origen volcánico ubicado en el interior del
-              cráter del volcán Tecapa, en el municipio de Alegría, Usulután, El Salvador. Este
-              destino de montaña destaca por su clima fresco, la neblina que suele cubrir sus
-              alrededores y las llamativas aguas de tonos verde esmeralda con un alto contenido
-              de azufre, a las que muchos visitantes atribuyen propiedades medicinales. Como parte
-              de la experiencia ecoturística, es posible realizar caminatas alrededor del cráter,
-              explorar los senderos rodeados de cafetales y complementar el viaje paseando por las
-              coloridas calles del pueblo de Alegría, famoso por sus viveros y aire puro.</p>
-            <div class="collapse" id="extra-2">
-              <p class="pt-2">Ubicada a 1,200 metros sobre el nivel del mar en el cráter del volcán Tecapa,
-                es un tesoro salvadoreño bautizado por la poeta Gabriela Mistral como la "Esmeralda de América".
-                Famosa por sus místicas aguas verde esmeralda ricas en azufre y rodeadas de neblina, carece de vida
-                acuática debido a su acidez, lo que impulsa a los turistas a usar su barro volcánico con fines
-                medicinales</p>
-            </div>
-            <a href="#extra-2" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-2">
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/laguna.jpg" alt="Laguna de Alegría" class="img-destino">
+        <div class="destino-texto">
+          <h2>Laguna de Alegría</h2>
+          <p>Es un fascinante cuerpo de agua de origen volcánico ubicado en el interior del cráter del volcán Tecapa, en el municipio de Alegría, Usulután, El Salvador. Este destino de montaña destaca por su clima fresco, la neblina que suele cubrir sus alrededores y las llamativas aguas de tonos verde esmeralda con un alto contenido de azufre, a las que muchos visitantes atribuyen propiedades medicinales. Como parte de la experiencia ecoturística, es posible realizar caminatas alrededor del cráter, explorar los senderos rodeados de cafetales y complementar el viaje paseando por las coloridas calles del pueblo de Alegría, famoso por sus viveros y aire puro.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">Ubicada a 1,200 metros sobre el nivel del mar en el cráter del volcán Tecapa, es un tesoro salvadoreño bautizado por la poeta Gabriela Mistral como la "Esmeralda de América". Famosa por sus místicas aguas verde esmeralda ricas en azufre y rodeadas de neblina, carece de vida acuática debido a su acidez, lo que impulsa a los turistas a usar su barro volcánico con fines medicinales.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- 3. Puerto El Triunfo -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/puerto.jpg" alt="Puerto El Triunfo" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">Puerto El Triunfo</h2>
-            <p>Desde el Muelle de Puerto El Triunfo, los visitantes pueden abordar lanchas
-              para adentrarse en los laberintos de manglares, avistar diversas especies de
-              aves y tortugas marinas, o realizar mágicos recorridos nocturnos para apreciar
-              el fenómeno de la bioluminiscencia en el agua. La zona del malecón ofrece además
-              una vibrante experiencia culinaria con restaurantes flotantes y platillos típicos
-              a base de mariscos, destacando especialmente las tradicionales pupusas de camarón y curil,
-              lo que lo convierte en un destino ideal para combinar la naturaleza, la cultura y la gastronomía
-              del oriente salvadoreño.</p>
-            <div class="collapse" id="extra-3">
-              <p class="pt-2">Desde el histórico Muelle de Puerto El Triunfo, fundado en 1875, los turistas
-                abordan lanchas para explorar la Bahía de Jiquilisco, el mayor sistema de manglares del país
-                y Reserva de la Biosfera de la UNESCO. Este santuario ecológico es el hogar del 40% de las
-                tortugas carey de todo el Pacífico Oriental y un paraíso para avistar más de 200 especies de
-                aves y barcos industriales abandonados. Con recorridos nocturnos de bioluminiscencia y una vibrante
-                oferta culinaria en su malecón —famosa por sus restaurantes flotantes y las exclusivas pupusas de
-                camarón y curil—, este destino entrelaza de forma perfecta la riqueza natural internacional con los
-                sabores del oriente salvadoreño.</p>
-            </div>
-            <a href="#extra-3" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-3">
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/puerto.jpg" alt="Puerto El Triunfo" class="img-destino">
+        <div class="destino-texto">
+          <h2>Puerto El Triunfo</h2>
+          <p>Desde el Muelle de Puerto El Triunfo, los visitantes pueden abordar lanchas para adentrarse en los laberintos de manglares, avistar diversas especies de aves y tortugas marinas, o realizar mágicos recorridos nocturnos para apreciar el fenómeno de la bioluminiscencia en el agua. La zona del malecón ofrece además una vibrante experiencia culinaria con restaurantes flotantes y platillos típicos a base de mariscos, destacando especialmente las tradicionales pupusas de camarón y curil, lo que lo convierte en un destino ideal para combinar la naturaleza, la cultura y la gastronomía del oriente salvadoreño.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">Desde el histórico Muelle de Puerto El Triunfo, fundado en 1875, los turistas abordan lanchas para explorar la Bahía de Jiquilisco, el mayor sistema de manglares del país y Reserva de la Biosfera de la UNESCO. Este santuario ecológico es el hogar del 40% de las tortugas carey de todo el Pacífico Oriental y un paraíso para avistar más de 200 especies de aves y barcos industriales abandonados. Con recorridos nocturnos de bioluminiscencia y una vibrante oferta culinaria en su malecón —famosa por sus restaurantes flotantes y las exclusivas pupusas de camarón y curil—, este destino entrelaza de forma perfecta la riqueza natural internacional con los sabores del oriente salvadoreño.</p>
+          </details>
         </div>
       </div>
     </section>
 
-    <!-- 4. Costa del Sol -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/playa.jpg" alt="Costa del Sol" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">La Costa del Sol</h2>
-            <p>La Costa del Sol es una de las franjas turísticas más extensas y exclusivas de El Salvador,
-              destacando por sus 15 kilómetros de playas de arena suave y un impresionante entorno natural
-              en el departamento de La Paz. El destino ofrece una experiencia doblemente atractiva: por un
-              lado, se puede disfrutar de un mar cálido ideal para caminar al atardecer y relajarse frente
-              a las olas; por el otro, se encuentra el Estero de Jaltepeque, un majestuoso santuario de manglares
-              donde se realizan paseos en lancha para el avistamiento de aves y exploración de canales acuáticos.
-              Además de contar con el accesible Parque Recreativo Costa del Sol administrado por el ISTU, la zona
-              alberga una variada oferta de hoteles y resorts internacionales con la modalidad de Day Pass, así
-              como una vibrante propuesta gastronómica especializada en mariscos frescos, convirtiéndola en el escape
-              playero por excelencia a poco más de una hora de la capital salvadoreña.</p>
-            <div class="collapse" id="extra-4">
-              <p class="pt-2">Es una exclusiva franja de 15 kilómetros de playas cálidas y sin piedras en La Paz,
-                ideal para nadar y relajarse a solo una hora de la capital. Este paraíso ofrece una doble experiencia:
-                el mar abierto y el Estero de Jaltepeque, un santuario de manglares que conecta con la Isla Tasajera y
-                la desembocadura del Río Lempa.</p>
-            </div>
-            <a href="#extra-4" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-4">
+    <!-- 4. La Costa del Sol -->
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/playa.jpg" alt="Costa del Sol" class="img-destino">
+        <div class="destino-texto">
+          <h2>La Costa del Sol</h2>
+          <p>La Costa del Sol es una de las franjas turísticas más extensas y exclusivas de El Salvador, destacando por sus 15 kilómetros de playas de arena suave y un impresionante entorno natural en el departamento de La Paz. El destino ofrece una experiencia doblemente atractiva: por un lado, se puede disfrutar de un mar cálido ideal para caminar al atardecer y relajarse frente a las olas; por el otro, se encuentra el Estero de Jaltepeque, un majestuoso santuario de manglares donde se realizan paseos en lancha para el avistamiento de aves y exploración de canales acuáticos. Además de contar con el accesible Parque Recreativo Costa del Sol administrado por el ISTU, la zona alberga una variada oferta de hoteles y resorts internacionales con la modalidad de Day Pass, así como una vibrante propuesta gastronómica especializada en mariscos frescos, convirtiéndola en el escape playero por excelencia a poco más de una hora de la capital salvadoreña.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">Es una exclusiva franja de 15 kilómetros de playas cálidas y sin piedras en La Paz, ideal para nadar y relajarse a solo una hora de la capital. Este paraíso ofrece una doble experiencia: el mar abierto y el Estero de Jaltepeque, un santuario de manglares que conecta con la Isla Tasajera y la desembocadura del Río Lempa.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- 5. Puerto de La Libertad -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/la libertad2.jpg" alt="Puerto de La Libertad" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">Puerto de La Libertad</h2>
-            <p>El Puerto de La Libertad es el complejo turístico costero más icónico y visitado de El Salvador,
-              ubicado en el departamento de La Libertad, a tan solo 30 minutos de la capital. Este destino combina a
-              la perfección la tradición pesquera, el surf de clase mundial y la modernidad a través de atracciones
-              principales como Sunset Park, un parque de diversiones frente al mar, y el Mercado del Mar, donde se puede
-              comprar marisco fresco o disfrutar de la gastronomía local en sus restaurantes del segundo nivel. Además,
-              el histórico muelle artesanal ofrece un espectáculo único al ver el vaivén de las lanchas pesqueras, mientras
-              que su proximidad con la zona de Surf City (como la playa El Tunco) lo convierte en el punto de partida ideal
-              para los amantes de las olas y la vida nocturna. Puedes consultar más detalles sobre horarios y atracciones en
-              la Guía Oficial de Surf City El Salvador.</p>
-            <div class="collapse" id="extra-5">
-              <p class="pt-2">Este destino tropical de arena negra ofrece acceso gratuito, parqueo a $1.00 y atracciones
-                como Sunset Park con juegos mecánicos desde $1.00 y el Mercado del Mar con platillos desde $7.00. Para vivir
-                la experiencia al máximo, visita su histórico muelle artesanal temprano por la mañana para comprar marisco
-                ultra fresco directo a los pescadores, admira a los surfistas profesionales domando la mítica ola de Punta Roca,
-                o conecta en 20 minutos con el senderismo del Parque Nacional Walter Thilo Deininger.</p>
-            </div>
-            <a href="#extra-5" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-5">
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/la%20libertad2.jpg" alt="Puerto de La Libertad" class="img-destino">
+        <div class="destino-texto">
+          <h2>Puerto de La Libertad</h2>
+          <p>El Puerto de La Libertad es el complejo turístico costero más icónico y visitado de El Salvador, ubicado en el departamento de La Libertad, a tan solo 30 minutos de la capital. Este destino combina a la perfección la tradición pesquera, el surf de clase mundial y la modernidad a través de atracciones principales como Sunset Park, un parque de diversiones frente al mar, y el Mercado del Mar, donde se puede comprar marisco fresco o disfrutar de la gastronomía local en sus restaurantes del segundo nivel. Además, el histórico muelle artesanal ofrece un espectáculo único al ver el vaivén de las lanchas pesqueras, mientras que su proximidad con la zona de Surf City (como la playa El Tunco) lo convierte en el punto de partida ideal para los amantes de las olas y la vida nocturna. Puedes consultar más detalles sobre horarios y atracciones en la Guía Oficial de Surf City El Salvador.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">Este destino tropical de arena negra ofrece acceso gratuito, parqueo a $1.00 y atracciones como Sunset Park con juegos mecánicos desde $1.00 y el Mercado del Mar con platillos desde $7.00. Para vivir la experiencia al máximo, visita su histórico muelle artesanal temprano por la mañana para comprar marisco ultra fresco directo a los pescadores, admira a los surfistas profesionales domando la mítica ola de Punta Roca, o conecta en 20 minutos con el senderismo del Parque Nacional Walter Thilo Deininger.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- 6. Cerro Verde -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/cerro.jpg" alt="Cerro Verde" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">Cerro Verde</h2>
-            <p>El Parque Natural Cerro Verde, un volcán extinto a 2,030 metros de altura en Santa Ana,
-              es un paraíso de bosque nebuloso famoso por su clima fresco y senderos accesibles como
-              "Las Flores Misteriosas". Para los turistas, este destino destaca por sus espectaculares
-              miradores hacia el Lago de Coatepeque, su hermoso orquideario y el histórico Hotel de Montaña Casa 1800
-              Cerro Verde. Además, es el punto de partida oficial y obligatorio para realizar las caminatas guiadas hacia
-              las cumbres de los imponentes volcanes de Izalco y Santa Ana.</p>
-            <div class="collapse" id="extra-6">
-              <p class="pt-2">Abierto de 8:00 a.m. a 8:00 p.m., protege 54 manzanas de bosque nebuloso que albergan más de 127
-                especies de aves y árboles centenarios. La entrada cuesta $1.50 para nacionales y $3.00 para extranjeros,
-                con opciones de hospedaje en cabañas del ISTU desde $35.00 o en el histórico.</p>
-            </div>
-            <a href="#extra-6" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-6">
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/cerro.jpg" alt="Cerro Verde" class="img-destino">
+        <div class="destino-texto">
+          <h2>Cerro Verde</h2>
+          <p>El Parque Natural Cerro Verde, un volcán extinto a 2,030 metros de altura en Santa Ana, es un paraíso de bosque nebuloso famoso por su clima fresco y senderos accesibles como "Las Flores Misteriosas". Para los turistas, este destino destaca por sus espectaculares miradores hacia el Lago de Coatepeque, su hermoso orquideario y el histórico Hotel de Montaña Casa 1800 Cerro Verde. Además, es el punto de partida oficial y obligatorio para realizar las caminatas guiadas hacia las cumbres de los imponentes volcanes de Izalco y Santa Ana.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">Abierto de 8:00 a.m. a 8:00 p.m., protege 54 manzanas de bosque nebuloso que albergan más de 127 especies de aves y árboles centenarios. La entrada cuesta $1.50 para nacionales y $3.00 para extranjeros, con opciones de hospedaje en cabañas del ISTU desde $35.00 o en el histórico.</p>
+          </details>
         </div>
       </div>
     </section>
 
-    <!-- 7. Puerta del Diablo -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/montaña.jpeg" alt="Parque Natural Puerta del Diablo" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">Parque Natural Puerta del Diablo</h2>
-            <p>La Puerta del Diablo es una icónica formación rocosa y parque natural ubicado en el distrito de Panchimalco,
-              a unos 13 kilómetros de San Salvador, la capital de El Salvador. El sitio destaca por una imponente grieta formada
-              por grandes peñascos situados en el cerro El Chulo, los cuales ofrecen una de las vistas panorámicas más espectaculares
-              del país. Desde sus miradores se puede contemplar la capital, el volcán de San Vicente, el lago de Ilopango y la costa del
-              océano Pacífico.</p>
-            <div class="collapse" id="extra-7">
-              <p class="pt-2">A esta imponente geografía de 1,131 metros sobre el nivel del mar se suma una moderna infraestructura abierta
-                de 8:00 a.m. a 10:00 p.m. con entrada gratuita, plazas gastronómicas, elevadores inclusivos y miradores con piso de vidrio
-                suspendidos en el vacío. Su mística proviene de una leyenda colonial sobre el diablo que partió la montaña en tres peñascos: El Chulo,
-                El Chulito y El Chulón. Para los turistas más intrépidos, el ascenso controlado a las cumbres cuesta $1.50 para nacionales y $3.00 para
-                extranjeros (disponible hasta las 5:00 p.m.), ofreciendo además opciones de rappel y canopy que complementan perfectamente una noche de
-                pupusas en los cercanos Planes de Renderos.</p>
-            </div>
-            <a href="#extra-7" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-7">
+    <!-- 7. Parque Natural Puerta del Diablo -->
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/monta%C3%B1a.jpeg" alt="Parque Natural Puerta del Diablo" class="img-destino">
+        <div class="destino-texto">
+          <h2>Parque Natural Puerta del Diablo</h2>
+          <p>La Puerta del Diablo es una icónica formación rocosa y parque natural ubicado en el distrito de Panchimalco, a unos 13 kilómetros de San Salvador, la capital de El Salvador. El sitio destaca por una imponente grieta formada por grandes peñascos situados en el cerro El Chulo, los cuales ofrecen una de las vistas panorámicas más espectaculares del país. Desde sus miradores se puede contemplar la capital, el volcán de San Vicente, el lago de Ilopango y la costa del océano Pacífico.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">A esta imponente geografía de 1,131 metros sobre el nivel del mar se suma una moderna infraestructura abierta de 8:00 a.m. a 10:00 p.m. con entrada gratuita, plazas gastronómicas, elevadores inclusivos y miradores con piso de vidrio suspendidos en el vacío. Su mística proviene de una leyenda colonial sobre el diablo que partió la montaña en tres peñascos: El Chulo, El Chulito y El Chulón. Para los turistas más intrépidos, el ascenso controlado a las cumbres cuesta $1.50 para nacionales y $3.00 para extranjeros (disponible hasta las 5:00 p.m.), ofreciendo además opciones de rappel y canopy que complementan perfectamente una noche de pupusas en los cercanos Planes de Renderos.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- 8. El Boquerón -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/bosque.jpg" alt="El Boquerón" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">El Boquerón</h2>
-            <p>El Parque Nacional El Boquerón es un espectacular destino natural ubicado en la cima del
-              volcán de San Salvador, a solo 30 minutos de la capital. Situado a 1,800 metros sobre el nivel
-              del mar, este parque cautiva a los turistas con su clima fresco y su colosal cráter de 1.5 kilómetros
-              de diámetro, en cuyo fondo descansa el "Boqueroncito", un pequeño cono formado en la erupción de 1917.
-              Es el sitio ideal para caminar entre senderos de hortensias, disfrutar de imponentes miradores con piso
-              de vidrio y deleitarse con la vibrante ruta gastronómica y de cafés de altura que adorna su carretera
-              de acceso.</p>
-            <div class="collapse" id="extra-8">
-              <p class="pt-2">El Boquerón, cuyo nombre ancestral es Quezaltepeque, esconde fascinantes secretos
-                naturales en la cima del Volcán de San Salvador. Este fresco ecosistema, hogar del Torogoz (el ave nacional),
-                albergaba una hermosa laguna en su fondo hasta que la erupción del 7 de junio de 1917 la evaporó por completo.
-                En su lugar nació "El Boqueroncito", un singular mini-volcán de 37 metros de altura que hoy decora el abismo.
-                El impacto de este coloso aún es visible en El Playón, una espectacular extensión de lava negra petrificada en
-                las faldas de la montaña, custodiada por "El Picacho", la cumbre más alta del complejo volcánico a 1,960 metros
-                de altura.</p>
-            </div>
-            <a href="#extra-8" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-8">
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/bosque.jpg" alt="El Boquerón" class="img-destino">
+        <div class="destino-texto">
+          <h2>El Boquerón</h2>
+          <p>El Parque Nacional El Boquerón es un espectacular destino natural ubicado en la cima del volcán de San Salvador, a solo 30 minutos de la capital. Situado a 1,800 metros sobre el nivel del mar, este parque cautiva a los turistas con su clima fresco y su colosal cráter de 1.5 kilómetros de diámetro, en cuyo fondo descansa el "Boqueroncito", un pequeño cono formado en la erupción de 1917. Es el sitio ideal para caminar entre senderos de hortensias, disfrutar de imponentes miradores con piso de vidrio y deleitarse con la vibrante ruta gastronómica y de cafés de altura que adorna su carretera de acceso.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">El Boquerón, cuyo nombre ancestral es Quezaltepeque, esconde fascinantes secretos naturales en la cima del Volcán de San Salvador. Este fresco ecosistema, hogar del Torogoz (el ave nacional), albergaba una hermosa laguna en su fondo hasta que la erupción del 7 de junio de 1917 la evaporó por completo. En su lugar nació "El Boqueroncito", un singular mini-volcán de 37 metros de altura que hoy decora el abismo. El impacto de este coloso aún es visible en El Playón, una espectacular extensión de lava negra petrificada en las faldas de la montaña, custodiada por "El Picacho", la cumbre más alta del complejo volcánico a 1,960 metros de altura.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- 9. Cerro El Pital -->
-    <section class="destination-detail py-5">
-      <div class="container">
-        <div class="row align-items-start">
-          <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="img/El pital.jpg" alt="Cerro El Pital" class="img-fluid img-destination">
-          </div>
-          <div class="col-12 col-md-6 text-white-section">
-            <h2 class="fw-bold mb-3">Cerro El Pital</h2>
-            <p>El Cerro El Pital es el punto más alto y frío de El Salvador, una majestuosa montaña boscosa a
-              2,730 metros sobre el nivel del mar en la frontera con Honduras. Rompiendo con el clima tropical
-              del país, ofrece temperaturas que bajan hasta los 0°C, un místico bosque de pinos ideal para acampar,
-              senderos de flores exóticas y vistas panorámicas espectaculares desde sus miradores naturales.</p>
-            <div class="collapse" id="extra-9">
-              <p class="pt-2">Además de albergar el hito
-                fronterizo donde puedes cambiar de país en un segundo, es famoso por la "Piedra de la Paridora" (una grieta
-                rocosa partida por un rayo según la leyenda) y por ser el único lugar del país donde caen granizadas tan densas
-                que simulan nieve.</p>
-            </div>
-            <a href="#extra-9" class="enlace-ver-mas" data-bs-toggle="collapse" role="button"
-               aria-expanded="false" aria-controls="extra-9">
+    <section class="destino">
+      <div class="contenedor destino-grid">
+        <img src="img/El%20pital.jpg" alt="Cerro El Pital" class="img-destino">
+        <div class="destino-texto">
+          <h2>Cerro El Pital</h2>
+          <p>El Cerro El Pital es el punto más alto y frío de El Salvador, una majestuosa montaña boscosa a 2,730 metros sobre el nivel del mar en la frontera con Honduras. Rompiendo con el clima tropical del país, ofrece temperaturas que bajan hasta los 0°C, un místico bosque de pinos ideal para acampar, senderos de flores exóticas y vistas panorámicas espectaculares desde sus miradores naturales.</p>
+          <details class="ver-mas">
+            <summary class="enlace-ver-mas">
               <span class="icono-info">i</span>
-              <span class="texto-boton">Ver más</span>
-            </a>
-          </div>
+              <span class="texto-boton"></span>
+            </summary>
+            <p class="texto-extra">Además de albergar el hito fronterizo donde puedes cambiar de país en un segundo, es famoso por la "Piedra de la Paridora" (una grieta rocosa partida por un rayo según la leyenda) y por ser el único lugar del país donde caen granizadas tan densas que simulan nieve.</p>
+          </details>
         </div>
       </div>
     </section>
+
   </main>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
