@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Avances tecnológicos de El Salvador</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
+
+
 <style>
 :root{--bg:#f6f8fc;--sf:#fff;--ink:#0f1c2e;--mu:#56667c;--ln:#e2e8f1;--a:#3a6fdc;--b:#27b5a0;--c:#ffc88a;--bo:.5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a111f;--sf:#111b2e;--ink:#eaf0fb;--mu:#9db0c9;--ln:#1e2c47;--a:#6c97f7;--b:#3ccfb8;--c:#d9a46c;--bo:.28}}
@@ -106,9 +108,200 @@ footer .logo{display:block;margin-bottom:12px;color:var(--ink);text-decoration:n
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv,.rise{opacity:1;transform:none}}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px clamp(16px, 4vw, 55px);
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid rgba(29, 42, 107, 0.12);
+  box-shadow: 0 3px 14px rgba(18, 26, 69, 0.06);
+  font-family: "Source Sans 3", system-ui, sans-serif;
+}
+
+/* Marca del portal */
+.header .brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  flex-shrink: 0;
+  color: var(--osc);
+  text-decoration: none;
+}
+
+.header .brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.header .brand strong {
+  font-size: clamp(16px, 1.6vw, 21px);
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.header .brand small {
+  margin-top: 3px;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #596174;
+}
+
+/* Bandera de El Salvador */
+.header .flag {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 46px;
+  height: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(29, 42, 107, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.header .flag span {
+  display: block;
+  flex: 1;
+  width: 100%;
+}
+
+.header .flag span:nth-child(1),
+.header .flag span:nth-child(3) {
+  background: #0047ab;
+}
+
+.header .flag span:nth-child(2) {
+  background: #fff;
+}
+
+/* Enlaces de escritorio */
+.header .nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(10px, 1.5vw, 22px);
+  min-width: 0;
+}
+
+.header .nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  color: var(--osc);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+/* Línea animada debajo de los enlaces */
+.header .nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 2px;
+  border-radius: 5px;
+  background: var(--maiz);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.header .nav a:hover,
+.header .nav a:focus-visible {
+  color: var(--anil);
+}
+
+.header .nav a:hover::after,
+.header .nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Botón móvil: oculto en escritorio */
+.header .toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border: 1px solid rgba(29, 42, 107, 0.18);
+  border-radius: 11px;
+  background: #f1f3fa;
+  color: var(--osc);
+  font-family: system-ui, sans-serif;
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header .toggle:hover {
+  background: var(--anil);
+  color: #fff;
+}
+
 </style>
+
 </head>
 <body>
+
+  <header class="header">
+
+    <!-- Marca del portal: bandera y nombre -->
+    <a href="#sv-inicio" class="brand" aria-label="Inicio de El Salvador">
+
+      <div class="flag" role="img" aria-label="Bandera de El Salvador">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <span class="brand-text">
+        <strong>EL SALVADOR</strong>
+        <small>Un país de cultura y oportunidades</small>
+      </span>
+
+    </a>
+
+    <!-- Botón para abrir y cerrar el menú en móviles -->
+    <button
+      class="toggle"
+      id="sv-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-controls="sv-nav"
+      aria-expanded="false"
+    >☰</button>
+
+    <!-- Enlaces principales del portal -->
+    <nav class="nav" id="sv-nav" aria-label="Menú principal">
+      <a href="#sv-inicio">Inicio</a>
+      <a href="#sv-explora">Explora el país</a>
+      <a href="#sv-historia">Historia</a>
+      <a href="#sv-cultura">Cultura</a>
+      <a href="#sv-turismo">Turismo</a>
+      <a href="#sv-departamentos">Departamentos</a>
+      <a href="#sv-contacto">Información</a>
+    </nav>
+
+  </header>
 
 <header class="hero" id="top">
   <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
@@ -307,6 +500,89 @@ $$('i',dots).forEach((d,k)=>d.onclick=()=>show(k));
 const fc=$('#fc');fc.onmouseenter=()=>hold=true;fc.onmouseleave=()=>hold=false;
 if(!calm)setInterval(()=>{if(!hold)show(i+1)},9000);
 show(0);
+
+<!-- FUNCIONAMIENTO DEL MENÚ MÓVIL -->
+
+(function () {
+  "use strict";
+
+  function initMenu() {
+    // Buscar directamente el menú, sin depender de #portal-sv
+    const header = document.querySelector(".header");
+    if (!header || header.dataset.menuReady === "true") return;
+
+    const button = header.querySelector("#sv-toggle");
+    const nav = header.querySelector("#sv-nav");
+
+    if (!button || !nav) {
+      console.warn("No se encontró el botón o la navegación del menú.");
+      return;
+    }
+
+    header.dataset.menuReady = "true";
+
+    // Actualizar el aspecto del encabezado al desplazarse
+    function updateHeader() {
+      header.classList.toggle("scrolled", window.scrollY > 30);
+    }
+
+    window.addEventListener("scroll", updateHeader, {
+      passive: true
+    });
+
+    updateHeader();
+
+    // Abrir o cerrar el menú
+    function setMenu(open) {
+      nav.classList.toggle("open", open);
+
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute(
+        "aria-label",
+        open ? "Cerrar menú" : "Abrir menú"
+      );
+
+      button.textContent = open ? "✕" : "☰";
+    }
+
+    button.addEventListener("click", function () {
+      const isOpen = nav.classList.contains("open");
+      setMenu(!isOpen);
+    });
+
+    // Cerrar al pulsar un enlace
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setMenu(false);
+      });
+    });
+
+    // Cerrar con Escape
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        setMenu(false);
+      }
+    });
+
+    // Cerrar al regresar al diseño de escritorio
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 800) {
+        setMenu(false);
+      }
+    });
+
+    console.log("Menú de El Salvador inicializado correctamente.");
+  }
+
+  // Funciona aunque el script se ejecute antes de terminar de cargar el HTML
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMenu);
+  } else {
+    initMenu();
+  }
+})();
 </script>
+
+
 </body>
 </html>
