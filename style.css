@@ -381,7 +381,7 @@
       rgba(2, 26, 59, .76) 48%,
       rgba(2, 26, 59, .12)
     ),
-    url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1800&q=85")
+    url("img/Banner.jpg")
     center / cover no-repeat;
 }
 #portal-sv .hero-content {
@@ -803,5 +803,239 @@
     scroll-behavior: auto !important;
     animation: none !important;
     transition: none !important;
+  }
+}
+
+
+/* ==================================================
+   10. TÍTULO Y LOGO DE LA PORTADA
+================================================== */
+
+#portal-sv .hero-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 0;
+}
+
+#portal-sv .hero-logo {
+  display: block;
+  flex: 0 0 auto;
+  width: clamp(38px, 5vw, 58px);
+  height: clamp(38px, 5vw, 58px);
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+#portal-sv .hero-title span {
+  min-width: 0;
+}
+
+#portal-sv .hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================================================
+   11. CUADRÍCULA DE TRES TARJETAS
+================================================== */
+
+#portal-sv #sv-explora .grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+#portal-sv #sv-explora .card {
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* ==================================================
+   12. FOOTER SIMPLIFICADO
+================================================== */
+
+#portal-sv .footer {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px 48px;
+  padding: 42px clamp(22px, 6vw, 80px) 24px;
+  background: #08264b;
+  color: #fff;
+}
+
+#portal-sv .footer h3,
+#portal-sv .footer h4 {
+  margin: 0 0 12px;
+  color: #fff;
+}
+
+#portal-sv .footer-brand > span {
+  display: block;
+  color: #dce8f7;
+  font-size: 13px;
+}
+
+#portal-sv .footer p {
+  color: #dce8f7;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+#portal-sv .footer-sources {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+#portal-sv .footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+#portal-sv .footer a:hover {
+  color: #8bd8ff;
+}
+
+#portal-sv .copyright {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .2);
+}
+
+#portal-sv .copyright p {
+  margin: 0;
+}
+
+/* ==================================================
+   13. AJUSTES PARA TABLET Y MÓVIL
+================================================== */
+
+@media (max-width: 850px) {
+  #portal-sv #sv-explora .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  #portal-sv .hero-title {
+    gap: 10px;
+  }
+
+  #portal-sv .hero-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  #portal-sv #sv-explora .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #portal-sv .footer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 32px 22px 20px;
+  }
+
+  #portal-sv .copyright {
+    grid-column: auto;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* ==================================================
+   14. DIFUMINADO CÁLIDO Y LOGO INTEGRADO AL BANNER
+================================================== */
+
+#portal-sv .hero {
+  position: relative;
+  isolation: isolate;
+}
+
+#portal-sv .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  /* Difuminado oscuro/noche desde la izquierda para lectura limpia del texto */
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.88) 0%,
+    rgba(15, 23, 42, 0.65) 30%,
+    rgba(15, 23, 42, 0.30) 55%,
+    transparent 80%
+  );
+}
+
+#portal-sv .hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* LOGO EN LA ESQUINA SUPERIOR DERECHA DE LA PORTADA */
+#portal-sv .hero-logo-superior {
+  position: absolute;
+  top: clamp(18px, 3vw, 36px);
+  right: clamp(18px, 4vw, 52px);
+  z-index: 2;
+
+  width: clamp(52px, 7vw, 88px);
+  height: clamp(52px, 7vw, 88px);
+
+  object-fit: contain;
+  display: block;
+
+  /* Fondo cálido estilo cristal (Glassmorphism) */
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  
+  /* Tono crema/dorado traslúcido en sintonía con el sol del atardecer */
+  background: rgba(255, 248, 235, 0.85); 
+  
+  /* Desenfoque de fondo para integrar la imagen suavemente */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* Borde fino warm/glow y sombra ambiental sutil */
+  border: 1px solid rgba(255, 225, 180, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 
+              0 0 12px rgba(255, 180, 100, 0.20);
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el cursor (Opcional, mejora la interacción) */
+#portal-sv .hero-logo-superior:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.30), 
+              0 0 18px rgba(255, 180, 100, 0.35);
+}
+
+/* AJUSTE PARA TELÉFONOS */
+@media (max-width: 560px) {
+  #portal-sv .hero-logo-superior {
+    top: 16px;
+    right: 16px;
+    width: 54px;
+    height: 54px;
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  #portal-sv .hero-content {
+    padding-top: 38px;
   }
 }
