@@ -1,28 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="es-SV">
+
 <head>
-  <!-- 1. CONFIGURACIÓN GENERAL -->
+  <!-- ==================================================
+       1. CONFIGURACIÓN GENERAL DEL DOCUMENTO
+  =================================================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>El Salvador | Portal informativo nacional</title>
 
-  <meta name="description" content="Portal educativo creado por estudiantes de 2DS para el Módulo 2.8. Descubre la cultura, educación, deportes, tecnología y turismo de El Salvador.">
-  <meta name="theme-color" content="#ffffff">
+  <meta
+    name="description"
+    content="Descubre El Salvador: historia, cultura, turismo, departamentos, símbolos patrios e información general del país."
+  >
+
+  <meta name="theme-color" content="#0047ab">
   <meta name="robots" content="index, follow">
 
-  <!-- 2. HOJA DE ESTILOS -->
+  <!-- ==================================================
+       2. VINCULACIÓN DEL ARCHIVO CSS
+       menu.css contiene los estilos del portal.
+  =================================================== -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
 <div id="portal-sv">
 
-  <!-- 3. ENCABEZADO Y NAVEGACIÓN -->
+  <!-- ==================================================
+       3. ENCABEZADO, BANDERA Y MENÚ DE NAVEGACIÓN
+       El JavaScript controla el menú móvil y la transparencia.
+  =================================================== -->
   <header class="header">
 
+    <!-- Marca del portal: bandera y nombre -->
     <a href="#sv-inicio" class="brand" aria-label="Inicio de El Salvador">
+
       <div class="flag" role="img" aria-label="Bandera de El Salvador">
         <span></span>
         <span></span>
@@ -33,8 +48,10 @@
         <strong>EL SALVADOR</strong>
         <small>Un país de cultura y oportunidades</small>
       </span>
+
     </a>
 
+    <!-- Botón para abrir y cerrar el menú en móviles -->
     <button
       class="toggle"
       id="sv-toggle"
@@ -44,238 +61,332 @@
       aria-expanded="false"
     >☰</button>
 
-    <nav class="nav" id="sv-nav" aria-label="Menú principal">
-      <a href="index.html">Inicio</a>
-      <a href="iniciosv.html">Explora el país</a>
-      <a href="Cultura_ElSalvador_G5_unico.html">Cultura</a>
-      <a href="lugares_turisticos.html">Turismo</a>
-      <a href="educacionydeporte.html">Educación y Deporte</a>
-      <a href="Tecnologia.html">Tecnología</a>
-    </nav>
+
+    <!-- Enlaces principales del portal -->
+<nav class="nav" id="sv-nav" aria-label="Menú principal">
+  <a href="index.html">Inicio</a>
+  <a href="iniciosv.html">Explora el país</a>
+  <a href="Cultura_ElSalvador_G5_unico.html">Cultura</a>
+  <a href="lugares_turisticos.html">Turismo</a>
+  <a href="educacionydeporte.html">Educación y Deporte</a>
+  <a href="Tecnologia.html">Tecnología</a>
+</nav>
 
   </header>
 
 
-<!-- 4. PORTADA PRINCIPAL -->
-<section class="hero" id="sv-inicio">
+ <!-- 4. PORTADA PRINCIPAL -->
+  <section class="hero" id="sv-inicio">
 
-  <!-- LOGO EN LA ESQUINA SUPERIOR DERECHA -->
-  <img
-    class="hero-logo-superior"
-    src="img/logo.png"
-    alt="Logo del portal"
-    onerror="this.style.display='none'"
-  >
+    <!-- LOGO EN LA ESQUINA SUPERIOR DERECHA -->
+    <img
+      class="hero-logo-superior"
+      src="img/logo.png"
+      alt="Logo del portal educativo de El Salvador"
+      onerror="this.style.display='none'"
+    >
 
-  <div class="hero-content">
+    <!-- CONTENIDO DE LA PORTADA -->
+    <div class="hero-content">
 
-    <span class="eyebrow">
-      2° Desarrollo de Software · Portal Web
-    </span>
+      <span class="eyebrow">
+        2° DESARROLLO DE SOFTWARE · MÓDULO 2.8
+      </span>
 
-    <h1 class="hero-title">
-      <span>Bienvenido</span>
-    </h1>
-
-    <p>
-      Un espacio creado por los estudiantes de 2DS para el
-      Módulo 2.8, dedicado a explorar lo mejor de El Salvador:
-      su cultura, educación, deportes, avances tecnológicos y
-      los destinos turísticos que hacen única a nuestra nación.
-      ¡Te invitamos a descubrirlo!
-    </p>
-
-    <a class="btn" href="iniciosv.html">
-      Explorar el país
-      <span aria-hidden="true">→</span>
-    </a>
-
-  </div>
-</section>
-
-
-
-  <!-- 5. BIENVENIDA DE LOS ESTUDIANTES -->
-  <section class="identity" id="sv-bienvenida">
-
-    <div class="identity-intro">
-      <span class="label">BIENVENIDOS A NUESTRO PORTAL WEB</span>
-
-      <h2>¡Descubre lo mejor de El Salvador!</h2>
+      <h1 class="hero-title">
+        <span>Bienvenidos a El Salvador</span>
+      </h1>
 
       <p>
-        
+        Un espacio creado por estudiantes de 2° Desarrollo de
+        Software para descubrir y compartir las riquezas de
+        nuestro país. Explora sus tradiciones, conoce sus
+        oportunidades educativas, disfruta de sus destinos
+        turísticos y descubre cómo la tecnología contribuye
+        a construir nuevas posibilidades para la sociedad
+        salvadoreña.
       </p>
-    </div>
 
+      <a class="btn" href="iniciosv.html">
+        Explorar el país
+        <span aria-hidden="true">→</span>
+      </a>
+
+    </div>
   </section>
 
 
-  <!-- 6. SECCIONES PRINCIPALES DEL PORTAL -->
+ <!-- 6. SECCIONES PRINCIPALES DEL PORTAL -->
   <main class="main" id="sv-explora">
 
+    <!-- INTRODUCCIÓN A LAS SECCIONES -->
     <div class="section-title">
-      <span>CONOCE TODO LO QUE NOS REPRESENTA</span>
+
+      <span>HISTORIA · CULTURA · CONOCIMIENTO · INNOVACIÓN</span>
 
       <h2>Explora El Salvador</h2>
 
       <p>
-        Cultura, educación, deportes, turismo e innovación:
-        descubre las riquezas y oportunidades de nuestro país.
+        Descubre diferentes facetas de nuestro país: sus
+        expresiones culturales, el aprendizaje, el talento
+        deportivo, los atractivos naturales y los avances
+        que abren nuevas oportunidades para el futuro.
       </p>
+
     </div>
 
+    <!-- TARJETAS DE NAVEGACIÓN -->
     <div class="grid">
 
       <!-- TARJETA 1: CULTURA -->
       <a class="card" href="Cultura_ElSalvador_G5_unico.html">
+
         <span class="icon" aria-hidden="true">✿</span>
 
-        <h3>Cultura</h3>
+        <h3>Cultura salvadoreña</h3>
 
         <p>
-          Tradiciones, arte, gastronomía e historia de nuestra tierra.
+          Conoce nuestras tradiciones, celebraciones populares,
+          gastronomía, expresiones artísticas y costumbres,
+          manifestaciones que mantienen viva la identidad
+          cultural de El Salvador.
         </p>
 
         <span class="card-link">
-          Descubrir la cultura
+          Conocer nuestra cultura
           <b class="arrow" aria-hidden="true">→</b>
         </span>
+
       </a>
 
 
       <!-- TARJETA 2: EDUCACIÓN Y DEPORTE -->
       <a class="card" href="educacionydeporte.html">
+
         <span class="icon" aria-hidden="true">⚑</span>
 
-        <h3>Educación y Deporte</h3>
+        <h3>Educación y deporte</h3>
 
         <p>
-          Iniciativas académicas, jóvenes talentos y la pasión
-          deportiva del país.
+          Descubre la importancia de la formación académica,
+          las oportunidades de aprendizaje, la actividad física
+          y el talento de quienes contribuyen al desarrollo
+          educativo y deportivo del país.
         </p>
 
         <span class="card-link">
-          Explorar la sección
+          Aprender y superarse
           <b class="arrow" aria-hidden="true">→</b>
         </span>
+
       </a>
 
 
-      <!-- TARJETA 3: LUGARES TURÍSTICOS -->
+      <!-- TARJETA 3: TURISMO -->
       <a class="card" href="lugares_turisticos.html">
+
         <span class="icon" aria-hidden="true">⌖</span>
 
-        <h3>Lugares Turísticos</h3>
+        <h3>Destinos turísticos</h3>
 
         <p>
-          Playas, volcanes, pueblos vivos y naturaleza por explorar.
+          Recorre playas, volcanes, lagos, pueblos con encanto
+          y espacios naturales que muestran la diversidad
+          de los paisajes salvadoreños y su atractivo para
+          visitantes nacionales e internacionales.
         </p>
 
         <span class="card-link">
           Descubrir destinos
           <b class="arrow" aria-hidden="true">→</b>
         </span>
+
       </a>
 
 
       <!-- TARJETA 4: TECNOLOGÍA -->
       <a class="card" href="Tecnologia.html">
+
         <span class="icon" aria-hidden="true">⌘</span>
 
-        <h3>Tecnología</h3>
+        <h3>Tecnología e innovación</h3>
 
         <p>
-          Avances digitales, innovación y la evolución tecnológica
-          en El Salvador.
+          Explora el papel de las herramientas digitales,
+          la innovación y los avances tecnológicos en la
+          educación, la comunicación y las oportunidades
+          de desarrollo de El Salvador.
         </p>
 
         <span class="card-link">
-          Explorar tecnología
+          Descubrir la tecnología
           <b class="arrow" aria-hidden="true">→</b>
         </span>
+
       </a>
 
     </div>
   </main>
 
 
-  <!-- 7. PRESENTACIÓN BREVE DEL PAÍS -->
+  <!-- ==================================================
+       6. PRESENTACIÓN DE LA IDENTIDAD NACIONAL
+       Introducción general sobre el patrimonio del país.
+  =================================================== -->
   <section class="identity" id="sv-historia">
 
+    <!-- Introducción -->
     <div class="identity-intro">
       <span class="label">NUESTRA IDENTIDAD</span>
 
-      <h2>Una tierra con historia y diversidad</h2>
+      <h2>Una tierra con historia, cultura y diversidad</h2>
 
       <p>
-        El Salvador es un país centroamericano cuya identidad
-        se refleja en su historia, sus tradiciones, su gente
-        y sus paisajes. Su cultura, el talento de sus jóvenes,
-        sus destinos turísticos y sus avances tecnológicos
-        forman parte de una nación en constante evolución.
+        El Salvador forma parte de Centroamérica. Su identidad
+        se ha construido a través de su historia, sus pueblos,
+        sus expresiones culturales y sus paisajes naturales.
       </p>
     </div>
+
+    <!-- Bloque de cultura -->
+    <article class="identity-item" id="sv-cultura">
+      <strong>01 / PATRIMONIO</strong>
+      <h3>Cultura y tradiciones</h3>
+
+      <p>
+        Las expresiones artísticas, las fiestas populares,
+        las tradiciones y la gastronomía forman parte
+        del patrimonio cultural salvadoreño.
+      </p>
+
+      <a href="#sv-explora">Explorar cultura →</a>
+    </article>
+
+    <!-- Bloque de turismo -->
+    <article class="identity-item" id="sv-turismo">
+      <strong>02 / NATURALEZA</strong>
+      <h3>Turismo salvadoreño</h3>
+
+      <p>
+        Los volcanes, las playas del Pacífico, los lagos
+        y los pueblos históricos ofrecen distintas formas
+        de conocer el territorio nacional.
+      </p>
+
+      <a href="#sv-explora">Descubrir destinos →</a>
+    </article>
 
   </section>
 
 
-  <!-- 8. PIE DE PÁGINA SIMPLIFICADO -->
+  
+
+
+  <!-- ==================================================
+       8. SÍMBOLOS PATRIOS
+       Contenido introductorio sobre los emblemas nacionales.
+  =================================================== -->
+  <section class="identity" id="sv-simbolos">
+
+    <div class="identity-intro">
+      <span class="label">ORGULLO SALVADOREÑO</span>
+
+      <h2>Símbolos que representan nuestra nación</h2>
+
+      <p>
+        Los símbolos patrios representan la identidad,
+        la historia y los valores nacionales de El Salvador.
+      </p>
+    </div>
+
+    <!-- Bandera nacional -->
+    <article class="identity-item">
+      <strong>01 / BANDERA</strong>
+      <h3>La bandera nacional</h3>
+      <p>
+        Sus franjas azules y blanca forman parte
+        de la identidad nacional salvadoreña.
+      </p>
+    </article>
+
+    <!-- Escudo e himno -->
+    <article class="identity-item">
+      <strong>02 / EMBLEMAS</strong>
+      <h3>Escudo e himno nacional</h3>
+      <p>
+        Son símbolos oficiales vinculados con la historia,
+        la soberanía y la identidad de la nación.
+      </p>
+    </article>
+
+  </section>
+
+
+  <!-- ==================================================
+       9. PIE DE PÁGINA E INFORMACIÓN
+       Incluye la descripción del portal y enlaces externos.
+  =================================================== -->
   <footer class="footer" id="sv-contacto">
 
-    <!-- IDENTIDAD DEL PORTAL -->
-    <div class="footer-brand">
+    <!-- Identidad del portal -->
+    <div>
       <h3>EL SALVADOR</h3>
+      <span>República de El Salvador</span>
+      <p>Centroamérica</p>
+      <p>Un país de cultura, historia y naturaleza.</p>
+    </div>
 
-      <span>República de El Salvador · Centroamérica</span>
+    <!-- Fuentes externas -->
+    <div id="sv-informacion">
+      <h4>Fuentes de información</h4>
 
       <p>
-        Un país de cultura, historia, innovación y naturaleza.
+        Consulta sitios institucionales para ampliar
+        la información sobre el país.
       </p>
 
       <p>
-        Proyecto educativo realizado por estudiantes de 2DS
-        para el Módulo 2.8.
+        <a
+          href="https://www.presidencia.gob.sv/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Presidencia de la República →
+        </a>
+      </p>
+
+      <p>
+        <a
+          href="https://www.elsalvador.travel/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Turismo de El Salvador →
+        </a>
       </p>
     </div>
 
-
-    <!-- FUENTES OFICIALES -->
-    <div class="footer-sources" id="sv-informacion">
-      <h4>Fuentes oficiales</h4>
-
-      <a
-        href="https://www.presidencia.gob.sv/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Presidencia de la República →
-      </a>
-
-      <a
-        href="https://www.elsalvador.travel/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Turismo de El Salvador →
-      </a>
-    </div>
-
-
-    <!-- DERECHOS Y NAVEGACIÓN -->
-    <div class="copyright">
+    <!-- Navegación secundaria -->
+    <div>
+      <h4>Explora el portal</h4>
       <p>
-        Portal informativo sobre El Salvador ·
-        Contenido educativo y cultural
+        Historia, cultura, geografía, turismo y patrimonio nacional.
       </p>
-
       <a href="#sv-inicio">Volver al inicio ↑</a>
+    </div>
+
+    <!-- Derechos y descripción -->
+    <div class="copyright">
+      Portal informativo sobre El Salvador · Contenido educativo y cultural
     </div>
 
   </footer>
 
 
-  <!-- 9. FRANJA CON LOS COLORES NACIONALES -->
+  <!-- ==================================================
+       10. FRANJA DECORATIVA CON COLORES NACIONALES
+       Elemento visual al final de la página.
+  =================================================== -->
   <div class="stripes" aria-hidden="true">
     <span></span>
     <span></span>
@@ -284,8 +395,8 @@
 
 </div>
 
+<!-- FUNCIONAMIENTO DEL MENÚ MÓVIL -->
 
-<!-- 10. FUNCIONAMIENTO DEL MENÚ -->
 <script>
 (function () {
   "use strict";
@@ -297,7 +408,9 @@
   const button = root.querySelector("#sv-toggle");
   const nav = root.querySelector("#sv-nav");
 
-  /* ENCABEZADO AL DESPLAZARSE */
+  /* =========================================
+     1. TRANSPARENCIA DEL ENCABEZADO AL BAJAR
+  ========================================= */
   function updateHeader() {
     if (!header) return;
 
@@ -310,9 +423,11 @@
 
   updateHeader();
 
+  /* =========================================
+     2. CONTROL DEL MENÚ MÓVIL
+  ========================================= */
   if (!button || !nav) return;
 
-  /* CERRAR MENÚ */
   function closeMenu() {
     nav.classList.remove("open");
     button.textContent = "☰";
@@ -320,7 +435,6 @@
     button.setAttribute("aria-label", "Abrir menú");
   }
 
-  /* ABRIR MENÚ */
   function openMenu() {
     nav.classList.add("open");
     button.textContent = "✕";
@@ -328,32 +442,38 @@
     button.setAttribute("aria-label", "Cerrar menú");
   }
 
-  /* ALTERNAR MENÚ */
   button.addEventListener("click", function () {
-    if (nav.classList.contains("open")) {
+    const isOpen = nav.classList.contains("open");
+
+    if (isOpen) {
       closeMenu();
     } else {
       openMenu();
     }
   });
 
-  /* CERRAR AL SELECCIONAR UN ENLACE */
+  /* Cerrar al seleccionar una sección */
   nav.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", closeMenu);
   });
 
-  /* CERRAR CON ESCAPE */
+  /* Cerrar con Escape */
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") closeMenu();
+    if (event.key === "Escape") {
+      closeMenu();
+    }
   });
 
-  /* CERRAR AL CAMBIAR A ESCRITORIO */
+  /* Cerrar si se vuelve a la vista de escritorio */
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 720) closeMenu();
+    if (window.innerWidth > 720) {
+      closeMenu();
+    }
   });
 
 })();
 </script>
+
 
 </body>
 </html>

@@ -1,180 +1,168 @@
 
-/* ==================================================
+/* =========================================================
    1. VARIABLES Y CONFIGURACIÓN GENERAL
-================================================== */
+========================================================= */
 #portal-sv {
   --azul: #0047ab;
   --azul-oscuro: #08264b;
+  --azul-medio: #168bd2;
   --celeste: #dceeff;
   --blanco: #fff;
   --gris: #64748b;
   --fondo: #f5f8fc;
   --borde: #e5ebf4;
-  --radio: 15px;
-  --transicion: .25s ease;
-  font-family: "Segoe UI", Arial, sans-serif;
+  --radio: 18px;
+  --transicion: .28s ease;
+
+  width: 100%;
   color: #243449;
   background: var(--blanco);
-  width: 100%;
-  line-height: 1.6;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.65;
   overflow-wrap: break-word;
   isolation: isolate;
 }
+
 #portal-sv *,
 #portal-sv *::before,
 #portal-sv *::after {
   box-sizing: border-box;
 }
+
 #portal-sv img {
   display: block;
   max-width: 100%;
   height: auto;
 }
+
 #portal-sv a {
   color: inherit;
   text-decoration: none;
 }
+
 #portal-sv button {
   font: inherit;
 }
+
 #portal-sv a:focus-visible,
 #portal-sv button:focus-visible {
   outline: 3px solid #68c8ff;
   outline-offset: 4px;
 }
 
-/* ==================================================
+#portal-sv p {
+  overflow-wrap: break-word;
+}
+
+#portal-sv section {
+  scroll-margin-top: 85px;
+}
+
+
+/* =========================================================
    2. ENCABEZADO Y MARCA
-================================================== */
+========================================================= */
 #portal-sv .header {
-  position: relative;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 14px clamp(16px, 4vw, 55px);
-  background: var(--blanco);
-  border-bottom: 1px solid #e7edf4;
+  gap: 24px;
+
+  padding: 13px clamp(18px, 4vw, 55px);
+
+  background: rgba(255, 255, 255, .97);
+  border-bottom: 1px solid rgba(0, 71, 171, .10);
+  box-shadow: 0 3px 14px rgba(8, 38, 75, .045);
+
+  transition:
+    background .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease,
+    padding .35s ease;
 }
+
 #portal-sv .brand {
   display: flex;
   align-items: center;
   gap: 12px;
+
+  min-width: 0;
   flex-shrink: 0;
+
   color: var(--azul-oscuro);
+  transition: color .3s ease;
 }
+
 #portal-sv .flag {
   display: flex;
   flex-direction: column;
-  width: 62px;
-  height: 40px;
+
+  width: 58px;
+  height: 38px;
   flex-shrink: 0;
   overflow: hidden;
+
   border: 1px solid #e2e8f0;
-  border-radius: 3px;
+  border-radius: 4px;
+  background: #fff;
 }
+
 #portal-sv .flag span {
   display: block;
   flex: 1;
   background: #0047ab;
 }
+
 #portal-sv .flag span:nth-child(2) {
   background: #fff;
 }
-#portal-sv .brand strong {
-  display: block;
-  font-size: 24px;
-  line-height: 1.2;
-}
-#portal-sv .brand small {
-  display: block;
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-
-/* ==================================================
-   3. MENÚ INSTITUCIONAL — EL SALVADOR
-================================================== */
-
-/* Encabezado fijo y transición */
-#portal-sv .header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 13px clamp(16px, 4vw, 55px);
-  background: rgba(255, 255, 255, .97);
-  border-bottom: 1px solid rgba(0, 71, 171, .10);
-  box-shadow: 0 3px 14px rgba(8, 38, 75, .04);
-  transition:
-    background .35s ease,
-    box-shadow .35s ease,
-    border-color .35s ease,
-    padding .35s ease,
-    backdrop-filter .35s ease;
-}
-
-/* Estado transparente al desplazarse */
-#portal-sv .header.scrolled {
-  padding-top: 9px;
-  padding-bottom: 9px;
-  background: rgba(8, 38, 75, .78);
-  border-bottom-color: rgba(255, 255, 255, .15);
-  box-shadow: 0 8px 28px rgba(8, 38, 75, .16);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  backdrop-filter: blur(16px) saturate(150%);
-}
-
-/* Marca y nombre del portal */
-#portal-sv .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  flex-shrink: 0;
-  color: var(--azul-oscuro);
-  transition: color .35s ease;
-}
-
-#portal-sv .header.scrolled .brand {
-  color: #fff;
-}
 
 #portal-sv .brand strong {
+  display: block;
   font-size: 22px;
   line-height: 1.2;
   letter-spacing: -.4px;
 }
 
 #portal-sv .brand small {
+  display: block;
+  margin-top: 3px;
   font-size: 10px;
-  letter-spacing: .3px;
-  opacity: .8;
+  line-height: 1.4;
+  letter-spacing: .25px;
+  opacity: .82;
 }
 
-/* Navegación de escritorio */
+
+/* =========================================================
+   3. MENÚ DE NAVEGACIÓN
+========================================================= */
 #portal-sv .nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(8px, 1.5vw, 22px);
+  gap: clamp(10px, 1.45vw, 21px);
+  min-width: 0;
 }
 
 #portal-sv .nav a {
   position: relative;
+
   display: inline-flex;
   align-items: center;
+
   padding: 10px 0;
+
   color: var(--azul-oscuro);
   font-size: 12px;
   font-weight: 700;
+  line-height: 1.4;
   white-space: nowrap;
-  border: 0;
+
   transition: color .25s ease;
 }
 
@@ -185,9 +173,11 @@
   right: 0;
   bottom: 3px;
   left: 0;
+
   height: 2px;
-  border-radius: 5px;
-  background: #168bd2;
+  border-radius: 4px;
+  background: var(--azul-medio);
+
   transform: scaleX(0);
   transform-origin: right;
   transition: transform .28s ease;
@@ -204,7 +194,20 @@
   transform-origin: left;
 }
 
-/* Colores del menú sobre el encabezado transparente */
+/* Encabezado al desplazarse */
+#portal-sv .header.scrolled {
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  background: rgba(8, 38, 75, .88);
+  border-bottom-color: rgba(255, 255, 255, .14);
+  box-shadow: 0 8px 26px rgba(8, 38, 75, .15);
+
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  backdrop-filter: blur(16px) saturate(145%);
+}
+
+#portal-sv .header.scrolled .brand,
 #portal-sv .header.scrolled .nav a {
   color: #fff;
 }
@@ -218,20 +221,29 @@
   background: #9cddff;
 }
 
-/* Botón del menú móvil */
+
+/* =========================================================
+   3.1 BOTÓN DEL MENÚ MÓVIL
+========================================================= */
 #portal-sv .toggle {
   display: none;
   align-items: center;
   justify-content: center;
+
   width: 43px;
   height: 43px;
   padding: 0;
+  flex-shrink: 0;
+
   border: 1px solid rgba(0, 71, 171, .15);
   border-radius: 12px;
+
   background: #edf6ff;
   color: var(--azul);
   font-size: 23px;
+  line-height: 1;
   cursor: pointer;
+
   transition:
     background .25s ease,
     color .25s ease,
@@ -244,42 +256,22 @@
 }
 
 #portal-sv .header.scrolled .toggle {
-  border-color: rgba(255, 255, 255, .2);
+  border-color: rgba(255, 255, 255, .22);
   background: rgba(255, 255, 255, .12);
   color: #fff;
 }
 
 #portal-sv .header.scrolled .toggle:hover {
-  background: rgba(255, 255, 255, .24);
+  background: rgba(255, 255, 255, .23);
 }
 
-/* ==================================================
-   3.1 MENÚ RESPONSIVE
-================================================== */
+
+/* =========================================================
+   3.2 AJUSTES DEL MENÚ EN PANTALLAS MEDIANAS
+========================================================= */
 @media (max-width: 1050px) {
   #portal-sv .header {
     gap: 14px;
-  }
-
-  #portal-sv .nav {
-    gap: 12px;
-  }
-
-  #portal-sv .nav a {
-    font-size: 11px;
-  }
-
-  #portal-sv .brand strong {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 720px) {
-  #portal-sv .header,
-  #portal-sv .header.scrolled {
-    flex-wrap: nowrap;
-    gap: 12px;
-    padding: 11px 16px;
   }
 
   #portal-sv .brand {
@@ -295,32 +287,80 @@
   }
 
   #portal-sv .flag {
+    width: 47px;
+    height: 31px;
+  }
+
+  #portal-sv .nav {
+    gap: 11px;
+  }
+
+  #portal-sv .nav a {
+    font-size: 10px;
+  }
+}
+
+
+/* =========================================================
+   3.3 MENÚ RESPONSIVE PARA MÓVILES
+========================================================= */
+@media (max-width: 720px) {
+  #portal-sv .header,
+  #portal-sv .header.scrolled {
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+
+  #portal-sv .brand {
+    flex: 1 1 auto;
+    gap: 9px;
+  }
+
+  #portal-sv .brand strong {
+    font-size: 18px;
+  }
+
+  #portal-sv .brand small {
+    max-width: 210px;
+    font-size: 9px;
+  }
+
+  #portal-sv .flag {
     width: 43px;
     height: 29px;
   }
 
   #portal-sv .toggle {
     display: inline-flex;
-    flex-shrink: 0;
   }
 
   #portal-sv .nav {
     display: none;
+
     position: absolute;
     top: 100%;
     right: 0;
     left: 0;
+
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 8px 20px 16px;
+
+    max-height: calc(100vh - 75px);
+    overflow-y: auto;
+
+    padding: 8px 20px 15px;
+
     border-top: 1px solid #e5edf7;
-    border-bottom: 2px solid #168bd2;
-    border-radius: 0 0 16px 16px;
-    background: rgba(255, 255, 255, .98);
-    box-shadow: 0 16px 32px rgba(8, 38, 75, .14);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
+    border-bottom: 2px solid var(--azul-medio);
+    border-radius: 0 0 15px 15px;
+
+    background: rgba(255, 255, 255, .985);
+    box-shadow: 0 16px 32px rgba(8, 38, 75, .15);
+
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
   }
 
   #portal-sv .nav.open {
@@ -331,10 +371,16 @@
   #portal-sv .header.scrolled .nav a {
     display: block;
     padding: 13px 5px;
+
     border-bottom: 1px solid #eaf0f7;
+
     color: var(--azul-oscuro);
     font-size: 13px;
     white-space: normal;
+  }
+
+  #portal-sv .nav a:last-child {
+    border-bottom: 0;
   }
 
   #portal-sv .nav a::after {
@@ -343,532 +389,670 @@
 
   #portal-sv .nav a:hover,
   #portal-sv .header.scrolled .nav a:hover {
+    padding-left: 10px;
     color: #0878bd;
     background: #f1f8ff;
   }
 
   #portal-sv .header.scrolled .nav {
-    background: rgba(255, 255, 255, .98);
-  }
-}
-
-/* ==================================================
-   3.2 ACCESIBILIDAD
-================================================== */
-@media (prefers-reduced-motion: reduce) {
-  #portal-sv .header,
-  #portal-sv .nav a,
-  #portal-sv .nav a::after,
-  #portal-sv .toggle {
-    transition: none;
+    background: rgba(255, 255, 255, .985);
   }
 }
 
 
-/* ==================================================
-   4. PORTADA PRINCIPAL
-================================================== */
+/* =========================================================
+   4. BANNER PRINCIPAL
+========================================================= */
 #portal-sv .hero {
+  position: relative;
+  isolation: isolate;
+
   display: flex;
   align-items: center;
-  min-height: 450px;
-  padding: 55px clamp(22px, 7vw, 95px);
+
+  min-height: clamp(440px, 54vw, 610px);
+  padding: 65px clamp(22px, 7vw, 95px);
+
   color: #fff;
+
   background:
     linear-gradient(
       90deg,
-      rgba(2, 26, 59, .96),
-      rgba(2, 26, 59, .76) 48%,
-      rgba(2, 26, 59, .12)
+      rgba(2, 26, 59, .91) 0%,
+      rgba(2, 26, 59, .76) 36%,
+      rgba(2, 26, 59, .38) 64%,
+      rgba(2, 26, 59, .10) 100%
     ),
-    url("img/Banner.jpg")
-    center / cover no-repeat;
+    url("img/Banner.jpg") center / cover no-repeat;
 }
+
+/* Difuminado adicional para mejorar la lectura */
+#portal-sv .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    rgba(8, 23, 43, .28) 0%,
+    rgba(8, 23, 43, .14) 32%,
+    transparent 68%
+  );
+}
+
 #portal-sv .hero-content {
+  position: relative;
+  z-index: 1;
+
   width: 100%;
-  max-width: 610px;
+  max-width: 680px;
+  margin: 0;
 }
+
+/* Texto pequeño superior */
 #portal-sv .eyebrow {
   display: inline-block;
-  padding-left: 12px;
+
+  padding: 3px 0 3px 12px;
   border-left: 4px solid #68c8ff;
-  font-size: 12px;
-  font-weight: 750;
+
+  color: #eaf6ff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.6;
   letter-spacing: 1.5px;
 }
-#portal-sv .hero h1 {
-  margin: 20px 0;
+
+/* Título del banner */
+#portal-sv .hero h1,
+#portal-sv .hero-title {
+  margin: 22px 0;
+
   color: #fff;
-  font-size: clamp(38px, 5vw, 65px);
+  font-size: clamp(36px, 5.2vw, 66px);
+  font-weight: 800;
   line-height: 1.08;
   letter-spacing: -1.5px;
-}
-#portal-sv .hero p {
-  max-width: 510px;
-  color: #e7effa;
-  font-size: 15px;
-}
-#portal-sv .hero .motto {
-  display: block;
-  margin: 20px 0;
-  color: #9cddff;
-  font-size: 21px;
-  font-style: italic;
+  text-wrap: balance;
 }
 
-/* ==================================================
-   5. BOTÓN PRINCIPAL
-================================================== */
-#portal-sv .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding: 12px 19px;
-  border: 1px solid transparent;
-  border-radius: 7px;
-  background: #fff;
-  color: var(--azul-oscuro);
-  font-size: 13px;
-  font-weight: 750;
-  transition: background var(--transicion), transform var(--transicion);
-}
-#portal-sv .btn:hover {
-  background: #cceaff;
-  transform: translateY(-2px);
-}
-
-/* ==================================================
-   6. CONTENIDO Y TÍTULOS
-================================================== */
-#portal-sv .main {
-  padding: 60px clamp(17px, 5vw, 70px);
-}
-#portal-sv .section-title {
-  margin: 0 auto 35px;
-  text-align: center;
-}
-#portal-sv .section-title span {
-  color: var(--azul);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-#portal-sv .section-title h2 {
-  margin: 8px 0;
-  color: var(--azul-oscuro);
-  font-size: clamp(26px, 3vw, 36px);
-  line-height: 1.25;
-}
-#portal-sv .section-title p {
-  margin: 0;
-  color: var(--gris);
-  font-size: 14px;
-}
-
-/* ==================================================
-   7. CUADRÍCULA DE TARJETAS
-================================================== */
-#portal-sv .grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-#portal-sv .card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-  min-height: 225px;
-  padding: 25px;
-  border: 1px solid var(--borde);
-  border-radius: var(--radio);
-  background: #fff;
-  box-shadow: 0 3px 12px rgba(15, 42, 78, .05);
-  transition: transform var(--transicion), border-color var(--transicion), box-shadow var(--transicion);
-}
-#portal-sv .card:hover {
-  transform: translateY(-4px);
-  border-color: #b9d8f3;
-  box-shadow: 0 12px 28px rgba(15, 42, 78, .1);
-}
-#portal-sv .icon {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  flex-shrink: 0;
-  border-radius: 15px;
-  background: #e5f2ff;
-  color: #0756ad;
-  font-size: 25px;
-  font-weight: 700;
-}
-#portal-sv .card h3 {
-  margin: 13px 0 5px;
-  color: var(--azul-oscuro);
-  font-size: 19px;
-  line-height: 1.35;
-}
-#portal-sv .card p {
-  margin: 0 0 15px;
-  color: var(--gris);
-  font-size: 13px;
-}
-#portal-sv .card-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  margin-top: auto;
-  color: var(--azul);
-  font-size: 12px;
-  font-weight: 750;
-}
-#portal-sv .arrow {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--azul);
-  color: #fff;
-  font-size: 17px;
-  transition: transform var(--transicion);
-}
-#portal-sv .card-link:hover .arrow {
-  transform: translateX(3px);
-}
-
-/* ==================================================
-   8. IDENTIDAD NACIONAL
-================================================== */
-#portal-sv .identity {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 30px;
-  padding: 50px clamp(20px, 5vw, 70px);
-  border-top: 1px solid #e8eef6;
-  background: var(--fondo);
-}
-#portal-sv .identity .label {
-  color: var(--azul);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.6px;
-}
-#portal-sv .identity h2 {
-  margin: 10px 0;
-  color: var(--azul-oscuro);
-  font-size: clamp(24px, 2.7vw, 34px);
-  line-height: 1.25;
-}
-#portal-sv .identity h3 {
-  margin: 9px 0;
-  color: var(--azul-oscuro);
-  font-size: 19px;
-}
-#portal-sv .identity p {
-  color: var(--gris);
-  font-size: 13px;
-}
-#portal-sv .identity-item {
-  padding-left: 23px;
-  border-left: 1px solid #d5e0ed;
-}
-#portal-sv .identity-item a {
-  color: var(--azul);
-  font-size: 12px;
-  font-weight: 750;
-}
-#portal-sv .identity-item a:hover {
-  text-decoration: underline;
-}
-
-/* ==================================================
-   9. PIE DE PÁGINA
-================================================== */
-#portal-sv .footer {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 30px;
-  padding: 38px clamp(20px, 5vw, 70px) 22px;
-  background: #101722;
-  color: #fff;
-}
-#portal-sv .footer h3 {
-  margin: 0 0 5px;
-  color: #fff;
-  font-size: 25px;
-}
-#portal-sv .footer h4 {
-  margin: 0 0 10px;
-  color: #fff;
-  font-size: 13px;
-}
-#portal-sv .footer p,
-#portal-sv .footer a,
-#portal-sv .footer span {
-  color: #d6e0ee;
-  font-size: 12px;
-  overflow-wrap: anywhere;
-}
-#portal-sv .footer a:hover {
-  color: #9cddff;
-}
-#portal-sv .socials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 12px;
-}
-#portal-sv .socials a {
-  display: grid;
-  place-items: center;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #fff;
-  color: #10315a;
-  font-weight: 800;
-  transition: background var(--transicion), transform var(--transicion);
-}
-#portal-sv .socials a:hover {
-  transform: translateY(-2px);
-  background: #9cddff;
-}
-#portal-sv .copyright {
-  grid-column: 1 / -1;
-  padding-top: 17px;
-  border-top: 1px solid #303c4c;
-  color: #b7c4d5;
-  font-size: 11px;
-  text-align: center;
-}
-
-/* ==================================================
-   10. FRANJA CON LOS COLORES DE LA BANDERA
-================================================== */
-#portal-sv .stripes {
-  display: flex;
-  width: 100%;
-  height: 8px;
-}
-#portal-sv .stripes span {
-  flex: 1;
-}
-#portal-sv .stripes span:nth-child(1),
-#portal-sv .stripes span:nth-child(3) {
-  background: #0047ab;
-}
-#portal-sv .stripes span:nth-child(2) {
-  background: #fff;
-}
-
-/* ==================================================
-   11. TABLET Y PANTALLAS MEDIANAS
-================================================== */
-@media (max-width: 1050px) {
-  #portal-sv .header {
-    flex-wrap: wrap;
-  }
-  #portal-sv .nav {
-    gap: 13px;
-  }
-  #portal-sv .nav a {
-    font-size: 11px;
-  }
-  #portal-sv .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  #portal-sv .identity {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  #portal-sv .identity-intro {
-    grid-column: 1 / -1;
-  }
-}
-
-/* ==================================================
-   12. MÓVILES
-================================================== */
-@media (max-width: 720px) {
-  #portal-sv .header {
-    flex-wrap: nowrap;
-    gap: 12px;
-    padding: 12px 16px;
-  }
-  #portal-sv .brand {
-    min-width: 0;
-    gap: 9px;
-  }
-  #portal-sv .brand strong {
-    font-size: 21px;
-  }
-  #portal-sv .brand small {
-    font-size: 10px;
-  }
-  #portal-sv .flag {
-    width: 48px;
-    height: 32px;
-  }
-  #portal-sv .toggle {
-    display: block;
-    flex-shrink: 0;
-  }
-  #portal-sv .nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 8px 20px 15px;
-    border-top: 1px solid #edf0f5;
-    background: #fff;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, .08);
-  }
-  #portal-sv .nav.open {
-    display: flex;
-  }
-  #portal-sv .nav a {
-    padding: 12px 5px;
-    border-bottom: 1px solid #edf0f5;
-    font-size: 13px;
-  }
-  #portal-sv .hero {
-    min-height: 440px;
-    padding: 38px 22px;
-    background-position: center;
-  }
-  #portal-sv .hero h1 {
-    font-size: clamp(36px, 10vw, 49px);
-    letter-spacing: -1px;
-  }
-  #portal-sv .hero p {
-    font-size: 14px;
-  }
-  #portal-sv .hero .motto {
-    font-size: 18px;
-  }
-  #portal-sv .main {
-    padding: 42px 16px;
-  }
-  #portal-sv .section-title {
-    margin-bottom: 25px;
-  }
-  #portal-sv .grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-  }
-  #portal-sv .card {
-    min-height: 190px;
-    padding: 22px;
-  }
-  #portal-sv .identity {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 22px;
-    padding: 38px 22px;
-  }
-  #portal-sv .identity-intro {
-    grid-column: auto;
-  }
-  #portal-sv .identity-item {
-    padding-left: 17px;
-  }
-  #portal-sv .footer {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-    padding: 32px 22px 22px;
-  }
-  #portal-sv .copyright {
-    grid-column: auto;
-  }
-}
-
-/* ==================================================
-   13. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
-================================================== */
-@media (prefers-reduced-motion: reduce) {
-  #portal-sv *,
-  #portal-sv *::before,
-  #portal-sv *::after {
-    scroll-behavior: auto !important;
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-
-/* ==================================================
-   10. TÍTULO Y LOGO DE LA PORTADA
-================================================== */
-
+/* Título con logo a su lado, si el HTML utiliza esta estructura */
 #portal-sv .hero-title {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin: 24px 0;
-}
-
-#portal-sv .hero-logo {
-  display: block;
-  flex: 0 0 auto;
-  width: clamp(38px, 5vw, 58px);
-  height: clamp(38px, 5vw, 58px);
-  object-fit: contain;
-  border-radius: 5px;
 }
 
 #portal-sv .hero-title span {
   min-width: 0;
 }
 
-#portal-sv .hero-content {
-  position: relative;
-  z-index: 1;
+/* Logo situado junto al título */
+#portal-sv .hero-logo {
+  display: block;
+  flex: 0 0 auto;
+
+  width: clamp(40px, 5vw, 58px);
+  height: clamp(40px, 5vw, 58px);
+
+  object-fit: contain;
+  border-radius: 5px;
 }
 
-/* ==================================================
-   11. CUADRÍCULA DE TRES TARJETAS
-================================================== */
+/* Párrafo del banner: permanece alineado a la izquierda */
+#portal-sv .hero p {
+  max-width: 540px;
+  margin: 0;
 
-#portal-sv #sv-explora .grid {
+  color: #edf4fc;
+  font-size: 15px;
+  line-height: 1.85;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+#portal-sv .hero .motto {
+  display: block;
+  margin: 20px 0 24px;
+
+  color: #b5e4ff;
+  font-size: clamp(17px, 2vw, 21px);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   4.1 LOGO SUPERIOR DERECHO DEL BANNER
+========================================================= */
+#portal-sv .hero-logo-superior {
+  position: absolute;
+  top: clamp(18px, 3vw, 36px);
+  right: clamp(18px, 4vw, 52px);
+  z-index: 2;
+
+  display: block;
+  width: clamp(55px, 7vw, 88px);
+  height: clamp(55px, 7vw, 88px);
+  padding: 8px;
+
+  object-fit: contain;
+
+  border: 1px solid rgba(255, 255, 255, .5);
+  border-radius: 17px;
+
+  background: rgba(255, 248, 235, .88);
+
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 7px 22px rgba(0, 0, 0, .2);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+#portal-sv .hero-logo-superior:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 27px rgba(0, 0, 0, .25);
+}
+
+
+/* =========================================================
+   5. BOTÓN PRINCIPAL
+========================================================= */
+#portal-sv .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  min-height: 45px;
+  padding: 12px 20px;
+
+  border: 1px solid rgba(255, 255, 255, .65);
+  border-radius: 9px;
+
+  background: #fff;
+  color: var(--azul-oscuro);
+
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .10);
+
+  transition:
+    background .25s ease,
+    color .25s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+#portal-sv .btn:hover {
+  transform: translateY(-2px);
+  background: #dceeff;
+  box-shadow: 0 9px 22px rgba(0, 0, 0, .15);
+}
+
+
+
+/* =========================================================
+   6.1 CENTRADO Y DISTRIBUCIÓN DEL CONTENIDO
+========================================================= */
+
+/* Contenedor principal: ocupa todo el ancho disponible */
+#portal-sv .main {
+  display: flow-root;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(44px, 6vw, 76px) clamp(18px, 5vw, 70px);
+  box-sizing: border-box;
+}
+
+/* Encabezados de sección centrados */
+#portal-sv .section-title {
+  display: block;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto 38px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Párrafos de introducción centrados */
+#portal-sv .section-title p {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Cuadrícula centrada sin estrechar el fondo */
+#portal-sv .main .grid {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  box-sizing: border-box;
+}
+
+/* Identidad nacional: conserva el fondo a todo el ancho */
+#portal-sv .identity {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Evita desbordamientos en las columnas */
+#portal-sv .identity > *,
+#portal-sv .identity-intro,
+#portal-sv .main .grid > * {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Centra los párrafos de introducción */
+#portal-sv .identity-intro > p {
+  width: 100%;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* El portal no debe generar desplazamiento horizontal */
+#portal-sv {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   AJUSTES RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+  #portal-sv .main .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  #portal-sv .main {
+    padding: 40px 18px;
+  }
+
+  #portal-sv .section-title {
+    margin-bottom: 28px;
+  }
+
+  #portal-sv .main .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+
+
+
+/* =========================================================
+   7. TARJETAS DE EXPLORACIÓN
+========================================================= */
+#portal-sv .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  align-items: stretch;
+  gap: 23px;
+
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Estructura principal de cada tarjeta */
+#portal-sv .card {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+  min-height: 250px;
+  height: 100%;
+  padding: 26px;
+
+  overflow: hidden;
+
+  border: 1px solid #e3eaf4;
+  border-radius: var(--radio);
+
+  background: linear-gradient(145deg, #fff 0%, #fbfdff 100%);
+
+  box-shadow:
+    0 3px 10px rgba(15, 42, 78, .035),
+    0 10px 26px rgba(15, 42, 78, .035);
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease,
+    background .3s ease;
+}
+
+/* Línea decorativa superior */
+#portal-sv .card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #0047ab,
+    #168bd2,
+    #8bd8ff
+  );
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+
+/* Decoración de fondo discreta */
+#portal-sv .card::after {
+  content: "";
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  z-index: -1;
+
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+  background: rgba(220, 238, 255, .32);
+
+  transition:
+    transform .35s ease,
+    background .35s ease;
+}
+
+#portal-sv .card:hover {
+  transform: translateY(-6px);
+
+  border-color: #b9d8f3;
+  background: #fff;
+
+  box-shadow:
+    0 8px 18px rgba(15, 42, 78, .05),
+    0 18px 38px rgba(15, 42, 78, .09);
+}
+
+#portal-sv .card:hover::before {
+  transform: scaleX(1);
+}
+
+#portal-sv .card:hover::after {
+  transform: scale(1.35);
+  background: rgba(220, 238, 255, .55);
+}
+
+/* Icono de la tarjeta */
+#portal-sv .icon {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  place-items: center;
+
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+
+  border: 1px solid #d9eaff;
+  border-radius: 17px;
+
+  background: linear-gradient(145deg, #edf6ff, #dceeff);
+  color: #0756ad;
+
+  font-size: 26px;
+  line-height: 1;
+
+  box-shadow: 0 4px 10px rgba(0, 71, 171, .06);
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+#portal-sv .card:hover .icon {
+  transform: translateY(-2px) scale(1.04);
+  background: #e0f0ff;
+  box-shadow: 0 7px 15px rgba(0, 71, 171, .10);
+}
+
+/* Título de la tarjeta */
+#portal-sv .card h3 {
+  margin: 17px 0 8px;
+
+  color: var(--azul-oscuro);
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -.2px;
+  text-wrap: balance;
+}
+
+/* Descripción */
+#portal-sv .card p {
+  margin: 0 0 20px;
+
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: left;
+}
+
+/* Enlace inferior de la tarjeta */
+#portal-sv .card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  width: 100%;
+  margin-top: auto;
+  padding-top: 12px;
+
+  border-top: 1px solid #edf1f7;
+
+  color: var(--azul);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+
+  transition: color .25s ease;
+}
+
+#portal-sv .card-link:hover {
+  color: #0878bd;
+}
+
+/* Flecha circular */
+#portal-sv .arrow {
+  display: grid;
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background: var(--azul);
+  color: #fff;
+
+  font-size: 18px;
+  line-height: 1;
+
+  box-shadow: 0 3px 8px rgba(0, 71, 171, .16);
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+#portal-sv .card-link:hover .arrow {
+  transform: translateX(4px);
+  background: #0878bd;
+}
+
+/* Si la tarjeta completa es un enlace */
+#portal-sv a.card {
+  color: inherit;
+  cursor: pointer;
+}
+
+#portal-sv a.card:focus-visible {
+  outline: 3px solid #68c8ff;
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   7.1 CUADRÍCULA DE EXPLORACIÓN
+   Tres columnas en escritorio, dos en tablet y una en móvil
+========================================================= */
+#portal-sv #sv-explora .grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 #portal-sv #sv-explora .card {
   min-width: 0;
-  height: 100%;
-  box-sizing: border-box;
 }
 
-/* ==================================================
-   12. FOOTER SIMPLIFICADO
-================================================== */
 
+/* =========================================================
+   8. IDENTIDAD NACIONAL
+========================================================= */
+#portal-sv .identity {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  align-items: start;
+  gap: 32px;
+
+  padding: clamp(40px, 5.5vw, 64px) clamp(20px, 5vw, 70px);
+
+  border-top: 1px solid #e8eef6;
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(220, 238, 255, .55),
+      transparent 36%
+    ),
+    var(--fondo);
+}
+
+#portal-sv .identity .label {
+  display: inline-block;
+  color: var(--azul);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+#portal-sv .identity h2 {
+  margin: 10px 0 14px;
+
+  color: var(--azul-oscuro);
+  font-size: clamp(25px, 2.8vw, 35px);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+#portal-sv .identity h3 {
+  margin: 8px 0 12px;
+
+  color: var(--azul-oscuro);
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+#portal-sv .identity p {
+  margin: 0 0 14px;
+
+  color: var(--gris);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* Columnas secundarias */
+#portal-sv .identity-item {
+  min-width: 0;
+  padding-left: 23px;
+  border-left: 2px solid #d5e4f3;
+}
+
+#portal-sv .identity-item a {
+  display: inline-block;
+  color: var(--azul);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+#portal-sv .identity-item a:hover {
+  color: #0878bd;
+  text-decoration: underline;
+}
+
+/* Centrado de la introducción si existe como columna propia */
+#portal-sv .identity-intro {
+  min-width: 0;
+}
+
+#portal-sv .identity-intro p {
+  max-width: 650px;
+}
+
+
+/* =========================================================
+   9. PIE DE PÁGINA
+========================================================= */
 #portal-sv .footer {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
+  align-items: start;
   gap: 30px 48px;
+
   padding: 42px clamp(22px, 6vw, 80px) 24px;
+
   background: #08264b;
   color: #fff;
 }
 
-#portal-sv .footer h3,
+#portal-sv .footer h3 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 25px;
+  line-height: 1.3;
+}
+
 #portal-sv .footer h4 {
   margin: 0 0 12px;
   color: #fff;
+  font-size: 14px;
 }
 
 #portal-sv .footer-brand > span {
@@ -878,9 +1062,20 @@
 }
 
 #portal-sv .footer p {
+  margin: 10px 0;
   color: #dce8f7;
-  line-height: 1.7;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+#portal-sv .footer a {
+  color: #fff;
+  overflow-wrap: anywhere;
+  transition: color .25s ease;
+}
+
+#portal-sv .footer a:hover {
+  color: #8bd8ff;
 }
 
 #portal-sv .footer-sources {
@@ -890,44 +1085,178 @@
   gap: 12px;
 }
 
-#portal-sv .footer a {
-  color: #fff;
-  text-decoration: none;
-  transition: color .25s ease;
+#portal-sv .footer-sources a {
+  font-size: 13px;
 }
 
-#portal-sv .footer a:hover {
-  color: #8bd8ff;
+/* Redes sociales, si aparecen en el HTML */
+#portal-sv .socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
 }
 
+#portal-sv .socials a {
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 50%;
+
+  background: #fff;
+  color: #10315a;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  transition:
+    background .25s ease,
+    color .25s ease,
+    transform .25s ease;
+}
+
+#portal-sv .socials a:hover {
+  transform: translateY(-3px);
+  background: #9cddff;
+  color: #08264b;
+}
+
+/* Franja de copyright */
 #portal-sv .copyright {
   grid-column: 1 / -1;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px 24px;
+
   padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, .2);
+
+  color: #b7c8dc;
+  font-size: 11px;
 }
 
 #portal-sv .copyright p {
   margin: 0;
+  color: #b7c8dc;
+  font-size: 11px;
 }
 
-/* ==================================================
-   13. AJUSTES PARA TABLET Y MÓVIL
-================================================== */
+#portal-sv .copyright a {
+  font-size: 11px;
+}
 
+
+/* =========================================================
+   10. FRANJA CON LOS COLORES DE LA BANDERA
+========================================================= */
+#portal-sv .stripes {
+  display: flex;
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+}
+
+#portal-sv .stripes span {
+  display: block;
+  flex: 1;
+}
+
+#portal-sv .stripes span:nth-child(1),
+#portal-sv .stripes span:nth-child(3) {
+  background: #0047ab;
+}
+
+#portal-sv .stripes span:nth-child(2) {
+  background: #fff;
+}
+
+
+/* =========================================================
+   11. TABLETAS
+========================================================= */
 @media (max-width: 850px) {
-  #portal-sv #sv-explora .grid {
+  #portal-sv .hero {
+    min-height: 460px;
+    padding: 54px 35px;
+    background-position: center;
+  }
+
+  #portal-sv .hero-content {
+    max-width: 620px;
+  }
+
+  #portal-sv #sv-explora .grid,
+  #portal-sv .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  #portal-sv .identity {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  #portal-sv .identity-intro {
+    grid-column: 1 / -1;
+  }
+
+  #portal-sv .footer {
+    gap: 26px;
   }
 }
 
+
+/* =========================================================
+   12. TELÉFONOS
+========================================================= */
 @media (max-width: 560px) {
+  #portal-sv .hero {
+    align-items: center;
+    min-height: 490px;
+    padding: 84px 22px 40px;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(2, 26, 59, .88),
+        rgba(2, 26, 59, .65)
+      ),
+      url("img/Banner.jpg") center / cover no-repeat;
+  }
+
+  #portal-sv .hero::before {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 23, 43, .10),
+      rgba(8, 23, 43, .18)
+    );
+  }
+
+  #portal-sv .hero-content {
+    max-width: 100%;
+  }
+
+  #portal-sv .eyebrow {
+    max-width: 100%;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  #portal-sv .hero h1,
   #portal-sv .hero-title {
     gap: 10px;
+    margin: 19px 0;
+
+    font-size: clamp(31px, 8.6vw, 43px);
+    line-height: 1.12;
+    letter-spacing: -.8px;
   }
 
   #portal-sv .hero-logo {
@@ -935,107 +1264,156 @@
     height: 38px;
   }
 
-  #portal-sv #sv-explora .grid {
+  #portal-sv .hero p {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  #portal-sv .hero .motto {
+    margin: 18px 0 22px;
+    font-size: 17px;
+  }
+
+  #portal-sv .hero-logo-superior {
+    top: 15px;
+    right: 17px;
+
+    width: 52px;
+    height: 52px;
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  #portal-sv .btn {
+    min-height: 44px;
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  #portal-sv .main {
+    padding: 43px 17px;
+  }
+
+  #portal-sv .section-title {
+    margin-bottom: 27px;
+  }
+
+  #portal-sv .section-title h2 {
+    font-size: 27px;
+  }
+
+  #portal-sv .section-title p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  #portal-sv #sv-explora .grid,
+  #portal-sv .grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+
+  #portal-sv .card {
+    min-height: 0;
+    padding: 23px;
+  }
+
+  #portal-sv .card h3 {
+    font-size: 18px;
+  }
+
+  #portal-sv .card p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  #portal-sv .identity {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+    padding: 38px 22px;
+  }
+
+  #portal-sv .identity-intro {
+    grid-column: auto;
+  }
+
+  #portal-sv .identity-intro p {
+    max-width: 100%;
+  }
+
+  #portal-sv .identity-item {
+    padding-left: 17px;
   }
 
   #portal-sv .footer {
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-    padding: 32px 22px 20px;
+    gap: 25px;
+    padding: 32px 22px 22px;
   }
 
   #portal-sv .copyright {
     grid-column: auto;
     align-items: flex-start;
     flex-direction: column;
+    gap: 9px;
   }
 }
 
-/* ==================================================
-   14. DIFUMINADO CÁLIDO Y LOGO INTEGRADO AL BANNER
-================================================== */
 
-#portal-sv .hero {
-  position: relative;
-  isolation: isolate;
-}
-
-#portal-sv .hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  /* Difuminado oscuro/noche desde la izquierda para lectura limpia del texto */
-  background: linear-gradient(
-    90deg,
-    rgba(15, 23, 42, 0.88) 0%,
-    rgba(15, 23, 42, 0.65) 30%,
-    rgba(15, 23, 42, 0.30) 55%,
-    transparent 80%
-  );
-}
-
-#portal-sv .hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-
-/* LOGO EN LA ESQUINA SUPERIOR DERECHA DE LA PORTADA */
-#portal-sv .hero-logo-superior {
-  position: absolute;
-  top: clamp(18px, 3vw, 36px);
-  right: clamp(18px, 4vw, 52px);
-  z-index: 2;
-
-  width: clamp(52px, 7vw, 88px);
-  height: clamp(52px, 7vw, 88px);
-
-  object-fit: contain;
-  display: block;
-
-  /* Fondo cálido estilo cristal (Glassmorphism) */
-  padding: 8px;
-  box-sizing: border-box;
-  border-radius: 16px;
-  
-  /* Tono crema/dorado traslúcido en sintonía con el sol del atardecer */
-  background: rgba(255, 248, 235, 0.85); 
-  
-  /* Desenfoque de fondo para integrar la imagen suavemente */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  
-  /* Borde fino warm/glow y sombra ambiental sutil */
-  border: 1px solid rgba(255, 225, 180, 0.45);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 
-              0 0 12px rgba(255, 180, 100, 0.20);
-  
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Efecto al pasar el cursor (Opcional, mejora la interacción) */
-#portal-sv .hero-logo-superior:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.30), 
-              0 0 18px rgba(255, 180, 100, 0.35);
-}
-
-/* AJUSTE PARA TELÉFONOS */
-@media (max-width: 560px) {
-  #portal-sv .hero-logo-superior {
-    top: 16px;
-    right: 16px;
-    width: 54px;
-    height: 54px;
-    padding: 6px;
-    border-radius: 12px;
+/* =========================================================
+   13. TELÉFONOS PEQUEÑOS
+========================================================= */
+@media (max-width: 360px) {
+  #portal-sv .header,
+  #portal-sv .header.scrolled {
+    padding-right: 11px;
+    padding-left: 11px;
   }
 
-  #portal-sv .hero-content {
-    padding-top: 38px;
+  #portal-sv .brand {
+    gap: 7px;
+  }
+
+  #portal-sv .brand strong {
+    font-size: 16px;
+  }
+
+  #portal-sv .brand small {
+    font-size: 8px;
+  }
+
+  #portal-sv .flag {
+    width: 37px;
+    height: 25px;
+  }
+
+  #portal-sv .toggle {
+    width: 39px;
+    height: 39px;
+  }
+
+  #portal-sv .hero {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  #portal-sv .hero h1,
+  #portal-sv .hero-title {
+    font-size: 30px;
+  }
+}
+
+
+/* =========================================================
+   14. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  #portal-sv *,
+  #portal-sv *::before,
+  #portal-sv *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
   }
 }
